@@ -10,6 +10,7 @@ import com.onlinemart.model.Customer;
 import com.onlinemart.model.Guest;
 import com.onlinemart.utils.SessionUtil;
 import java.util.List;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -29,7 +30,10 @@ public class GuestDAOImpl extends AbstractDAO<Guest> implements GuestDAO {
     }
 
     public void saveGuest(Guest guest) {
-        getSession().merge(guest);
+        Session session = sessionFactory.getCurrentSession();
+        session.beginTransaction();
+        session.save(guest);
+        session.getTransaction().commit();
 
     }
 
