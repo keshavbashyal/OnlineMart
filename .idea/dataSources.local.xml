@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="MySQL - promed@localhost" uuid="b6c18fb1-9e5c-4b0f-afa0-cf82e30d2fea">
+      <secret-storage>master_key</secret-storage>
+      <user-name>root</user-name>
+      <schema-pattern>promed.*</schema-pattern>
+      <default-schemas>promed.*</default-schemas>
+    </data-source>
+  </component>
+</project>

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - promed@localhost" uuid="b6c18fb1-9e5c-4b0f-afa0-cf82e30d2fea">
+    <database-info product="MySQL" version="5.6.21-log" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.34 ( Revision: jess.balint@oracle.com-20141014163213-wqbwpf1ok2kvo1om )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <schema name="" catalog="promed"/>
+    <table name="activity" schema="" catalog="promed" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="description" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="title" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="campaign_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_m6mrmtpk68cqe0h0muyk7ig5k" columns="campaign_id" ref-table="campaign" ref-schema="" ref-catalog="promed" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_m6mrmtpk68cqe0h0muyk7ig5k" unique="false" columns="campaign_id"/>
+    </table>
+    <table name="admins" schema="" catalog="promed" type="TABLE">
+      <column name="adminid" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_76qlb6c1rqr40j7ccpisltl5j" columns="id" ref-table="person" ref-schema="" ref-catalog="promed" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+    </table>
+    <table name="appointment" schema="" catalog="promed" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="bill" schema="" catalog="promed" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="campaign" schema="" catalog="promed" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="title" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_m6mrmtpk68cqe0h0muyk7ig5k" table="activity" schema="" catalog="promed" columns="campaign_id"/>
+    </table>
+    <table name="checkup" schema="" catalog="promed" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="client" schema="" catalog="promed" type="TABLE">
+      <column name="clientId" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_ry5y27p5iwfa43hripgl2n1y6" columns="id" ref-table="person" ref-schema="" ref-catalog="promed" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_rit2l23l5bucdqgy177tlvv0b" table="patient" schema="" catalog="promed" columns="client_id"/>
+    </table>
+    <table name="department" schema="" catalog="promed" type="TABLE">
+      <column name="Id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="departmentName" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="Id"/>
+      <exported-key name="FK_c2x7f7t2q5tfer5jqx96xcrpv" table="service" schema="" catalog="promed" columns="department_Id"/>
+    </table>
+    <table name="doctor" schema="" catalog="promed" type="TABLE">
+      <column name="doctorId" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="licenseNo" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="user_user_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_h8ayle34qcv8w3sg6s4ien8he" columns="user_user_id" ref-table="user" ref-schema="" ref-catalog="promed" ref-columns="user_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_jdhpfx0kohprv93kgva3c2t2c" columns="id" ref-table="person" ref-schema="" ref-catalog="promed" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_h8ayle34qcv8w3sg6s4ien8he" unique="false" columns="user_user_id"/>
+    </table>
+    <table name="groups" schema="" catalog="promed" type="TABLE">
+      <column name="group_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="group_name" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="group_desc" sqlType="VARCHAR" precision="200" scale="0" nullable="true" jdbcType="12"/>
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="groupname" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="group_id"/>
+    </table>
+    <table name="nurse" schema="" catalog="promed" type="TABLE">
+      <column name="licenseId" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="nurseId" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_ob7k33p79k5iw14hvrnbn5pan" columns="id" ref-table="person" ref-schema="" ref-catalog="promed" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+    </table>
+    <table name="patient" schema="" catalog="promed" type="TABLE">
+      <column name="patientNo" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="client_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_o6lg4it98g5yfbwceirtj0a6v" columns="id" ref-table="person" ref-schema="" ref-catalog="promed" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_rit2l23l5bucdqgy177tlvv0b" columns="client_id" ref-table="client" ref-schema="" ref-catalog="promed" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_rit2l23l5bucdqgy177tlvv0b" unique="false" columns="client_id"/>
+    </table>
+    <table name="payment" schema="" catalog="promed" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="person" schema="" catalog="promed" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="city" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="firstName" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="lastName" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="mobile" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="phone" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="stateName" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="street" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="zipCode" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_76qlb6c1rqr40j7ccpisltl5j" table="admins" schema="" catalog="promed" columns="id"/>
+      <exported-key name="FK_ry5y27p5iwfa43hripgl2n1y6" table="client" schema="" catalog="promed" columns="id"/>
+      <exported-key name="FK_jdhpfx0kohprv93kgva3c2t2c" table="doctor" schema="" catalog="promed" columns="id"/>
+      <exported-key name="FK_ob7k33p79k5iw14hvrnbn5pan" table="nurse" schema="" catalog="promed" columns="id"/>
+      <exported-key name="FK_o6lg4it98g5yfbwceirtj0a6v" table="patient" schema="" catalog="promed" columns="id"/>
+      <exported-key name="FK_2mt2vvhqq9j7gcyotuy1j29oi" table="user" schema="" catalog="promed" columns="person_id"/>
+    </table>
+    <table name="prescription" schema="" catalog="promed" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="checkup" sqlType="TINYBLOB" precision="255" scale="0" nullable="true" jdbcType="-2"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="report" schema="" catalog="promed" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="title" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="service" schema="" catalog="promed" type="TABLE">
+      <column name="serviceId" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="description" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="price" sqlType="DOUBLE" precision="22" scale="0" nullable="true" jdbcType="8"/>
+      <column name="serviceName" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="department_Id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="serviceId"/>
+      <foreign-key name="FK_c2x7f7t2q5tfer5jqx96xcrpv" columns="department_Id" ref-table="department" ref-schema="" ref-catalog="promed" ref-columns="Id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_c2x7f7t2q5tfer5jqx96xcrpv" unique="false" columns="department_Id"/>
+    </table>
+    <table name="user" schema="" catalog="promed" type="TABLE">
+      <column name="user_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="email" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="password" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="username" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="verification" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="person_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="user_id"/>
+      <foreign-key name="FK_2mt2vvhqq9j7gcyotuy1j29oi" columns="person_id" ref-table="person" ref-schema="" ref-catalog="promed" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_h8ayle34qcv8w3sg6s4ien8he" table="doctor" schema="" catalog="promed" columns="user_user_id"/>
+      <index name="UK_jreodf78a7pl5qidfh43axdfb" unique="true" columns="username"/>
+      <index name="FK_2mt2vvhqq9j7gcyotuy1j29oi" unique="false" columns="person_id"/>
+    </table>
+    <table name="user_groups" schema="" catalog="promed" type="TABLE">
+      <column name="user_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="group_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="user_id,group_id"/>
+      <index name="fk_users_has_groups_groups1" unique="false" columns="group_id"/>
+      <index name="fk_users_has_groups_users" unique="false" columns="user_id"/>
+    </table>
+    <table name="users" schema="" catalog="promed" type="TABLE">
+      <column name="USER_ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="EMAIL" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="PASSWORD" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="USERNAME" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="VERIFICATION" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="PERSON_ID" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="USER_ID"/>
+      <index name="FK_USERS_PERSON_ID" unique="false" columns="PERSON_ID"/>
+    </table>
+    <table name="v_user_role" schema="" catalog="promed" type="VIEW">
+      <column name="username" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="password" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="group_name" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+    </table>
+  </data-source>
+</component>
