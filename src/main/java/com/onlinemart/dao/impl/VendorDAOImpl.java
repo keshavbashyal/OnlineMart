@@ -6,6 +6,7 @@
 package com.onlinemart.dao.impl;
 
 import com.onlinemart.dao.VendorDAO;
+import com.onlinemart.model.Customer;
 import com.onlinemart.model.Vendor;
 import java.util.List;
 import org.springframework.stereotype.Repository;
@@ -16,7 +17,11 @@ import com.onlinemart.utils.SessionUtil;
  * @author Keshav
  */
 @Repository
-public class VendorDAOImpl extends SessionUtil implements VendorDAO {
+public class VendorDAOImpl extends AbstractDAO<Vendor> implements VendorDAO {
+
+    public VendorDAOImpl(Class<Vendor> entityClass) {
+        super(entityClass);
+    }
 
     @Override
     public void saveVendor(Vendor vendor) {

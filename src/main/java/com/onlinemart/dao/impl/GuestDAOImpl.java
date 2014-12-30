@@ -6,6 +6,7 @@
 package com.onlinemart.dao.impl;
 
 import com.onlinemart.dao.GuestDAO;
+import com.onlinemart.model.Customer;
 import com.onlinemart.model.Guest;
 import com.onlinemart.utils.SessionUtil;
 import java.util.List;
@@ -18,10 +19,14 @@ import org.springframework.stereotype.Repository;
  * @author Keshav
  */
 @Repository
-public class GuestDAOImpl extends SessionUtil implements GuestDAO {
+public class GuestDAOImpl extends AbstractDAO<Guest> implements GuestDAO {
 
     @Autowired
     private SessionFactory sessionFactory;
+
+    public GuestDAOImpl(Class<Guest> entityClass) {
+        super(entityClass);
+    }
 
     public void saveGuest(Guest guest) {
         getSession().merge(guest);

@@ -5,8 +5,9 @@
  */
 package com.onlinemart.dao.impl;
 
+import com.onlinemart.utils.SessionUtil;
 import java.util.List;
-import javax.persistence.EntityManager;
+
 
 /**
  *
@@ -14,7 +15,7 @@ import javax.persistence.EntityManager;
  */
 
 
-public abstract class AbstractDAO<T>
+public abstract class AbstractDAO<T> extends SessionUtil
 {
     private Class<T> entityClass;
 
@@ -23,54 +24,58 @@ public abstract class AbstractDAO<T>
         this.entityClass = entityClass;
     }
 
-    protected abstract EntityManager getEntityManager();
+//    protected abstract EntityManager getEntityManager();
 
     public void create(T entity)
     {
-        getEntityManager().persist(entity);
+        getSession().persist(entity);
     }
 
     public void edit(T entity)
     {
-        getEntityManager().merge(entity);
+        getSession().merge(entity);
     }
 
     public void remove(T entity)
     {
-        getEntityManager().remove(getEntityManager().merge(entity));
+//        getSession().remove(getSession().merge(entity));
     }
 
     public T find(Object id)
     {
-        return getEntityManager().find(entityClass, id);
+//        return getSession().find(entityClass, id);
+        return null;
     }
     
     
 
     public List<T> findAll()
     {
-        javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
-        cq.select(cq.from(entityClass));
-        return getEntityManager().createQuery(cq).getResultList();
+//        javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
+//        cq.select(cq.from(entityClass));
+//        return getEntityManager().createQuery(cq).getResultList();
+        return null;
     }
 
     public List<T> findRange(int[] range)
     {
-        javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
-        cq.select(cq.from(entityClass));
-        javax.persistence.Query q = getEntityManager().createQuery(cq);
-        q.setMaxResults(range[1] - range[0] + 1);
-        q.setFirstResult(range[0]);
-        return q.getResultList();
+//        javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
+//        cq.select(cq.from(entityClass));
+//        javax.persistence.Query q = getEntityManager().createQuery(cq);
+//        q.setMaxResults(range[1] - range[0] + 1);
+//        q.setFirstResult(range[0]);
+//        return q.getResultList();
+        return null;
     }
 
     public int count()
     {
-        javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
-        javax.persistence.criteria.Root<T> rt = cq.from(entityClass);
-        cq.select(getEntityManager().getCriteriaBuilder().count(rt));
-        javax.persistence.Query q = getEntityManager().createQuery(cq);
-        return ((Long) q.getSingleResult()).intValue();
+//        javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
+//        javax.persistence.criteria.Root<T> rt = cq.from(entityClass);
+//        cq.select(getEntityManager().getCriteriaBuilder().count(rt));
+//        javax.persistence.Query q = getEntityManager().createQuery(cq);
+//        return ((Long) q.getSingleResult()).intValue();
+        return 0;
     }
     
 }

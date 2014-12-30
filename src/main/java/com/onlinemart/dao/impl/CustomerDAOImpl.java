@@ -18,7 +18,11 @@ import org.springframework.transaction.annotation.Transactional;
  * @author Keshav
  */
 @Repository
-public class CustomerDAOImpl extends SessionUtil implements CustomerDAO{
+public class CustomerDAOImpl extends AbstractDAO<Customer> implements CustomerDAO{
+
+    public CustomerDAOImpl(Class<Customer> entityClass) {
+        super(entityClass);
+    }
     
     public void saveCustomer(Customer customer)
     {

@@ -13,6 +13,5 @@
 <body>
 <h1>The message is ${message}</h1>
 
-
 </body>
 </html>
