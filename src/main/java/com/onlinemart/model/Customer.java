@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.springapp.model;
+package com.onlinemart.model;
 
-import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,20 +15,21 @@ import javax.persistence.Id;
  * @author Keshav
  */
 @Entity
-public class ActiveUser implements Serializable {
+public class Customer {
+    
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String name;
+    private String customerName;
     private String description;
 
     public String getName() {
-        return name;
+        return customerName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String customerName) {
+        this.customerName = customerName;
     }
 
     public String getDescription() {
@@ -59,10 +59,10 @@ public class ActiveUser implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof ActiveUser)) {
+        if (!(object instanceof Customer)) {
             return false;
         }
-        ActiveUser other = (ActiveUser) object;
+        Customer other = (Customer) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -71,7 +71,7 @@ public class ActiveUser implements Serializable {
 
     @Override
     public String toString() {
-        return "com.keshav.springdemotest.model.ActiveUser[ id=" + id + " ]";
+        return "com.keshav.springdemotest.model.Customer[ id=" + id + " ]";
     }
     
 }

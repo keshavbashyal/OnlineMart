@@ -1,4 +1,4 @@
-package com.springapp.mvc;
+package com.onlinemart.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;

@@ -14,7 +14,7 @@
 
     
     <mvc:annotation-driven/>
-    <context:component-scan base-package="com.springapp"/>
+    <context:component-scan base-package="com.onlinemart"/>
 
     <bean id="propertyConfigurer"
           class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
@@ -36,7 +36,7 @@
 
         <property name="packagesToScan">
             <list>
-                <value>com.springapp</value>
+                <value>com.onlinemart</value>
             </list>
         </property>
         <property name="hibernateProperties">
