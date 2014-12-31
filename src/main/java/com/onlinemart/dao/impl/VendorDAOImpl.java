@@ -23,6 +23,11 @@ public class VendorDAOImpl extends AbstractDAO<Vendor> implements VendorDAO {
         super(entityClass);
     }
 
+    public VendorDAOImpl() {
+    }
+    
+    
+
     @Override
     public void saveVendor(Vendor vendor) {
         getSession().merge(vendor);

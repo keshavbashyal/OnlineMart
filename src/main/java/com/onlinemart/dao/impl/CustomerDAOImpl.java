@@ -11,19 +11,25 @@ import com.onlinemart.utils.SessionUtil;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
+
 
 /**
  *
  * @author Keshav
  */
-@Repository
+
 public class CustomerDAOImpl extends AbstractDAO<Customer> implements CustomerDAO{
 
     public CustomerDAOImpl(Class<Customer> entityClass) {
         super(entityClass);
     }
     
+    public CustomerDAOImpl() {
+        super();
+    }
+    
+    
+            
     public void saveCustomer(Customer customer)
     {
         getSession().merge(customer);

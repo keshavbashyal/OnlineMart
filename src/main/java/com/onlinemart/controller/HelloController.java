@@ -10,7 +10,7 @@ public class HelloController {
 	@RequestMapping("/")
 	public String printHello(ModelMap model) {
 		model.addAttribute("message", "Hello world!");
-		return "hello";
+		return "/template/index";
 	}
 
 	@RequestMapping("/welcome")

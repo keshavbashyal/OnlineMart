@@ -24,6 +24,11 @@ public abstract class AbstractDAO<T> extends SessionUtil
         this.entityClass = entityClass;
     }
 
+    public AbstractDAO() {
+    }
+    
+    
+
 //    protected abstract EntityManager getEntityManager();
 
     public void create(T entity)

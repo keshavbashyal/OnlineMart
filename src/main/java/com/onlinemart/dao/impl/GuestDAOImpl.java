@@ -29,6 +29,10 @@ public class GuestDAOImpl extends AbstractDAO<Guest> implements GuestDAO {
         super(entityClass);
     }
 
+    public GuestDAOImpl() {
+    }
+    
+    
     public void saveGuest(Guest guest) {
         Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
