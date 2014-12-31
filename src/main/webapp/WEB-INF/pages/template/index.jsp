@@ -12,10 +12,11 @@
 <!-- Mirrored from wbpreview.com/previews/WB0096211/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 31 Dec 2014 03:22:43 GMT -->
 <head>
 		<meta charset="utf-8">
-		<title>FASHION STORE</title>
+		<title>FASHION STORE YEs</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 		<!-- Le styles -->
+                
 		<link href="css/style.css" rel="stylesheet">
 
 		<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
