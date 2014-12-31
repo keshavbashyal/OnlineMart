@@ -15,9 +15,9 @@
 		<meta charset="utf-8">
 		<title>FASHION STORE</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+                <base href="<c:url value="/" />"/>
 		<!-- Le styles -->
-		<link href="css/style.css" rel="stylesheet">
+		<link href="resorces/css/style.css" rel="stylesheet">
 
 		<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
 		<!--[if lt IE 9]>

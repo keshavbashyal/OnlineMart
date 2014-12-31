@@ -7,11 +7,13 @@ package com.onlinemart.service;
 
 import com.onlinemart.model.Guest;
 import java.util.List;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Keshav
  */
+@Service
 public interface GuestService {
 
     public void saveGuest(Guest guest);

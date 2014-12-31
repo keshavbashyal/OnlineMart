@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="windows-1252"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 
 <html lang="en">
@@ -16,10 +17,11 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="">
 		<meta name="author" content="">
+                <base href="<c:url value="/" />"/>
 
 		<!-- Le styles -->
-		<link href="css/style.css" rel="stylesheet">
-		<script src="js/bootstrap-carousel.js" ></script> 
+		<link href="resources/css/style.css" rel="stylesheet">
+		<script src="resources/js/bootstrap-carousel.js" ></script> 
 
 		<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
 		<!--[if lt IE 9]>
@@ -204,17 +206,21 @@
 				<div class="span4">
 						<b>Socialize with us</b>
 						<ul class="footer">
-							<li><a href="http://www.facebook.com/"><img src="img/icons/facebook.png"  width="30" height="30" alt="" /></a>  <a href="http://www.twitter.com/"><img src="img/icons/twitter.png"  width="30" height="30" alt="" /></a>  <a href="http://www.pinterest.com/"><img src="img/icons/pinterest.png"  width="30" height="30" alt="" /></a>  <a href="http://www.flickr.com/"><img src="img/icons/flickr.png"  width="30" height="30" alt="" /></a>   <a href="http://www.google.com/"><img src="img/icons/googleplus.png"  width="30" height="30" alt="" /></a></li>
+							<li><a href="http://www.facebook.com/"><img src="resources/img/icons/facebook.png"  width="30" height="30" alt="" /></a>  
+                                                            <a href="http://www.twitter.com/"><img src="resources/img/icons/twitter.png"  width="30" height="30" alt="" /></a>  
+                                                            <a href="http://www.pinterest.com/"><img src="resources/img/icons/pinterest.png"  width="30" height="30" alt="" /></a> 
+                                                            <a href="http://www.flickr.com/"><img src="resources/img/icons/flickr.png"  width="30" height="30" alt="" /></a>  
+                                                            <a href="http://www.google.com/"><img src="resources/img/icons/googleplus.png"  width="30" height="30" alt="" /></a></li>
 						</ul>
 					</div>
 					<div class="span4">
 						<b>Learn more about us</b>
 						<ul class="footer">
-							<li><a href="about.html">About</a></li>
-							<li><a href="contact.html">Contact Us</a></li>
-							<li><a href="landing.html">Landing Page</a></li>
-							<li><a href="account.html">My Account</a></li>
-							<li><a href="product.html">Product Page</a></li>
+							<li><a href="about.jsp">About</a></li>
+							<li><a href="contact.jsp">Contact Us</a></li>
+							<li><a href="landing.jsp">Landing Page</a></li>
+							<li><a href="account.jsp">My Account</a></li>
+							<li><a href="product.jsp">Product Page</a></li>
 						</ul>
 					</div>
 					

@@ -10,37 +10,49 @@ import com.onlinemart.model.Vendor;
 import com.onlinemart.service.VendorService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author Keshav
  */
-public class VendorServiceImpl implements VendorService{
-   
-	@Autowired
-	private VendorDAO vendorDao;
+@Service
+@Transactional
+public class VendorServiceImpl implements VendorService {
 
-	@Transactional
-	public void saveVendor(Vendor campaign) {
-		vendorDao.saveVendor(campaign);
-	}
+    @Autowired
+    VendorDAO vendorDao;
 
-	@Transactional(readOnly = true)
-	public List<Vendor> listVendors() {
-		return vendorDao.listVendors();
-	}
+    @Transactional
+    public void saveVendor(Vendor campaign) {
+        vendorDao.saveVendor(campaign);
+    }
 
-	@Transactional(readOnly = true)
-	public Vendor getVendor(int id) {
-		return vendorDao.getVendor(id);
-	}
+    @Transactional(readOnly = true)
+    public List<Vendor> listVendors() {
+        return vendorDao.listVendors();
+    }
 
-	@Transactional
-	public void deleteVendor(int id) {
-		vendorDao.deleteVendor(id);
+    @Transactional(readOnly = true)
+    public Vendor getVendor(int id) {
+        return vendorDao.getVendor(id);
+    }
 
-	}
+    @Override
+    public void deleteVendor(int id) {
+        vendorDao.deleteVendor(id);
 
-    
+    }
+
+     @Override
+    public Vendor getVendorById(int id) {
+        return vendorDao.getVendorById(id);
+    }
+
+     @Override
+    public List<Vendor> getAllVendors() {
+        return vendorDao.getAllVendors();
+    }
+
 }

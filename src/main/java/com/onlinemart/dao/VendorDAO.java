@@ -19,4 +19,8 @@ public interface VendorDAO {
     public Vendor getVendor(int id);
     public void deleteVendor(int id);
 
+    public Vendor getVendorById(int id);
+
+    public List<Vendor> getAllVendors();
+
 }

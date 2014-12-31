@@ -7,11 +7,13 @@ package com.onlinemart.service;
 
 import com.onlinemart.model.Customer;
 import java.util.List;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Keshav
  */
+@Service
 public interface CustomerService {
 
     public void saveCustomer(Customer customer);
