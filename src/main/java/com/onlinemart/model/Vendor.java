@@ -23,22 +23,12 @@ public class Vendor {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    
-    
-    private String address; 
-   
+     
     @Temporal(javax.persistence.TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date joinDate; 
-    private boolean active; 
-    private String bankInfo; 
+    private Date registerDate; 
     private String email; 
-    private int phone;
-    private boolean isDeleted; 
-    @Temporal(javax.persistence.TemporalType.DATE)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date createdDate;
-    
+    private String password;
     private String vendorName; 
 
     public int getId() {
@@ -57,38 +47,6 @@ public class Vendor {
         this.vendorName = vendorName;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public Date getJoinDate() {
-        return joinDate;
-    }
-
-    public void setJoinDate(Date joinDate) {
-        this.joinDate = joinDate;
-    }
-
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
-    }
-
-    public String getBankInfo() {
-        return bankInfo;
-    }
-
-    public void setBankInfo(String bankInfo) {
-        this.bankInfo = bankInfo;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -96,32 +54,6 @@ public class Vendor {
     public void setEmail(String email) {
         this.email = email;
     }
-
-    public int getPhone() {
-        return phone;
-    }
-
-    public void setPhone(int phone) {
-        this.phone = phone;
-    }
-
-    public boolean isIsDeleted() {
-        return isDeleted;
-    }
-
-    public void setIsDeleted(boolean isDeleted) {
-        this.isDeleted = isDeleted;
-    }
-
-    public Date getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
-    }
-    
-    
 
     @Override
     public int hashCode() {
