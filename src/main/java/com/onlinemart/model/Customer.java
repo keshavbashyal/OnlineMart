@@ -6,10 +6,9 @@
 package com.onlinemart.model;
 
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -23,11 +22,11 @@ public class Customer extends User implements Serializable {
     private static final long serialVersionUID = 1L;
     
     @OneToMany
-    private Order order;
+    private List<Order> order;
     
-    @OneToMany
-    private CreditCard creditCard;
+    @OneToMany (cascade = CascadeType.ALL)
+    private List<CreditCard> creditCard;
     
-    @OneToOne
+    @OneToOne (cascade=CascadeType.ALL)
     private Address address;
 }

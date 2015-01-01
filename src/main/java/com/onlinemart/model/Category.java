@@ -6,6 +6,8 @@
 package com.onlinemart.model;
 
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,8 +27,8 @@ public class Category implements Serializable {
     private String categoryDescription;
     private String categoryName;
     
-    @OneToMany
-    private Product products;
+    @OneToMany (cascade=CascadeType.ALL)
+    private List<Product> products;
     
     public String getCategoryDescription() {
         return categoryDescription;

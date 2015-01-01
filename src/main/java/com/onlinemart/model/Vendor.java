@@ -6,6 +6,7 @@
 package com.onlinemart.model;
 
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -33,10 +34,10 @@ public class Vendor {
     private String vendorName; 
     
     @OneToMany
-    private Subscription subscription;
+    private List<Subscription> subscription;
     
     @OneToMany
-    private Product products;
+    private List<Product> products;
     
     public int getId() {
         return id;
