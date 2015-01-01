@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -23,7 +24,10 @@ public class Category implements Serializable {
     private Long id;
     private String categoryDescription;
     private String categoryName;
-
+    
+    @OneToMany
+    private Product products;
+    
     public String getCategoryDescription() {
         return categoryDescription;
     }

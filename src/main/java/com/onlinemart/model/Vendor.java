@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -30,7 +31,13 @@ public class Vendor {
     private String email; 
     private String password;
     private String vendorName; 
-
+    
+    @OneToMany
+    private Subscription subscription;
+    
+    @OneToMany
+    private Product products;
+    
     public int getId() {
         return id;
     }
