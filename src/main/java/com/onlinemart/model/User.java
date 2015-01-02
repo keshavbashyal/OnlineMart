@@ -18,6 +18,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -39,16 +40,26 @@ public class User implements Serializable {
     
     private String password;
     
-    @OneToMany
-    private List<UserRole> userRoles;
+    @OneToOne
+    private UserRole userRoles;
 
-    public List<UserRole> getUserRoles() {
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public UserRole getUserRoles() {
         return userRoles;
     }
 
-    public void setUserRoles(List<UserRole> userRoles) {
+    public void setUserRoles(UserRole userRoles) {
         this.userRoles = userRoles;
     }
+
+   
     
     
     public User() {
