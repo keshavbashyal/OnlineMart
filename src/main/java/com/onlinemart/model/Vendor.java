@@ -20,17 +20,18 @@ import org.springframework.format.annotation.DateTimeFormat;
  * @author Keshav
  */
 @Entity
-public class Vendor {
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+public class Vendor extends User {
+    
+//    private static final long serialVersionUID = 1L;
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.AUTO)
+//    private int id;
      
     @Temporal(javax.persistence.TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date registerDate; 
-    private String email; 
-    private String password;
+  //  private String email; 
+   // private String password;
     private String vendorName; 
     
     
@@ -40,13 +41,7 @@ public class Vendor {
     @OneToMany
     private List<Product> products;
     
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+    
 
     public String getVendorName() {
         return vendorName;
@@ -56,36 +51,5 @@ public class Vendor {
         this.vendorName = vendorName;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (int) id;
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Vendor)) {
-            return false;
-        }
-        Vendor other = (Vendor) object;
-        if (this.id != other.id) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "com.onlinemart.model.Vendor[ id=" + id + " ]";
-    }
+   
 }
