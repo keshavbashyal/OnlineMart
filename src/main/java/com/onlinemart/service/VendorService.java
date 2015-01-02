@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
  *
  * @author Keshav
  */
-
+@Service
 public interface VendorService {
 
     public void saveVendor(Vendor vendor);
