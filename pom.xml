@@ -86,7 +86,7 @@
         </dependency>
 
         <!-- <dependency> <groupId>org.hibernate</groupId> <artifactId>hibernate-commons-annotations</artifactId>
-            <version>3.3.0.ga</version> </dependency> -->
+        <version>3.3.0.ga</version> </dependency> -->
 
         <!-- Apache's Database Connection Pooling -->
         <dependency>
@@ -133,6 +133,34 @@
             <version>7.0</version>
             <type>jar</type>
         </dependency>
+        
+        <!-- Spring Data Solr -->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-solr</artifactId>
+            <version>1.0.0.RC1</version>
+        </dependency>
+ 
+        <!-- Required by embedded solr server -->
+        <dependency>
+            <groupId>org.apache.solr</groupId>
+            <artifactId>solr-core</artifactId>
+            <version>4.1.0</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>slf4j-jdk14</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        
+        <dependency>
+		<groupId>org.codehaus.jackson</groupId>
+		<artifactId>jackson-mapper-asl</artifactId>
+		<version>1.9.10</version>
+            <type>jar</type>
+        </dependency>
+        
     </dependencies>
 
     <build>
@@ -161,5 +189,17 @@
             <name>A temporary repository created by NetBeans for libraries and jars it could not identify. Please replace the dependencies in this repository with correct ones and delete this repository.</name>
             <url>file:${project.basedir}/lib</url>
         </repository>
+        
+        <repository>
+            <id>spring-milestone</id>
+            <name>Spring Milestone Maven Repository</name>
+            <url>http://repo.springsource.org/libs-milestone</url>
+        </repository>
+        
+        <repository>
+		<id>codehaus</id>
+		<url>http://repository.codehaus.org/org/codehaus</url>
+	</repository>
+    
     </repositories>
 </project>

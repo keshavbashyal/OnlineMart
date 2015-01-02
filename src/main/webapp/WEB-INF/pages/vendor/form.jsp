@@ -29,11 +29,7 @@
             <td><spring:input path="vendorName" /></td>
             <td><spring:errors path="vendorName" element="div" cssClass="error" /></td>
             </tr>
-            <tr>
-            <td><label>Address:</label></td>
-            <td><spring:input path="address" /></td>
-            <td><spring:errors path="address" element="div" cssClass="error" /></td>
-            </tr>
+            
             
             <tr>
             <td><label>Join Date:</label></td>
@@ -45,16 +41,15 @@
             <td><spring:input path="email" /></td>
             <td><spring:errors path="email" element="div" cssClass="error" /></td>
             </tr>
+            
+            
             <tr>
-            <td><label>Phone:</label></td>
-            <td><spring:input path="phone" /></td>
-            <td><spring:errors path="phone" element="div" cssClass="error" /></td>
+            <td><label>Password:</label></td>
+            <td><spring:input path="password" /></td>
+            <td><spring:errors path="password" element="div" cssClass="error" /></td>
             </tr>
-            <tr>
-            <td><label>Bank Info:</label></td>
-            <td><spring:input path="bankInfo" /></td>
-            <td><spring:errors path="bankInfo" element="div" cssClass="error" /></td>
-            </tr>
+            
+            
             </table>
             </p>
             <p>

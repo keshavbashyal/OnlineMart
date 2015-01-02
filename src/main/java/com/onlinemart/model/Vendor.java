@@ -33,6 +33,7 @@ public class Vendor {
     private String password;
     private String vendorName; 
     
+    
     @OneToMany
     private List<Subscription> subscription;
     

@@ -25,8 +25,8 @@ public class VendorServiceImpl implements VendorService {
     VendorDAO vendorDao;
 
     @Transactional
-    public void saveVendor(Vendor campaign) {
-        vendorDao.saveVendor(campaign);
+    public void saveVendor(Vendor vendor) {
+        vendorDao.saveVendor(vendor);
     }
 
     @Transactional(readOnly = true)
