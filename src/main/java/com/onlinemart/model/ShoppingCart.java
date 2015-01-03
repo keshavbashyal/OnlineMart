@@ -59,5 +59,15 @@ public class ShoppingCart implements Serializable {
     public String toString() {
         return "com.onlinemart.model.ShoppingCart[ id=" + id + " ]";
     }
+
+    public List<ProductShoppingCart> getProductShoppingCart() {
+        return productShoppingCart;
+    }
+
+    public void setProductShoppingCart(List<ProductShoppingCart> productShoppingCart) {
+        this.productShoppingCart = productShoppingCart;
+    }
+    
+    
     
 }

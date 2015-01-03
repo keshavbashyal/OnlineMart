@@ -29,4 +29,30 @@ public class Customer extends User implements Serializable {
     
     @OneToOne (cascade=CascadeType.ALL)
     private Address address;
+
+    public List<Order> getOrder() {
+        return order;
+    }
+
+    public void setOrder(List<Order> order) {
+        this.order = order;
+    }
+
+    public List<CreditCard> getCreditCard() {
+        return creditCard;
+    }
+
+    public void setCreditCard(List<CreditCard> creditCard) {
+        this.creditCard = creditCard;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+    
+    
 }

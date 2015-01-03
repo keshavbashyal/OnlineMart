@@ -32,6 +32,48 @@ public class CreditCard implements Serializable {
 
     private Enum type;
 
+    public String getCardNo() {
+        return cardNo;
+    }
+
+    public void setCardNo(String cardNo) {
+        this.cardNo = cardNo;
+    }
+
+    public int getExpYear() {
+        return expYear;
+    }
+
+    public void setExpYear(int expYear) {
+        this.expYear = expYear;
+    }
+
+    public int getExpMonth() {
+        return expMonth;
+    }
+
+    public void setExpMonth(int expMonth) {
+        this.expMonth = expMonth;
+    }
+
+    public String getCcv() {
+        return ccv;
+    }
+
+    public void setCcv(String ccv) {
+        this.ccv = ccv;
+    }
+
+    public Enum getType() {
+        return type;
+    }
+
+    public void setType(Enum type) {
+        this.type = type;
+    }
+    
+    
+
     
     
     public Long getId() {

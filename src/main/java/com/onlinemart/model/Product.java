@@ -40,6 +40,7 @@ public class Product implements Serializable {
 
     private Enum color;
     
+    
     @Temporal(TemporalType.DATE)
     @DateTimeFormat (pattern = "yyyy-MM-dd")
     private Date addDate;
