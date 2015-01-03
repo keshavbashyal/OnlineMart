@@ -8,6 +8,7 @@ package com.onlinemart.controller;
 import com.onlinemart.model.Product;
 import com.onlinemart.model.ProductShoppingCart;
 import com.onlinemart.model.ShoppingCart;
+import com.onlinemart.service.CustomerService;
 import com.onlinemart.service.ShoppingCartService;
 import java.io.IOException;
 import java.util.Iterator;
@@ -33,8 +34,8 @@ public class ShoppingCartController {
     @Autowired
     ShoppingCartService shoppingCartService;
 
-//    @Autowired
-//    CustomerService customerService;
+    @Autowired
+    CustomerService customerService;
     
     private Double totalPrice = 0.0; 
     

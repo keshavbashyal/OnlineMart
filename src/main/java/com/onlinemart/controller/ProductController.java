@@ -60,6 +60,11 @@ public class ProductController {
     public String vendorProductForm(Product product) {
         return "/vendor/productform";
     }
+    
+    @RequestMapping("/product/productlist")
+    public String productList(Product product) {
+        return "/product/productlist";
+    }
      
     
     

@@ -7,7 +7,6 @@ package com.onlinemart.service.impl;
 
 import com.onlinemart.dao.ShoppingCartDAO;
 import com.onlinemart.model.ShoppingCart;
-import com.onlinemart.model.ShoppingCart;
 import com.onlinemart.service.ShoppingCartService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
  *
  * @author Keshav
  */
+
 @Service
 @Transactional
 public class ShoppingCartServiceImpl implements ShoppingCartService{
