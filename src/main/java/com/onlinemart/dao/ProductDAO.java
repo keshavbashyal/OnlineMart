@@ -16,7 +16,7 @@ public interface ProductDAO {
     
     public void saveProduct(Product product); // create and update
     public List<Product> listProducts();
-    public Product getProduct(int id);
-    public void deleteProduct(int id);
+    public Product getProduct(Long id);
+    public void deleteProduct(Long id);
     
 }

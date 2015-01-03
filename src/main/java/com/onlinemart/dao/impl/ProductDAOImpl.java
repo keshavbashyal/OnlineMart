@@ -37,12 +37,12 @@ public class ProductDAOImpl extends AbstractDAO<Product> implements ProductDAO  
     }
 
     @Override
-    public Product getProduct(int id) {
+    public Product getProduct(Long id) {
         return (Product) getSession().get(Product.class, id);
     }
 
     @Override
-    public void deleteProduct(int id) {
+    public void deleteProduct(Long id) {
         Product product = getProduct(id);
 
         if (product != null) {

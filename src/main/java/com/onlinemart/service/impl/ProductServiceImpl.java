@@ -35,12 +35,12 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Transactional(readOnly = true)
-    public Product getProduct(int id) {
+    public Product getProduct(Long id) {
         return productDao.getProduct(id);
     }
 
     @Override
-    public void deleteProduct(int id) {
+    public void deleteProduct(Long id) {
         productDao.deleteProduct(id);
 
     }

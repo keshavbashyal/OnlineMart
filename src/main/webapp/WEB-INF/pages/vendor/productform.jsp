@@ -21,7 +21,7 @@
                         </div>
                     </div>
                     <div class="span4 pull-right">
-                        <spring:form method="post" action="product/save" commandName="product">
+                        <spring:form method="post" action="vendor/product/save" commandName="product">
                             <spring:errors element="div" cssClass="errors" path="*"/>
                             <spring:input type="hidden" path="id"/>
                             <table> 
@@ -40,26 +40,8 @@
                                     <td><spring:input path="unitPrice" /></td>
                                     <td><spring:errors path="unitPrice" element="div" cssClass="error" /></td>
                                 </tr>
-                                 <tr>
-                                    <td><label>Sizes</label></td>
-                                    <td><spring:input path="sizes" /></td>
-                                    <td><spring:errors path="sizes" element="div" cssClass="error" /></td>
-                                </tr>
-                                 <tr>
-                                    <td><label>Colors</label></td>
-                                    <td><spring:password path="color" /></td>
-                                    <td><spring:errors path="color" element="div" cssClass="error" /></td>
-                                </tr>
-                                 <tr>
-                                    <td><label>Date</label></td>
-                                    <td><spring:input path="addDate" /></td>
-                                    <td><spring:errors path="addDate" element="div" cssClass="error" /></td>
-                                </tr>
-                                 <tr>
-                                    <td><label>Images</label></td>
-                                    <td><spring:input path="image" /></td>
-                                    <td><spring:errors path="image" element="div" cssClass="error" /></td>
-                                </tr>
+                               
+                              
                                 
                                 <tr>
                                     <td colspan="2">

@@ -11,7 +11,6 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,52 +26,41 @@ public class ProductController {
     
     @Autowired
     ProductService productService;
-
-    @RequestMapping("/product")
-    public String printHello(ModelMap model) {
-        model.addAttribute("message", "Hello world! Inside Product hello");
-        return "/product/hello";
-    }
-
-    @RequestMapping("/product/welcome")
-    public String printWelcome(ModelMap model) {
-        model.addAttribute("message", "Welcome!, Inside Product welcome");
-        return "/product/welcome";
-    }
-
-    
-
-    @RequestMapping("/product/form")
-    public String productAdd(Product product) {
-        return "/product/form";
-    }
-
-    @RequestMapping(value = "/product/save", method = RequestMethod.POST)
+ 
+    @RequestMapping(value = "vendor/product/save", method = RequestMethod.POST)
     public String saveUser(@Valid Product product, BindingResult result) {
         if (result.hasErrors()) {
-            return "product/form";
+            return "vendor/productform";
         } else {
             productService.saveProduct(product);
         }
-        return "redirect:/product/list";
+        return "redirect:/vendor/productlist";
     }
 
-    @RequestMapping(value = "/product/list")
+    @RequestMapping(value = "/vendor/productlist")
     public String listUsers(Model model) {
         model.addAttribute("products", productService.listProducts());
-        return "product/list";
+        return "vendor/productlist";
     }
 
-    @RequestMapping("/product/edit/{productid}")
-    public String editUser(@PathVariable("productid") int id, Model model) {
+    @RequestMapping("vendor/product/edit/{productid}")
+    public String editUser(@PathVariable("productid") Long id, Model model) {
         model.addAttribute("product", productService.getProduct(id));
-        return "product/form";
+        return "vendor/productform";
     }
 
-    @RequestMapping("/product/delete/{productid}")
-    public String deleteUser(@PathVariable("productid") int id, Model model) {
+    @RequestMapping("vendor/product/delete/{productid}")
+    public String deleteUser(@PathVariable("productid") Long id, Model model) {
         productService.deleteProduct(id);
-        return "redirect:/product/list";
+        return "redirect:/vendor/productlist";
     }
+    
+    
+    @RequestMapping("/vendor/productform")
+    public String vendorProductForm(Product product) {
+        return "/vendor/productform";
+    }
+     
+    
     
 }

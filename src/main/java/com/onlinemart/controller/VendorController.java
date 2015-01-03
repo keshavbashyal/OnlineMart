@@ -78,14 +78,6 @@ public class VendorController {
         return "redirect:/vendor/list";
     }
 
-    @RequestMapping("/vendor/productform")
-    public String vendorProductForm(Vendor vendor) {
-        return "/vendor/productform";
-    }
-
-    @RequestMapping("/vendor/productlist")
-    public String vendorProductList(Vendor vendor) {
-        return "/vendor/productlist";
-    }
+       
 
 }
