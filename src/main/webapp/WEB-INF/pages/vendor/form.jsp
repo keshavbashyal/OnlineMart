@@ -43,8 +43,8 @@
                                 
                                 <tr>
                                     <td colspan="2">
-                                        <input type="submit" value="Submit" class="btn btn-primary pull-right"/>
-                                        <input type="button" value="Cancel" class="btn btn-success pull-right" />
+                                        <input type="submit" value="Sign Up" class="btn btn-primary pull-right"/>
+                                        <input type="button" onclick="" value="Reset" class="btn btn-success pull-right" />
                                     </td>
                                 </tr>
                             </table>
