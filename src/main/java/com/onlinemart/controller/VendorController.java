@@ -30,13 +30,13 @@ public class VendorController {
     VendorService vendorService;
 
     @RequestMapping("/vendor")
-    public String prLongHello(ModelMap model) {
+    public String printHello(ModelMap model) {
         model.addAttribute("message", "Hello world! Inside Vendor hello");
         return "/vendor/hello";
     }
 
     @RequestMapping("/vendor/welcome")
-    public String prLongWelcome(ModelMap model) {
+    public String printWelcome(ModelMap model) {
         model.addAttribute("message", "Welcome!, Inside Vendor welcome");
         return "/vendor/welcome";
     }
@@ -65,13 +65,13 @@ public class VendorController {
     }
 
     @RequestMapping("/vendor/edit/{vendorid}")
-    public String editUser(@PathVariable("vendorid") Long id, Model model) {
+    public String editUser(@PathVariable("vendorid") int id, Model model) {
         model.addAttribute("vendor", vendorService.getVendorById(id));
         return "vendor/form";
     }
 
     @RequestMapping("/vendor/delete/{vendorid}")
-    public String deleteUser(@PathVariable("vendorid") Long id, Model model) {
+    public String deleteUser(@PathVariable("vendorid") int id, Model model) {
         vendorService.deleteVendor(id);
         return "redirect:/vendor/list";
     }

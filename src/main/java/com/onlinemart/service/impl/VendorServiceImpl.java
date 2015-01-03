@@ -35,18 +35,18 @@ public class VendorServiceImpl implements VendorService {
     }
 
     @Transactional(readOnly = true)
-    public Vendor getVendor(Long id) {
+    public Vendor getVendor(int id) {
         return vendorDao.getVendor(id);
     }
 
     @Override
-    public void deleteVendor(Long id) {
+    public void deleteVendor(int id) {
         vendorDao.deleteVendor(id);
 
     }
 
      @Override
-    public Vendor getVendorById(Long id) {
+    public Vendor getVendorById(int id) {
         return vendorDao.getVendorById(id);
     }
 

@@ -25,7 +25,7 @@ import javax.persistence.OneToOne;
  * @author psubedi
  */
 @Inheritance(strategy = InheritanceType.JOINED)
-@DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING)
+//@DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING)
 @Entity
 public class User implements Serializable {
 
