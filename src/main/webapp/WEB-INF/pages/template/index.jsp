@@ -5,7 +5,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>FASHION STORE YEs</title>
+        <title>OnlineMart - Home</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <base href="<c:url value="/" />"/>

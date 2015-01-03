@@ -655,7 +655,7 @@ a.thumbnail:hover{border-color:#E55451;-webkit-box-shadow:0 1px 4px rgba(0, 105,
 #main-carousel .slides_container,#main-carousel .slides_container div{width:940px;height:450px;}
 #main-carousel .slides_container{background-color:#ffffff;overflow:hidden;}
 #main-carousel div.overlay-bottom{width:200px;background:url(img/blkbg.png);font-size:30px;position:relative;left:200px;padding:20px;font-weight:400;height:300px;}
-#main-carousel div.shading-left,#main-carousel div.overlay-right{position:absolute;width:300px;background:url(../img/blkbg.png);z-index:4;font-size:30px;bottom:0;padding:20px;font-weight:400;height:405px;}
+#main-carousel div.shading-left,#main-carousel div.overlay-right{position:absolute;width:300px;background:url(../img/blkbg.png);z-index:4;font-size:30px;bottom:0;padding:20px;font-weight:400;height:405px;left: 2.5em}
 #main-carousel div.overlay-right{float:right;}
 #main-carousel .slide-1{background-image:url(img/main-carousel/women1.jpg);}
 #main-carousel .slide-2{background-image:url(img/main-carousel/women2.jpg);}
