@@ -5,15 +5,15 @@
 --%>
 
 <header>
-    <div class="container">
+    <div class="container">s
         <div class="row">
             <h2 id="logo" class="span4"><a href="<c:url value='/'/>" title="Fashion Store">OnlineMart</a></h2>
             <nav class="span8" id="navigation">
                 <div class="accountbox">
                     <div class="span4">
                         <div class="navbar navbar-static">
-                            <ul class="nav">
-                                <li><a href="cart.jsp"><i class="icon-shopping-cart"></i> Shopping Cart</a></li>
+                            <ul class="nav">                                
+                                <li><a href="<c:url value='/shoppingcart/hello'/>"><i class="icon-shopping-cart"></i> Shopping Cart  </a></li>
                                 <li class="divider-vertical"></li>
                                 <li><a href="account.jsp"><i class="icon-user"></i> My Account</a></li>
                             </ul>

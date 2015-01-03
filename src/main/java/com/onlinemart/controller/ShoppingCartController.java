@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  *
  * @author Keshav
  */
+
 @Controller
 public class ShoppingCartController {
 
@@ -40,6 +41,8 @@ public class ShoppingCartController {
   
 //    @Autowired
 //    CreditCardService creditCardService;
+    
+    
     @RequestMapping("/shoppingcart/hello")
     public String printHello(ModelMap model) {
         model.addAttribute("message", "Hello world! Inside Shopping hello");

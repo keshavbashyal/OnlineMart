@@ -30,8 +30,6 @@ public class Vendor extends User {
     @Temporal(javax.persistence.TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date registerDate; 
-  //  private String email; 
-   // private String password;
     private String vendorName; 
     
     

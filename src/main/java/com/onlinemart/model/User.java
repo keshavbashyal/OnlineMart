@@ -19,6 +19,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 
 /**
  *
@@ -39,6 +40,9 @@ public class User implements Serializable {
     private String phone;
     
     private String password;
+    
+    @Transient
+    private String repassword;
     
     @OneToOne
     private UserRole userRoles;
@@ -131,5 +135,14 @@ public class User implements Serializable {
     public String toString() {
         return "com.onlinemart.model.User[ id=" + id + " ]";
     }
+
+    public String getRepassword() {
+        return repassword;
+    }
+
+    public void setRepassword(String repassword) {
+        this.repassword = repassword;
+    }
+    
 
 }

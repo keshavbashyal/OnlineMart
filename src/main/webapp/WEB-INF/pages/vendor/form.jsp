@@ -39,8 +39,8 @@
                                     <td><spring:errors path="password" element="div" cssClass="error" /></td>
                                 </tr>
                                 <tr>
-                                    <td><input type="text" id="repass"/></td>
-                                    <td></td>
+                                    <td><spring:password path="repassword" id="repass"/></td>
+                                    <td><spring:errors path="password" element="div" cssClass="error" /></td>
                                 </tr>
                                 <tr>
                                     <td colspan="2">

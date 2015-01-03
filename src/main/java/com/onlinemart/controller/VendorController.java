@@ -7,14 +7,12 @@ package com.onlinemart.controller;
 
 import com.onlinemart.model.Vendor;
 import com.onlinemart.service.VendorService;
-import java.util.Map;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -41,8 +39,6 @@ public class VendorController {
         return "/vendor/welcome";
     }
 
-    
-
     @RequestMapping("/vendor/form")
     public String vendorAdd(Vendor vendor) {
         return "/vendor/form";
@@ -53,33 +49,38 @@ public class VendorController {
         if (result.hasErrors()) {
             return "vendor/form";
         } else {
-            vendorService.saveVendor(vendor);
+               
+            if (vendor.getPassword().equals(vendor.getRepassword())) {
+                vendorService.saveVendor(vendor);
+            }
         }
         return "redirect:/vendor/list";
     }
 
     @RequestMapping(value = "/vendor/list")
     public String listUsers(Model model) {
-        model.addAttribute("vendors", vendorService.getAllVendors());
+        model.addAttribute("vendors", vendorService.listVendors());
         return "vendor/list";
     }
 
     @RequestMapping("/vendor/edit/{vendorid}")
-    public String editUser(@PathVariable("vendorid") int id, Model model) {
-        model.addAttribute("vendor", vendorService.getVendorById(id));
+    public String editUser(@PathVariable("vendorid") Long id, Model model) {
+        model.addAttribute("vendor", vendorService.getVendor(id));
         return "vendor/form";
     }
 
     @RequestMapping("/vendor/delete/{vendorid}")
-    public String deleteUser(@PathVariable("vendorid") int id, Model model) {
+    public String deleteUser(@PathVariable("vendorid") Long id, Model model) {
         vendorService.deleteVendor(id);
         return "redirect:/vendor/list";
     }
-     @RequestMapping("/vendor/productform")
+
+    @RequestMapping("/vendor/productform")
     public String vendorProductForm(Vendor vendor) {
         return "/vendor/productform";
     }
-     @RequestMapping("/vendor/productlist")
+
+    @RequestMapping("/vendor/productlist")
     public String vendorProductList(Vendor vendor) {
         return "/vendor/productlist";
     }
