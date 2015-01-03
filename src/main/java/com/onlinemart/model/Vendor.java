@@ -32,15 +32,20 @@ public class Vendor extends User {
     private Date registerDate; 
     private String vendorName; 
     
-    
     @OneToMany
     private List<Subscription> subscription;
     
     @OneToMany
     private List<Product> products;
-    
-    
 
+    public Date getRegisterDate() {
+        return registerDate;
+    }
+
+    public void setRegisterDate(Date registerDate) {
+        this.registerDate = registerDate;
+    }
+   
     public String getVendorName() {
         return vendorName;
     }

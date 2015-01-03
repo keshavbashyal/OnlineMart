@@ -34,6 +34,8 @@
                                     <td><spring:input path="email" id="email"/></td>
                                     <td><spring:errors path="email" element="div" cssClass="error" /></td>
                                 </tr>
+                                
+                              
                                 <tr>
                                     <td><spring:password path="password" id="pass"/></td>
                                     <td><spring:errors path="password" element="div" cssClass="error" /></td>

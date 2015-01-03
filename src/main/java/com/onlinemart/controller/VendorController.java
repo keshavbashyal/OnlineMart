@@ -7,6 +7,7 @@ package com.onlinemart.controller;
 
 import com.onlinemart.model.Vendor;
 import com.onlinemart.service.VendorService;
+import java.util.Date;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,7 +27,7 @@ public class VendorController {
 
     @Autowired
     VendorService vendorService;
-
+  
     @RequestMapping("/vendor")
     public String printHello(ModelMap model) {
         model.addAttribute("message", "Hello world! Inside Vendor hello");
@@ -51,6 +52,7 @@ public class VendorController {
         } else {
                
             if (vendor.getPassword().equals(vendor.getRepassword())) {
+                vendor.setRegisterDate(new Date());
                 vendorService.saveVendor(vendor);
             }
         }
