@@ -9,7 +9,23 @@
             <div class="span4">
                 <b>Socialize with us</b>
                 <ul class="footer">
-                    <li><a href="http://www.facebook.com/"><img src="img/icons/facebook.png"  width="30" height="30" alt="" /></a>  <a href="http://www.twitter.com/"><img src="img/icons/twitter.png"  width="30" height="30" alt="" /></a>  <a href="http://www.pinterest.com/"><img src="img/icons/pinterest.png"  width="30" height="30" alt="" /></a>  <a href="http://www.flickr.com/"><img src="img/icons/flickr.png"  width="30" height="30" alt="" /></a>   <a href="http://www.google.com/"><img src="img/icons/googleplus.png"  width="30" height="30" alt="" /></a></li>
+                    <li>
+                        <a href="http://www.facebook.com/">
+                            <img src="resources/img/icons/facebook.png"  width="30" height="30" alt="" />
+                        </a>  
+                        <a href="http://www.twitter.com/">
+                            <img src="resources/img/icons/twitter.png"  width="30" height="30" alt="" />
+                        </a>  
+                        <a href="http://www.pinterest.com/">
+                            <img src="resources/img/icons/pinterest.png"  width="30" height="30" alt="" />
+                        </a>  
+                        <a href="http://www.flickr.com/">
+                            <img src="resources/img/icons/flickr.png"  width="30" height="30" alt="" />
+                        </a>   
+                        <a href="http://www.google.com/">
+                            <img src="resources/img/icons/googleplus.png"  width="30" height="30" alt="" />
+                        </a>
+                    </li>
                 </ul>
             </div>
             <div class="span4">

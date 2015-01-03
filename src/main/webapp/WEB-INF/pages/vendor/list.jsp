@@ -13,17 +13,42 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>List Vendor</title>
         <base href="<c:url value="/"/>"/>
+        <link rel="stylesheet" href="resources/css/style.css"/>
     </head>
     <body>
-        <h1>Vendors!</h1>
-        
-        <table id="tablelist">
-            <tr><th>ID</th><th>Name</th><th>Email</th><th>Edit</th><th>Delete</th></tr>
-        <c:forEach items="${vendors}" var="vendor">
-                <tr><td>${vendor.id}</td><td>${vendor.vendorName}</td><td>${vendor.email}</td><td><a href="vendor/edit/${vendor.id}">Edit</a></td><td><a href="vendor/delete/${vendor.id}">Delete</a></td></tr>
-        </c:forEach>
-        </table>
-        
-        <a href="vendor/form">Add New Vendor</a>
+        <%@include file="../includes/header.jsp" %>
+        <div class="container">
+            <div class="content">
+                <div class="page-header">
+                    <h3>Vendor List</h3>
+                </div>
+
+                <div class="span12">
+                    <a href="vendor/form" class="btn btn-success pull-right">Add New Vendor</a>
+                </div>
+
+                <table id="tablelist" class="span12 table-bordered table-striped">
+                    <tr class="">
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Actions</th>
+                    </tr>
+                    <c:forEach items="${vendors}" var="vendor">
+                        <tr>
+                            <td>${vendor.id}</td>
+                            <td>${vendor.vendorName}</td>
+                            <td>${vendor.email}</td>
+                            <td>
+                                <a href="vendor/edit/${vendor.id}" class="btn btn-primary btn-mini">Edit</a>
+                                <a href="vendor/delete/${vendor.id}" onclick="return confirm(' Delete Record ')" class="btn btn-danger btn-mini">Delete</a>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                </table>
+
+            </div>
+        </div>
+        <%@include file="../includes/footer.jsp" %>
     </body>
 </html>
