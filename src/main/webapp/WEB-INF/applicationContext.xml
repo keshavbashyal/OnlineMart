@@ -1,15 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xmlns:security="http://www.springframework.org/schema/security"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:p="http://www.springframework.org/schema/p"
-       xmlns:tx="http://www.springframework.org/schema/tx" 
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans 
-                http://www.springframework.org/schema/beans/spring-beans.xsd
-                http://www.springframework.org/schema/context 
-                http://www.springframework.org/schema/context/spring-context.xsd
-                http://www.springframework.org/schema/tx 
-                http://www.springframework.org/schema/tx/spring-tx.xsd">
+       xmlns:mvc="http://www.springframework.org/schema/mvc" 
+       xsi:schemaLocation="
+    http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop.xsd
+    http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/mvc
+    http://www.springframework.org/schema/mvc/spring-mvc.xsd
+    http://www.springframework.org/schema/security 
+    http://www.springframework.org/schema/security/spring-security.xsd
+">
+
+
     
     <!--<mvc:resources mapping="/resources/**" location="/resources/"/>-->
 
@@ -52,7 +65,36 @@
           class="org.springframework.orm.hibernate4.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>
+            
+ <security:http auto-config='true'>
+<security:intercept-url pattern="/admin**" access="ROLE_ADMIN"/>
+<security:intercept-url pattern="/vendor**" access="ROLE_VENDOR"/>
+<security:intercept-url pattern="/user**" access="ROLE_CUSTOMER"/>
 
+            <security:form-login 
+                                 login-page="/login" 
+                                 default-target-url="/home"
+                                 authentication-failure-url="/login?error=loginerror"
+                                 username-parameter="username"
+                                 password-parameter="password"
+                        />
+
+            <security:logout logout-success-url="/login?logout=yes"/>
+  </security:http>
+
+  <security:authentication-manager>
+      <security:authentication-provider >
+           <security:password-encoder  hash="plaintext" />
+          <security:jdbc-user-service 
+                    data-source-ref="dataSource"
+                    users-by-username-query="select email as username, password,'true' as enabled from user where email=?"
+                    authorities-by-username-query="select u1.email, u2.role from user u1, userrole u2
+                        where u1.userRoles_Id=u2.ID
+                        AND u1.email=?" />
+          
+      </security:authentication-provider>
+      
+  </security:authentication-manager> 
     
 </beans>
 
