@@ -22,12 +22,6 @@
     <body>
 
         <%@include file="../includes/header.jsp" %>
-        <div class="container">
-            <div class="pull-right">
-                <a href="<c:url value='/vendor/form'/>" class="btn btn-success btn-small">Vendor Registration</a>
-                <a href="#" class="btn btn-success btn-small">Customer Registration</a>
-            </div>
-        </div>
         <div id="main-carousel">
             <div class="slides_container container">
                 <div class="span8columns">

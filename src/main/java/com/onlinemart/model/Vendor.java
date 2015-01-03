@@ -30,19 +30,9 @@ public class Vendor extends User {
     @Temporal(javax.persistence.TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date registerDate; 
-    private String email; 
-    private String password;
+  //  private String email; 
+   // private String password;
     private String vendorName; 
-    
-    private String registerDate1;
-
-    public String getRegisterDate1() {
-        return registerDate1;
-    }
-
-    public void setRegisterDate1(String registerDate1) {
-        this.registerDate1 = registerDate1;
-    }
     
     
     @OneToMany
