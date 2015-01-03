@@ -14,6 +14,7 @@ import javax.persistence.Id;
  *
  * @author kBhattarai
  */
+
 @Entity
 public class UserRole {
     
@@ -28,4 +29,6 @@ public class UserRole {
     public UserRole(){
         
 }
+    
+    
 }
