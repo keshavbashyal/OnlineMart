@@ -5,10 +5,14 @@
  */
 package com.onlinemart.model;
 
+import com.onlinemart.commons.Color;
+import com.onlinemart.commons.Sizes;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -35,10 +39,11 @@ public class Product implements Serializable {
     private String productDescription;
 
     private Double unitPrice;
-
-    private Enum sizes;
-
-    private Enum color;
+    
+    @Enumerated(EnumType.STRING)
+    private Sizes sizes;
+    @Enumerated(EnumType.STRING)
+    private Color color;
     
     
     @Temporal(TemporalType.DATE)
@@ -84,19 +89,20 @@ public class Product implements Serializable {
         this.unitPrice = unitPrice;
     }
 
-    public Enum getSizes() {
+    public Sizes getSizes() {
         return sizes;
     }
 
-    public void setSizes(Enum sizes) {
+
+    public void setSizes(Sizes sizes) {
         this.sizes = sizes;
     }
 
-    public Enum getColor() {
+    public Color getColor() {
         return color;
     }
 
-    public void setColor(Enum color) {
+    public void setColor(Color color) {
         this.color = color;
     }
 

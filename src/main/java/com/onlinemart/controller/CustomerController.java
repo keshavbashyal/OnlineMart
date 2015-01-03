@@ -45,7 +45,7 @@ public class CustomerController {
         return "/customer/addCustomer";
     }
     
-    @RequestMapping("/customer/save")
+    @RequestMapping(value = "/customer/save" , method=RequestMethod.POST )
     public String saveUser(@Valid Customer customer, BindingResult result){
         if (result.hasErrors()) {
             return "customer/addCustomer";

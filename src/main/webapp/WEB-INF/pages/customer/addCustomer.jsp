@@ -6,6 +6,7 @@
 
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib  prefix="spring" uri="http://www.springframework.org/tags/form" %>
 <%@page contentType="text/html" pageEncoding="windows-1252"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html>
@@ -33,12 +34,14 @@
             </div>
             <div class="span4 pull-right">
                 <spring:form method="post" action="customer/save" commandname="customer">
-
+                    <spring:errors element="div" cssClass="errors" path="*"/>
+                    <spring:input type="hidden" path="id"/>
 
                     <table>
                         <tr>
                             <td><label>First Name </label></td>
-                            <td><spring:input path="" /></td>
+                            <td><spring:input path="fname" /></td>
+                            <td><spring:errors path="fname" element="div" cssClass="error" /></td>
                         </tr>
                         <tr>
                             <td><label>Last Name </label></td>
