@@ -8,6 +8,7 @@
         <title>JSP Page</title>
         <base href="<c:url value="/"/>"/>
         <link rel="stylesheet" href="resources/css/style.css"/>
+
     </head>
     <body>
         <%@include file="../includes/header.jsp" %>
@@ -21,30 +22,30 @@
                         </div>
                     </div>
                     <div class="span4 pull-right">
-                        <spring:form method="post" action="vendor/save" commandName="vendor">
+                        <spring:form method="post" action="vendor/save" commandName="vendor" cssClass="pull-right">
                             <spring:errors element="div" cssClass="errors" path="*"/>
                             <spring:input type="hidden" path="id"/>
                             <table> 
                                 <tr>
-                                    <td><label>Vendor Name</label></td>
-                                    <td><spring:input path="vendorName" /></td>
+                                    <td><spring:input path="vendorName" id="name"/></td>
                                     <td><spring:errors path="vendorName" element="div" cssClass="error" /></td>
                                 </tr>
                                 <tr>
-                                    <td><label>Email</label></td>
-                                    <td><spring:input path="email" /></td>
+                                    <td><spring:input path="email" id="email"/></td>
                                     <td><spring:errors path="email" element="div" cssClass="error" /></td>
                                 </tr>
                                 <tr>
-                                    <td><label>Password</label></td>
-                                    <td><spring:password path="password" /></td>
+                                    <td><spring:password path="password" id="pass"/></td>
                                     <td><spring:errors path="password" element="div" cssClass="error" /></td>
                                 </tr>
-                                
+                                <tr>
+                                    <td><input type="text" id="repass"/></td>
+                                    <td></td>
+                                </tr>
                                 <tr>
                                     <td colspan="2">
-                                        <input type="submit" value="Sign Up" class="btn btn-primary pull-right"/>
-                                        <input type="button" onclick="" value="Reset" class="btn btn-success pull-right" />
+                                        <input type="reset" onclick="" value="Reset" class="btn btn-success" />
+                                        <input type="submit" value="Sign Up" class="btn btn-primary"/>
                                     </td>
                                 </tr>
                             </table>
@@ -54,5 +55,11 @@
             </div>
         </div>
         <%@include file="../includes/footer.jsp" %>
+        <script>
+            $("#name").attr('placeholder', 'First Name');
+            $("#email").attr('placeholder', 'Email');
+            $("#pass").attr('placeholder', 'Password');
+            $("#repass").attr('placeholder', 'Retype Password');
+        </script>
     </body>
 </html>
