@@ -25,7 +25,7 @@
         <div class="container">
             <div class="pull-right">
                 <a href="<c:url value='/vendor/form'/>" class="btn btn-success btn-small">Vendor Registration</a>
-                <a href="#" class="btn btn-success btn-small">Customer Registration</a>
+                <a href="<c:url value='/customer/addCustomer'/>" class="btn btn-success btn-small">Customer Registration</a>
             </div>
         </div>
         <div id="main-carousel">

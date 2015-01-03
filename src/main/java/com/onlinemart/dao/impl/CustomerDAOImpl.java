@@ -17,7 +17,7 @@ import org.springframework.stereotype.Repository;
  *
  * @author Keshav
  */
-
+@Repository
 public class CustomerDAOImpl extends AbstractDAO<Customer> implements CustomerDAO{
 
     public CustomerDAOImpl(Class<Customer> entityClass) {

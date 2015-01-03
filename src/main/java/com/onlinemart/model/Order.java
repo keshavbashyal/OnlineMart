@@ -29,7 +29,7 @@ public class Order implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date orderDate;
 
-    private double totalPrice;
+    private Double totalPrice;
 
     public Date getOrderDate() {
         return orderDate;
@@ -39,11 +39,11 @@ public class Order implements Serializable {
         this.orderDate = orderDate;
     }
 
-    public double getTotalPrice() {
+    public Double getTotalPrice() {
         return totalPrice;
     }
 
-    public void setTotalPrice(double totalPrice) {
+    public void setTotalPrice(Double totalPrice) {
         this.totalPrice = totalPrice;
     }
 
