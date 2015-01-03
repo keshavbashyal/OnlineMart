@@ -35,12 +35,12 @@ public class VendorDAOImpl extends AbstractDAO<Vendor> implements VendorDAO {
     }
 
     @Override
-    public Vendor getVendor(int id) {
+    public Vendor getVendor(Long id) {
         return (Vendor) getSession().get(Vendor.class, id);
     }
 
     @Override
-    public void deleteVendor(int id) {
+    public void deleteVendor(Long id) {
         Vendor vendor = getVendor(id);
 
         if (vendor != null) {
@@ -49,7 +49,7 @@ public class VendorDAOImpl extends AbstractDAO<Vendor> implements VendorDAO {
     }
 
     @Override
-    public Vendor getVendorById(int id) {
+    public Vendor getVendorById(Long id) {
         return (Vendor) getSession().get(Vendor.class, id);
     }
 

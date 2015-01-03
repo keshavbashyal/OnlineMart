@@ -18,12 +18,12 @@ public interface VendorService {
 
     public void saveVendor(Vendor vendor);
     public List<Vendor> listVendors();
-    public Vendor getVendor(int id);
-    public void deleteVendor(int id);
+    public Vendor getVendor(Long id);
+    public void deleteVendor(Long id);
 
     public List<Vendor> getAllVendors();
 
-    public Vendor getVendorById(int id);
+    public Vendor getVendorById(Long id);
 
    
 
