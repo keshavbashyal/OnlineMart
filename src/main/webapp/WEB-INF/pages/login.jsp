@@ -2,37 +2,44 @@
 <!DOCTYPE html>
 <html>
     <head>
-        
+
         <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
-        <title>Login page</title>
+        <title>OnlineMart - Login page</title>
+        <base href="<c:url value="/" />"/>
+        <link href="resources/css/style.css" rel="stylesheet">
     </head>
     <body>
-        <h1>Hello World!</h1>
-          
-<form name='loginForm' action="<c:url value='j_spring_security_check' />"
-method='POST'>
-             
-            <table>
-                <tr>
-                    <td>Email</td>
-                    <td>
-                        
-                        <input type="text" name="username"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Password</td>
-                    <td><input type="password" name="password"/></td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>
-                        <input type="submit"/>
-                    </td>
-                </tr>
-            </table>
-            
-        </form>
-        
+        <%@include file="includes/header.jsp" %>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h3 class="text-center">Admin Login</h3>
+                    <form name='loginForm' action="<c:url value='j_spring_security_check' />" class="form-horizontal form-control"
+                          method='POST'>
+                                     
+                        <table>
+                            <tr>
+                                <td>Email</td>
+                                <td>
+                                    <input type="text" name="username" class="form-control"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Password</td>
+                                <td><input type="password" name="password"/></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <input type="submit" value="Login" class="btn btn-primary pull-right"/>
+                                </td>
+                            </tr>
+                        </table>
+
+                    </form>
+                </div>
+            </div>
+        </div>
     </body>
 </html>

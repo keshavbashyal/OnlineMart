@@ -7,7 +7,7 @@
 <header>
     <div class="container">
         <div class="row">
-            <h2 id="logo" class="span4"><a href="<c:url value='/'/>" title="Fashion Store">OnlineMart</a></h1>
+            <h2 id="logo" class="span4"><a href="<c:url value='/'/>" title="Fashion Store">OnlineMart</a></h2>
             <nav class="span8" id="navigation">
                 <div class="accountbox">
                     <div class="span4">

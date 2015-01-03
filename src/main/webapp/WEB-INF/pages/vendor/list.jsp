@@ -17,7 +17,7 @@
     </head>
     <body>
         <%@include file="../includes/header.jsp" %>
-        <div class="container">
+        <div class="container min-height-4">
             <div class="content">
                 <div class="page-header">
                     <h3>Vendor List</h3>

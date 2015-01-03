@@ -733,3 +733,19 @@ z-index: 3; position: relative; border-bottom: dotted 1px #ffffff;clear:both;}
 /* Shopping Cart Page */
 .totalprice {width:290px;float:left;clear:both;margin:0px 0px 20px 570px;border-bottom:1px #ddd solid;}
 .couponcode {width: 190px;float:left;margin:0px 0px 0px 570px;}
+
+/*
+* Additional
+*/
+
+.min-height-4{
+    min-height: 400px;
+}
+.text-center{
+    text-align: center;
+}
+.col-md-4{
+    vertical-align: central;
+    width: 300px;
+    margin: 1em auto;
+}
