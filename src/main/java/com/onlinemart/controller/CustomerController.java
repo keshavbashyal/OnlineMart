@@ -10,9 +10,11 @@ import com.onlinemart.service.CustomerService;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -58,6 +60,16 @@ public class CustomerController {
     public String listCustomer(ModelMap model){
         model.addAttribute("allcustomers" , customerService.listCustomer());
         return "/customer/list";
+    }
+    @RequestMapping("/customer/delete/{customerid}")
+    public String deleteCustomer(@PathVariable("customerid") Long id, ModelMap model){
+        customerService.deleteCustomer(id);
+        return "/customer/list";
+    }
+    @RequestMapping("/customer/edit/{customerid}")
+        public String editUser(@PathVariable("customerid") Long id, Model model) {
+            model.addAttribute("selected",customerService.getCustomer(id));
+        return "/customer/edit";
     }
 //    @RequestMapping(value = "save", method = RequestMethod.POST)
 //    public String saveCusoter(@ModelAttribute Customer customer, BindingResult result) {

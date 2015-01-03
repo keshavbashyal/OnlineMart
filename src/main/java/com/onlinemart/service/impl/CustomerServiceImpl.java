@@ -36,13 +36,13 @@ public class CustomerServiceImpl  implements CustomerService{
     }
 
     @Transactional(readOnly = true)
-    public Customer getCustomer(int id)
+    public Customer getCustomer(Long id)
     {
         return customerDao.getCustomer(id);
     }
 
     @Transactional
-    public void deleteCustomer(int id)
+    public void deleteCustomer(Long id)
     {
         customerDao.deleteCustomer(id);
     }

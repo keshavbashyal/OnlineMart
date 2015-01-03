@@ -40,12 +40,12 @@ public class CustomerDAOImpl extends AbstractDAO<Customer> implements CustomerDA
         return getSession().createCriteria(Customer.class).list();
     }
     
-    public Customer getCustomer(int id)
+    public Customer getCustomer(Long id)
     {
         return (Customer) getSession().get(Customer.class, id);
     }
 
-    public void deleteCustomer(int id)
+    public void deleteCustomer(Long id)
     {
         Customer customer = getCustomer(id);
         if(customer != null)
