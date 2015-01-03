@@ -39,7 +39,7 @@ public class CustomerDAOImpl extends AbstractDAO<Customer> implements CustomerDA
     {
         return getSession().createCriteria(Customer.class).list();
     }
-
+    
     public Customer getCustomer(int id)
     {
         return (Customer) getSession().get(Customer.class, id);

@@ -33,7 +33,7 @@
                 </div>
             </div>
             <div class="span4 pull-right">
-                <spring:form method="post" action="customer/save" commandname="customer">
+                <spring:form method="post" action="customer/save" modelAttribute="customer">
                     <spring:errors element="div" cssClass="errors" path="*"/>
                     <spring:input type="hidden" path="id"/>
 
@@ -45,19 +45,23 @@
                         </tr>
                         <tr>
                             <td><label>Last Name </label></td>
-                            <td><input type="text" size="60"/></td>
+                            <td><spring:input path="lname" /></td>
+                            <td><spring:errors path="lname" element="div" cssClass="error" /></td>
                         </tr>
                         <tr>
                             <td><label>E-mail Address </label></td>
-                            <td><input type="text" size="60"/></td>
+                            <td><spring:input path="email" /></td>
+                            <td><spring:errors path="email" element="div" cssClass="error" /></td>
                         </tr>
                         <tr>
                             <td><label>Password </label></td>
-                            <td><input type="password" size="60"/></td>
+                            <td><spring:input path="password" /></td>
+                            <td><spring:errors path="password" element="div" cssClass="error" /></td>
                         </tr>
                         <tr>
                             <td><label>Phone Number </label></td>
-                            <td><input type="text" size="60"/></td>
+                            <td><spring:input path="phone" /></td>
+                            <td><spring:errors path="phone" element="div" cssClass="error" /></td>
                         </tr>
                         <tr>
                             <td colspan="2">

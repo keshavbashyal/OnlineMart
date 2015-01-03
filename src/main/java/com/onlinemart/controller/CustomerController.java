@@ -41,7 +41,7 @@ public class CustomerController {
     
     @RequestMapping("/customer/addCustomer")
     public String registerCustomer(ModelMap model){
-        model.addAttribute("message" , "Test for add Customer");
+        model.addAttribute("customer",new Customer());
         return "/customer/addCustomer";
     }
     
@@ -56,7 +56,7 @@ public class CustomerController {
     }
     @RequestMapping("/customer/list")
     public String listCustomer(ModelMap model){
-        model.addAttribute("customer" , customerService.listCustomer());
+        model.addAttribute("allcustomers" , customerService.listCustomer());
         return "/customer/list";
     }
 //    @RequestMapping(value = "save", method = RequestMethod.POST)
