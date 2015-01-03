@@ -15,7 +15,6 @@ import java.util.List;
 public interface CustomerDAO {
     public void saveCustomer(Customer customer);
     public List<Customer> listCustomer();
-    public Customer getCustomer(int id);
-    public void deleteCustomer(int id);
-    
+    public Customer getCustomer(Long id);
+    public void deleteCustomer(Long id);
 }

@@ -28,6 +28,7 @@
                         <th>Last Name</th>
                         <th>Email</th>
                         <th>Phone</th>
+                        <th>Operations</th>
                     </tr>
                     <c:forEach items="${allcustomers}" var="customers">
                         <tr>
@@ -35,6 +36,10 @@
                             <td>${customers.lname}</td>
                             <td>${customers.email}</td>
                             <td>${customers.phone}</td>
+                            <td>
+                                <a href="customer/edit/${customers.id}" class="btn btn-success">Edit</a>
+                                <a href="customer/delete/${customers.id}" class="btn btn-success">Delete</a>
+                            </td>
                         </tr>
                     </c:forEach>
                 </table>
