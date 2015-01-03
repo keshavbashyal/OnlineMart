@@ -32,7 +32,7 @@ public class VendorController {
     @RequestMapping("/vendor")
     public String printHello(ModelMap model) {
         model.addAttribute("message", "Hello world! Inside Vendor hello");
-        return "/vendor/hello";
+        return "/vendor/dashboard";
     }
 
     @RequestMapping("/vendor/welcome")
