@@ -67,11 +67,17 @@
     </bean>
             
  <security:http auto-config='true'>
+     
+<!--
+removed for testing
+
 <security:intercept-url pattern="/admin**" access="ROLE_ADMIN"/>
 <security:intercept-url pattern="/vendor**" access="ROLE_VENDOR"/>
 <security:intercept-url pattern="/user**" access="ROLE_CUSTOMER"/>
 
-            <security:form-login 
+           -->
+
+     <security:form-login
                                  login-page="/login" 
                                  default-target-url="/home"
                                  authentication-failure-url="/login?error=loginerror"
