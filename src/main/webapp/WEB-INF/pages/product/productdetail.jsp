@@ -66,11 +66,11 @@
 
                     <div class="span5">
                         <div class="productinfo">
-                            <h2>Light Summer Dress</h2>
+                            <h2>${product.productName}</h2>
                             <h4>By: Brand Name</h4>
 
                             <div class="prices">
-                                <div class="price">$49</div>
+                                <div class="price">${product.unitPrice}</div>
                                 <div class="retailprice">Retail Price: $79</div>
                             </div>
 
@@ -90,7 +90,8 @@
                                     <option>3</option>
                                 </select>
 
-                                <button class="btn btn-danger btn-large"><i class="icon-shopping-cart icon-white"></i>   Add to Cart</button><script>
+                                <button class="btn btn-danger btn-large" onclick="<c:url value="/shoppingcart/hello" />"><i class="icon-shopping-cart icon-white"></i>   Add to Cart</button>
+                                <script>
                                     $('#SmartCart').smartCart({productItemTemplate: productTemplateWithSKU});
                                 </script>
                             </form>

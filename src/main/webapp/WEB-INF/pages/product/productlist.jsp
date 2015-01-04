@@ -23,9 +23,7 @@
                     <h3>Product List</h3>
                 </div>
 
-                <div class="span12">
-                    <a href="vendor/productform" class="btn btn-success pull-right">Add New Product</a>
-                </div>
+                
 
                 <table id="tablelist" class="span12 table-bordered table-striped">
                     <tr class="">
@@ -39,10 +37,8 @@
                             <td>${product.id}</td>
                             <td>${product.productName}</td>
                             <td>${product.productDescription}</td>
-                            <td>
-                                <a href="vendor/product/edit/${product.id}" class="btn btn-primary btn-mini">Edit</a>
-                                <a href="vendor/product/delete/${product.id}" onclick="return confirm(' Delete Record ')" class="btn btn-danger btn-mini">Delete</a>
-                            </td>
+                            <td>${product.unitPrice}</td>
+                            
                         </tr>
                     </c:forEach>
                 </table>

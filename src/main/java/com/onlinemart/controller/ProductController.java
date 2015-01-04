@@ -6,7 +6,9 @@
 package com.onlinemart.controller;
 
 import com.onlinemart.model.Product;
+import com.onlinemart.model.Vendor;
 import com.onlinemart.service.ProductService;
+import com.onlinemart.service.VendorService;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,10 +25,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class ProductController {
     
-    
+    @Autowired
+    VendorService vendorService;
+
     @Autowired
     ProductService productService;
- 
+
     @RequestMapping(value = "vendor/product/save", method = RequestMethod.POST)
     public String saveUser(@Valid Product product, BindingResult result) {
         if (result.hasErrors()) {
@@ -42,6 +46,14 @@ public class ProductController {
         model.addAttribute("products", productService.listProducts());
         return "vendor/productlist";
     }
+    
+    @RequestMapping(value = "/vendor/{vendorid}/productlist")
+    public String listProductsByVendorId(@PathVariable("vendorid") Long id,Model model) {
+        Vendor vendor = vendorService.getVendor(id);
+        model.addAttribute("products", vendor.getProducts());
+        return "vendor/productlist";
+    }
+    
 
     @RequestMapping("vendor/product/edit/{productid}")
     public String editUser(@PathVariable("productid") Long id, Model model) {
@@ -54,18 +66,25 @@ public class ProductController {
         productService.deleteProduct(id);
         return "redirect:/vendor/productlist";
     }
-    
-    
+
     @RequestMapping("/vendor/productform")
     public String vendorProductForm(Product product) {
         return "/vendor/productform";
     }
-    
+
     @RequestMapping("/product/productlist")
-    public String productList(Product product) {
-        return "/product/productlist";
+    public String productList(Model model) {
+        model.addAttribute("products", productService.listProducts());
+        return "product/productlist";
     }
-     
     
     
+    @RequestMapping("/product/{productid}/productdetail")
+    public String productDetail(@PathVariable("productid") Long id,Model model) {
+        Product product = productService.getProduct(id);
+        model.addAttribute("product",product);
+        return "product/productdetail";
+    }
+    
+
 }

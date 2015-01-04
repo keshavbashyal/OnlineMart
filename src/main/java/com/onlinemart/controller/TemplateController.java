@@ -22,7 +22,7 @@ public class TemplateController {
     public String printProduct(ModelMap model) {
         System.out.println("reached in this function");
         model.addAttribute("message", "Welcome!");
-        return "template/product";
+        return "product/productdetails";
     }
     
     @RequestMapping ("/product/{productId}")
