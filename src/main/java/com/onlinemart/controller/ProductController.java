@@ -15,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,15 +25,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 public class ProductController {
-
+    
     @Autowired
     VendorService vendorService;
 
     @Autowired
     ProductService productService;
+    
+    private int shoppingcartvalue = 0;
 
     @RequestMapping(value = "vendor/product/save", method = RequestMethod.POST)
-    public String saveUser(@ModelAttribute @Valid Product product, BindingResult result, HttpSession session) {
+    public String saveUser(@Valid Product product, BindingResult result) {
         if (result.hasErrors()) {
             return "vendor/productform";
         } else {
@@ -48,13 +49,14 @@ public class ProductController {
         model.addAttribute("products", productService.listProducts());
         return "vendor/productlist";
     }
-
+    
     @RequestMapping(value = "/vendor/{vendorid}/productlist")
-    public String listProductsByVendorId(@PathVariable("vendorid") Long id, Model model) {
+    public String listProductsByVendorId(@PathVariable("vendorid") Long id,Model model) {
         Vendor vendor = vendorService.getVendor(id);
         model.addAttribute("products", vendor.getProducts());
         return "vendor/productlist";
     }
+    
 
     @RequestMapping("vendor/product/edit/{productid}")
     public String editUser(@PathVariable("productid") Long id, Model model) {
@@ -74,16 +76,20 @@ public class ProductController {
     }
 
     @RequestMapping("/product/productlist")
-    public String productList(Model model) {
+    public String productList(Model model,HttpSession session) {
         model.addAttribute("products", productService.listProducts());
+        session.setAttribute("shoppingcartvalue",shoppingcartvalue );
+//        model.addAttribute("salary", shoppingcartvalue++);
         return "product/productlist";
     }
-
+    
+    
     @RequestMapping("/product/{productid}/productdetail")
-    public String productDetail(@PathVariable("productid") Long id, Model model) {
+    public String productDetail(@PathVariable("productid") Long id,Model model) {
         Product product = productService.getProduct(id);
-        model.addAttribute("product", product);
+        model.addAttribute("product",product);
         return "product/productdetail";
     }
+    
 
 }
