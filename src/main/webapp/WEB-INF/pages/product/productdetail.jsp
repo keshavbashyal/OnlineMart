@@ -90,10 +90,13 @@
                                     <option>3</option>
                                 </select>
 
-                                <button class="btn btn-danger btn-large" onclick="<c:url value="/shoppingcart/hello" />"><i class="icon-shopping-cart icon-white"></i>   Add to Cart</button>
+                                <a href="<c:url value="/product/productlist" />"  class="btn btn-danger btn-large"><i class="icon-shopping-cart icon-white"></i>  Add to Cart</a>
+                                
                                 <script>
                                     $('#SmartCart').smartCart({productItemTemplate: productTemplateWithSKU});
                                 </script>
+                                
+                                
                             </form>
 
                             <p>
