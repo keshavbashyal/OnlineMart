@@ -43,11 +43,11 @@ public class ShoppingCartController {
 //    CreditCardService creditCardService;
     
     
-    @RequestMapping("/shoppingcart/hello")
-    public String printHello(ModelMap model) {
-        model.addAttribute("message", "Hello world! Inside Shopping hello");
-        return "/shoppingcart/hello";
-    }
+//    @RequestMapping("/shoppingcart/hello")
+//    public String printHello(ModelMap model) {
+//        
+//        return "redirect:/product/productlist";
+//    }
 
     @RequestMapping("/restapi/{id}")
     public String restAPI(ModelMap model, @PathVariable("id") int id) throws IOException {

@@ -13,7 +13,14 @@
                     <div class="span4">
                         <div class="navbar navbar-static">
                             <ul class="nav">                                
-                                <li><a href="<c:url value='/shoppingcart/hello'/>"><i class="icon-shopping-cart"></i> Shopping Cart  </a></li>
+                                <li><a href="<c:url value='/shoppingcart/hello'/>"><i class="icon-shopping-cart"></i> Shopping Cart
+                                      
+                                        
+                                        <c:if test="${shoppingcartvalue > 0}">
+                                                   ( ${shoppingcartvalue} )
+                                        </c:if>
+
+                                    </a></li>
                                 <li class="divider-vertical"></li>
                                 <li><a href="account.jsp"><i class="icon-user"></i> My Account</a></li>
                             </ul>

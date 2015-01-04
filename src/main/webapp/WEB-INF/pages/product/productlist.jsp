@@ -23,26 +23,25 @@
                     <h3>Product List</h3>
                 </div>
 
-                
 
-                <table id="tablelist" class="span12 table-bordered table-striped">
-                    <tr class="">
-                        <th>ID</th>
-                        <th>Product Name</th>
-                        <th>Product Description</th>
-                        <th>Unit Price</th>
-                    </tr>
+                <ul class="product">
+                    
                     <c:forEach items="${products}" var="product">
-                        <tr>
-                            <td>${product.id}</td>
-                            <td>${product.productName}</td>
-                            <td>${product.productDescription}</td>
-                            <td>${product.unitPrice}</td>
-                            
-                        </tr>
+                    <li>
+                        <a href="<c:url value="/product/${product.id}/productdetail"/>">
+                            <img src="resources/img/sample/women1.jpg" alt="" />	
+                            <div class="producttitlebox"></div>
+                            <div class="producttitle">${product.productName}</div>
+                            <div class="brandtitle">By: Brand Name</div>
+                            <div class="pricetag"></div>
+                            <div class="saleprice">${product.unitPrice}</div>
+                            <div class="oldprice">${product.unitPrice}</div>
+                        </a>
+                    </li>
+                    
                     </c:forEach>
-                </table>
-
+                </ul>
+      
             </div>
         </div>
         <%@include file="../includes/footer.jsp" %>

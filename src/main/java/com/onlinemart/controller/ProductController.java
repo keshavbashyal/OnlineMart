@@ -32,6 +32,8 @@ public class ProductController {
 
     @Autowired
     ProductService productService;
+    
+    private int shoppingcartvalue = 0;
 
     @RequestMapping(value = "vendor/product/save", method = RequestMethod.POST)
     public String saveUser(@ModelAttribute @Valid Product product, BindingResult result, HttpSession session) {
@@ -74,8 +76,10 @@ public class ProductController {
     }
 
     @RequestMapping("/product/productlist")
-    public String productList(Model model) {
+    public String productList(Model model,HttpSession session) {
         model.addAttribute("products", productService.listProducts());
+        session.setAttribute("shoppingcartvalue",shoppingcartvalue );
+//        model.addAttribute("salary", shoppingcartvalue++);
         return "product/productlist";
     }
 
