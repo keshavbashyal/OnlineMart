@@ -21,7 +21,7 @@
                         </div>
                     </div>
                     <div class="span4 pull-right">
-                        <spring:form method="post" action="vendor/product/save" commandName="product">
+                        <spring:form method="post" action="vendor/product/save" commandName="product" enctype="multipart/form-data">
                             <spring:errors element="div" cssClass="errors" path="*"/>
                             <spring:input type="hidden" path="id"/>
                             <table> 
@@ -40,9 +40,17 @@
                                     <td><spring:input path="unitPrice" /></td>
                                     <td><spring:errors path="unitPrice" element="div" cssClass="error" /></td>
                                 </tr>
-                               
+                                <tr>
+                                    <td><label>Images</label></td>
                               
+                                    <td> <input type="file" name="file" path="imagename" size="50" />
+                                         <td><spring:errors path="imagename" element="div" cssClass="error" /></td>
+                                    <br />
                                 
+                                    </td>
+                                </tr>
+
+
                                 <tr>
                                     <td colspan="2">
                                         <input type="submit" value="Submit" class="btn btn-primary pull-right"/>

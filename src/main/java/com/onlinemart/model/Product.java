@@ -21,7 +21,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -52,6 +54,17 @@ public class Product implements Serializable {
 
     @OneToMany (fetch = FetchType.LAZY)
     private List<Image> image;
+    
+    @Transient
+    private MultipartFile imagename;
+
+    public MultipartFile getImagename() {
+        return imagename;
+    }
+
+    public void setImagename(MultipartFile imagename) {
+        this.imagename = imagename;
+    }
     
     public Long getId() {
         return id;

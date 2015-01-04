@@ -33,12 +33,14 @@
                         <th>Product Name</th>
                         <th>Product Description</th>
                         <th>Unit Price</th>
+                        <th>Actions</th>
                     </tr>
                     <c:forEach items="${products}" var="product">
                         <tr>
                             <td>${product.id}</td>
                             <td>${product.productName}</td>
                             <td>${product.productDescription}</td>
+                             <td>${product.unitPrice}</td>
                             <td>
                                 <a href="vendor/product/edit/${product.id}" class="btn btn-primary btn-mini">Edit</a>
                                 <a href="vendor/product/delete/${product.id}" onclick="return confirm(' Delete Record ')" class="btn btn-danger btn-mini">Delete</a>
