@@ -44,10 +44,13 @@ public class CustomerController {
     @RequestMapping("/customer/account")
     public String customerAccount(ModelMap model,HttpSession session) {
         Customer c = (Customer) session.getAttribute("user");
-        model.addAttribute("customer",c);
-        return "/customer/account";
+        if (c == null)
+            return "/";
+        else{
+            model.addAttribute("customer",c);
+            return "/customer/account";
+        }
     }
-    
     @RequestMapping("/customer/addCustomer")
     public String registerCustomer(ModelMap model){
         model.addAttribute("customer",new Customer());
