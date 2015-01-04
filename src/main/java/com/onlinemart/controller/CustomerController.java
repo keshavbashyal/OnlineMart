@@ -7,6 +7,7 @@ package com.onlinemart.controller;
 
 import com.onlinemart.model.Customer;
 import com.onlinemart.service.CustomerService;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -40,6 +41,12 @@ public class CustomerController {
         model.addAttribute("message", "Welcome!, Inside Customer welcome");
         return "/customer/welcome";
     }
+    @RequestMapping("/customer/account")
+    public String customerAccount(ModelMap model,HttpSession session) {
+        Customer c = (Customer) session.getAttribute("user");
+        model.addAttribute("customer",c);
+        return "/customer/account";
+    }
     
     @RequestMapping("/customer/addCustomer")
     public String registerCustomer(ModelMap model){
@@ -48,13 +55,14 @@ public class CustomerController {
     }
     
     @RequestMapping(value = "/customer/save" , method=RequestMethod.POST )
-    public String saveUser(@Valid Customer customer, BindingResult result){
+    public String saveUser(@Valid Customer customer, BindingResult result, HttpSession session){
         if (result.hasErrors()) {
             return "customer/addCustomer";
         } else {
             customerService.saveCustomer(customer);
+            session.setAttribute("user", customer);
         }
-        return "redirect:/customer/list";
+        return "redirect:/customer/account";
     }
     @RequestMapping("/customer/list")
     public String listCustomer(ModelMap model){

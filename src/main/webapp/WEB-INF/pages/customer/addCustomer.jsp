@@ -55,7 +55,7 @@
                         </tr>
                         <tr>
                             <td><label>Password </label></td>
-                            <td><spring:input path="password" /></td>
+                            <td><form:password path="password" /></td>
                             <td><spring:errors path="password" element="div" cssClass="error" /></td>
                         </tr>
                         <tr>

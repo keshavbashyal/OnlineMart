@@ -24,8 +24,8 @@
         <%@include file="../includes/header.jsp" %>
         <div class="container">
             <div class="pull-right">
-                <a href="<c:url value='/vendor/form'/>" class="btn btn-success btn-small">Sign Up as Vendor</a>
-                <a href="<c:url value='/customer/addCustomer'/>" class="btn btn-success btn-small">Sign Up as Customer</a>
+                <a href="<c:url value='/vendor/form'/>" class="btn btn-success btn-small">Vendor Sign-up</a>
+                <a href="<c:url value='/customer/addCustomer'/>" class="btn btn-success btn-small">Register</a>
                 <a href="<c:url value='/vendor/productform'/>" class="btn btn-success btn-small">Add a Product</a>
                 <a href="<c:url value='/login'/>" class="btn btn-success btn-small">Login</a>
                 
