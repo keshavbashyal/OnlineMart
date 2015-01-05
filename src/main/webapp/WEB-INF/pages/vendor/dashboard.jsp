@@ -35,8 +35,7 @@
 
                     <div class="span9 pull-right">
                         <div class="span3 pull-right">
-
-                            <a href="vendor/productAddFrm" class="btn btn-success pull-right">Add Product</a>
+                            <a href="<c:url value="vendor/productaddfrm" />" class="btn btn-success pull-right">Add Product</a>
                         </div>
                         <h5>Vendor &rsaquo; Products</h5>
                         <table id="tablelist" class="span9 table-bordered table-striped pull-right">
