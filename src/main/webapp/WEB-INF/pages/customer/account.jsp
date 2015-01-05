@@ -41,7 +41,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="span6 pull-right">
+                    <div class="span3 pull-right">
                         <div class="page-header">
                             <h3> Add Information </h3>
                         </div>

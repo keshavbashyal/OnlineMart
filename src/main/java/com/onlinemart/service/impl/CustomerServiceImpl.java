@@ -20,9 +20,9 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class CustomerServiceImpl  implements CustomerService{
 
-   @Autowired
+    @Autowired
     private CustomerDAO customerDao;
-
+    
     @Transactional
     public void saveCustomer(Customer customer)
     {

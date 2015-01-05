@@ -64,6 +64,26 @@
                             <td><spring:errors path="phone" element="div" cssClass="error" /></td>
                         </tr>
                         <tr>
+                            <td><label>Steet Address </label></td>
+                            <td><spring:input path="phone" /></td>
+                            <td><spring:errors path="phone" element="div" cssClass="error" /></td>
+                        </tr>
+                        <tr>
+                            <td><label>City </label></td>
+                            <td><spring:input path="phone" /></td>
+                            <td><spring:errors path="phone" element="div" cssClass="error" /></td>
+                        </tr>
+                        <tr>
+                            <td><label>State </label></td>
+                            <td><spring:input path="phone" /></td>
+                            <td><spring:errors path="phone" element="div" cssClass="error" /></td>
+                        </tr>
+                        <tr>
+                            <td><label>Zip </label></td>
+                            <td><spring:input path="phone" /></td>
+                            <td><spring:errors path="phone" element="div" cssClass="error" /></td>
+                        </tr>
+                        <tr>
                             <td colspan="2">
                                 <input type="submit" value="Submit" class="btn btn-primary pull-right"/>
                             </td>
