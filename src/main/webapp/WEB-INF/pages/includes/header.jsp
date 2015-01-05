@@ -22,7 +22,7 @@
 
                                     </a></li>
                                 <li class="divider-vertical"></li>
-                                <li><a href="account.jsp"><i class="icon-user"></i> My Account</a></li>
+                                <li><a href="<c:url value='/customer/account'/>"><i class="icon-user"></i> My Account</a></li>
                             </ul>
                         </div>
                     </div>
