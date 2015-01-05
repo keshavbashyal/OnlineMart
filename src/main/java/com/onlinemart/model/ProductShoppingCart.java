@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -25,7 +26,7 @@ public class ProductShoppingCart implements Serializable {
     private Long id;
     private int quantity;
     
-    @OneToMany
+    @OneToOne
     private Product product;
     
     public int getQuantity() {
