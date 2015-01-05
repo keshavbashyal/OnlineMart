@@ -5,6 +5,7 @@
  */
 package com.onlinemart.service;
 
+import com.onlinemart.model.Address;
 import com.onlinemart.model.Customer;
 import java.util.List;
 import org.springframework.stereotype.Service;
@@ -20,5 +21,5 @@ public interface CustomerService {
     public List<Customer> listCustomer();
     public Customer getCustomer(Long id);
     public void deleteCustomer(Long id);
-    
+    public void saveAddress(Address address);
 }

@@ -38,28 +38,28 @@
                         <!-- Carousel items -->
                         <div class="carousel-inner">
                             <div class="active item">
-                                <img src="resources/img/main-carousel/women1.jpg" alt="" class="pull-left" />
+                                <img src="resources/img/main-carousel/watch.jpg" alt="" class="pull-left" />
                                 <div class="shading-left">
-                                    <h2>Find Yourself in Fashion</h2>
-                                    <p>Use a different overlay depending on what best meets your needs. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In laoreet sodales velit id interdum. Aliquam mattis dui quis nibh commodo vel pretium leo condimentum. Nam sit amet est leo, sed consequat augue.</p>
+                                    <h2>The best quality watches in the planet</h2>
+                                    <p>Online Mart provides you the best watches in the planet on a reasonable price. Brand watches include Omega, Bvlgari, Rolex, Taguer and Swiss</p>
                                     <a class="btn btn-large btn-danger" href="listwomen.html">Find it Now</a>
                                 </div>
                                 <div class="numberslide">1/3</div>
                             </div>
                             <div class="item">
-                                <img src="resources/img/main-carousel/women2.jpg" alt="" class="pull-left" />
+                                <img src="resources/img/main-carousel/tie.jpg" alt="" class="pull-left" />
                                 <div class="shading-left">
-                                    <h2>The New Face of Beauty</h2>
-                                    <p>Use a different overlay depending on what best meets your needs. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In laoreet sodales velit id interdum. Aliquam mattis dui quis nibh commodo vel pretium leo condimentum. Nam sit amet est leo, sed consequat augue.</p>
+                                    <h2>Designer Tie</h2>
+                                    <p>Shop a variety of ties. Designer ties available in Online Mart are sure to satisfy your needs. And talk about the prices....cheapest on the planet</p>
                                     <a class="btn btn-large btn-danger" href="listwomen.html">Discover Now</a>
                                 </div>
                                 <div class="numberslide">2/3</div>
                             </div>
                             <div class="item">
-                                <img src="resources/img/main-carousel/men1.jpg" alt="" class="pull-left" />
+                                <img src="resources/img/main-carousel/shoes.jpg" alt="" class="pull-left" />
                                 <div class="shading-left">
-                                    <h2>Discover Top Fashion</h2>
-                                    <p>Use a different overlay depending on what best meets your needs. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In laoreet sodales velit id interdum. Aliquam mattis dui quis nibh commodo vel pretium leo condimentum. Nam sit amet est leo, sed consequat augue.</p>
+                                    <h2>Your stop for shoes</h2>
+                                    <p>Explore the feeling of that pricey shoes on your feet..for a low price. Get everything from adidas, Nike to Puma</p>
                                     <a class="btn btn-large btn-danger" href="listmen.html">Shop Now</a>
                                 </div>
                                 <div class="numberslide">3/3</div>

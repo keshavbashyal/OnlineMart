@@ -5,7 +5,9 @@
  */
 package com.onlinemart.service.impl;
 
+import com.onlinemart.dao.AddressDAO;
 import com.onlinemart.dao.CustomerDAO;
+import com.onlinemart.model.Address;
 import com.onlinemart.model.Customer;
 import com.onlinemart.service.CustomerService;
 import java.util.List;
@@ -23,12 +25,19 @@ public class CustomerServiceImpl  implements CustomerService{
     @Autowired
     private CustomerDAO customerDao;
     
+    @Autowired
+    private AddressDAO addressDAO;
+    
     @Transactional
     public void saveCustomer(Customer customer)
     {
         customerDao.saveCustomer(customer);
+   
     }
-
+    @Transactional
+    public void saveAddress(Address address){
+        this.addressDAO.saveAddress(address);
+    }
     @Transactional(readOnly = true)
     public List<Customer> listCustomer()
     {

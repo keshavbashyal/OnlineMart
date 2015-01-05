@@ -8,16 +8,16 @@
     <div class="nav-header">Navigation</div>
     <ul class="nav nav-list">
         <li>
-            <a href="#">Basic Info</a>
+            <a href="customer/edit/${customers.id}">Update Profile</a>
         </li>
         <li>
-            <a href="#">Orders</a>
+            <a href="#">Add Credit Card</a>
         </li>
         <li>
-            <a href="#">Recent Searches</a>
+            <a href="#">Update Address</a>
         </li>
         <li>
-            <a href="#">Report</a>
+            <a href="#">Customer Support</a>
         </li>
     </ul>
 </ul>

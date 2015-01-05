@@ -5,7 +5,9 @@
  */
 package com.onlinemart.controller;
 
+import com.onlinemart.model.Address;
 import com.onlinemart.model.Customer;
+import com.onlinemart.service.AddressService;
 import com.onlinemart.service.CustomerService;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -29,7 +31,7 @@ public class CustomerController {
 
     @Autowired
     private CustomerService customerService;
-
+    
     @RequestMapping("/customer")
     public String printHello(ModelMap model) {
         model.addAttribute("message", "Hello world! Inside Customer hello");
@@ -44,10 +46,11 @@ public class CustomerController {
     @RequestMapping("/customer/account")
     public String customerAccount(ModelMap model,HttpSession session) {
         Customer c = (Customer) session.getAttribute("user");
-        if (c == null)
-            return "/";
-        else{
-            model.addAttribute("customer",c);
+        if (c == null){
+            model.addAttribute("selected",customerService.getCustomer(1L));
+            return "/customer/account";
+        }else{
+            model.addAttribute("selected",c);
             return "/customer/account";
         }
     }

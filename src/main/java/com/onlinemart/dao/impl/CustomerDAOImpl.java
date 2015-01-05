@@ -6,6 +6,7 @@
 package com.onlinemart.dao.impl;
 
 import com.onlinemart.dao.CustomerDAO;
+import com.onlinemart.model.Address;
 import com.onlinemart.model.Customer;
 import com.onlinemart.utils.SessionUtil;
 import java.util.List;

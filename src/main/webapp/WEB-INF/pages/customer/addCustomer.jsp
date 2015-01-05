@@ -63,25 +63,25 @@
                             <td><spring:input path="phone" /></td>
                             <td><spring:errors path="phone" element="div" cssClass="error" /></td>
                         </tr>
-                        <tr>
-                            <td><label>Steet Address </label></td>
-                            <td><spring:input path="phone" /></td>
-                            <td><spring:errors path="phone" element="div" cssClass="error" /></td>
+                        	<tr>
+                            <td><label>Street Address </label></td>
+                            <td><spring:input path="address.street" /></td>
+                            <td><spring:errors path="address.street" element="div" cssClass="error" /></td>
                         </tr>
                         <tr>
                             <td><label>City </label></td>
-                            <td><spring:input path="phone" /></td>
-                            <td><spring:errors path="phone" element="div" cssClass="error" /></td>
+                            <td><spring:input path="address.city" /></td>
+                            <td><spring:errors path="address.city" element="div" cssClass="error" /></td>
                         </tr>
                         <tr>
                             <td><label>State </label></td>
-                            <td><spring:input path="phone" /></td>
-                            <td><spring:errors path="phone" element="div" cssClass="error" /></td>
+                            <td><spring:input path="address.state" /></td>
+                            <td><spring:errors path="address.state" element="div" cssClass="error" /></td>
                         </tr>
                         <tr>
                             <td><label>Zip </label></td>
-                            <td><spring:input path="phone" /></td>
-                            <td><spring:errors path="phone" element="div" cssClass="error" /></td>
+                            <td><spring:input path="address.zipCode" /></td>
+                            <td><spring:errors path="address.zipCode" element="div" cssClass="error" /></td>
                         </tr>
                         <tr>
                             <td colspan="2">

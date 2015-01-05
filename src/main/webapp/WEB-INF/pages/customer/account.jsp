@@ -22,43 +22,32 @@
     </head>
     <body>
         <%@include file="../includes/header.jsp" %>
-
-        <div class="container">
+        <div class="container min-height-4">
             <div class="content">
-                <div class="span12 userbox min-height-3">
-                    <div class="span6 pull-left">
-                        <div class="page-header">
-                            <h3> Customer Information </h3>
+                <div class="row">
+                    <div class="span3">
+                        <div class="thumbnail">
+                            <img src="resources/img/user-male.svg" alt="Customer Image" />
                         </div>
-                        <div class="span3 pull-right">
-                            <h3>${customer.fname} ${customer.lname}</h3>
-                            <h3>${customer.email}</h3>
-                            <h3>${customer.phone}</h3>
-                        </div>
-                        <div class="pull-left">
-                            <div class="span3 thumbnail thumbnail-noborder">
-                                <img src="resources/img/user-male.svg" alt="Customer Image" />
-                            </div>
-                        </div>
+                        <%@include file="customer_left_nav.jsp" %>
                     </div>
-                    <div class="span3 pull-right">
+
+                    <div class="span9 pull-right">
                         <div class="page-header">
-                            <h3> Add Information </h3>
+                            <h3>Customer &rsaquo; Account</h3>
                         </div>
-                        <a href="#">Update Profile</a><br/>
-                        <a href="#">Add Credit Card</a><br/>
-                        <a href="#">Update Address</a><br/>
-                        <a href="#">Customer Support</a><br/>
-                    </div>
-                </div>
-                <div class="span12 userbox min-height-4">
-                    <div class="page-header">
-                        <h3> Recent Purchases </h3>
+                        <h4>${customer.fname} ${customer.lname}</h4>
+                        <h4>${customer.email}</h4>
+                        <h4>${customer.phone}</h4>
+                        <h4>${customer.address.street}</h4>
+                        <h4>${customer.address.city}</h4>
+                        <div class="page-header">
+                            <h3>Recent Orders</h3>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
         <%@include file="../includes/footer.jsp" %>
 
     </body>

@@ -5,6 +5,7 @@
  */
 package com.onlinemart.dao;
 
+import com.onlinemart.model.Address;
 import com.onlinemart.model.Customer;
 import java.util.List;
 
@@ -17,4 +18,5 @@ public interface CustomerDAO {
     public List<Customer> listCustomer();
     public Customer getCustomer(Long id);
     public void deleteCustomer(Long id);
+    //public void addAddress(Address address,Long id);
 }
