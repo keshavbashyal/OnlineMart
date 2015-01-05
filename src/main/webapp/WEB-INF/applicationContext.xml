@@ -101,6 +101,29 @@ removed for testing
         </security:authentication-provider>
       
     </security:authentication-manager> 
+    <!--
+    for email configuration
+    -->
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+	<property name="host" value="smtp.gmail.com" />
+	<property name="port" value="587" />
+	<property name="username" value="onlinemartcustomercare" />
+	<property name="password" value="onlinemar" />
+ 
+	<property name="javaMailProperties">
+	   <props>
+       	      <prop key="mail.smtp.auth">true</prop>
+       	      <prop key="mail.smtp.starttls.enable">true</prop>
+       	   </props>
+	</property>
+</bean>
+ 
+<bean id="Sendmail" class="com.onlinemart.pojo.SendEmail">
+	<property name="mailSender" ref="mailSender" />
+</bean>
+<!--
+end of email config
+-->
     
 </beans>
 
