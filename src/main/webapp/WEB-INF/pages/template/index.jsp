@@ -41,7 +41,7 @@
                                 <img src="resources/img/main-carousel/watch.jpg" alt="" class="pull-left" />
                                 <div class="shading-left">
                                     <h2>The best quality watches in the planet</h2>
-                                    <p>Online Mart provides you the best watches in the planet on a reasonable price. Brand watches include Omega, Bvlgari, Rolex, Tagheuer and Swiss</p>
+                                    <p>Online Mart provides you the best watches in the planet on a reasonable price. Brand watches include Omega, Bvlgari, Rolex, Taguer and Swiss</p>
                                     <a class="btn btn-large btn-danger" href="listwomen.html">Find it Now</a>
                                 </div>
                                 <div class="numberslide">1/3</div>
@@ -79,16 +79,16 @@
                     <div class="span6">
                         <div class="sale1">
                             <div class="salebanner">
-                                <a href="listwomen.html"><img src="resources/img/watch-sale.jpg" alt="" />
-                                    <p class="sale1">Watch Sale </p></a>
+                                <a href="listwomen.html"><img src="resources/img/sample/sale.jpg" alt="" />
+                                    <p class="sale1">Purse Sale </p></a>
                             </div>
                         </div>
                     </div>
 
                     <div class="span6">
                         <div class="sale2">
-                            <a href="product.html"><img src="resources/img/tie-sale.png" alt=""/>
-                                <p class="sale2">Tie Sale </p></a>
+                            <a href="product.html"><img src="resources/img/sample/sale2.jpg" alt=""/>
+                                <p class="sale2">Fab heels </p></a>
                         </div>
                     </div>
                 </div>
