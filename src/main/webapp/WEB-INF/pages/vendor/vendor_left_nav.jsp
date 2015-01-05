@@ -5,8 +5,10 @@
 --%>
 
 <ul class="nav">
-    <div class="nav-header">Navigation</div>
     <ul class="nav nav-list">
+        <li class="active">
+            <a href="#" >Dashboard</a>
+        </li>
         <li>
             <a href="#">Inventory</a>
         </li>
