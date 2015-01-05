@@ -36,7 +36,7 @@ public class ProductController {
     private ShoppingCart shoppingCart = new ShoppingCart();
 
     @RequestMapping(value = "vendor/product/save", method = RequestMethod.POST)
-    public String saveUser(@Valid Product product, BindingResult result) {
+    public String saveProduct(@Valid Product product, BindingResult result) {
         if (result.hasErrors()) {
             return "vendor/productform";
         } else {
@@ -46,7 +46,7 @@ public class ProductController {
     }
 
     @RequestMapping(value = "/vendor/productlist")
-    public String listUsers(Model model) {
+    public String listProducts(Model model) {
         model.addAttribute("products", productService.listProducts());
         return "vendor/productlist";
     }
@@ -60,13 +60,13 @@ public class ProductController {
     
 
     @RequestMapping("vendor/product/edit/{productid}")
-    public String editUser(@PathVariable("productid") Long id, Model model) {
+    public String editProduct(@PathVariable("productid") Long id, Model model) {
         model.addAttribute("product", productService.getProduct(id));
         return "vendor/productform";
     }
 
     @RequestMapping("vendor/product/delete/{productid}")
-    public String deleteUser(@PathVariable("productid") Long id, Model model) {
+    public String deleteProduct(@PathVariable("productid") Long id, Model model) {
         productService.deleteProduct(id);
         return "redirect:/vendor/productlist";
     }
