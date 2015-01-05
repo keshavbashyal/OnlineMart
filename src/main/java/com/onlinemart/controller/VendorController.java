@@ -5,7 +5,9 @@
  */
 package com.onlinemart.controller;
 
+import com.onlinemart.model.Product;
 import com.onlinemart.model.Vendor;
+import com.onlinemart.service.ProductService;
 import com.onlinemart.service.VendorService;
 import java.util.Date;
 import javax.validation.Valid;
@@ -28,10 +30,12 @@ public class VendorController {
 
     @Autowired
     VendorService vendorService;
+    @Autowired
+    ProductService productService;
   
     @RequestMapping("/vendor")
     public String printHello(ModelMap model) {
-        model.addAttribute("message", "Hello world! Inside Vendor hello");
+        model.addAttribute("products", null);
         return "/vendor/dashboard";
     }
 
@@ -90,6 +94,23 @@ public class VendorController {
         return "redirect:/vendor/list";
     }
 
-       
+    // Product Add form
+    @RequestMapping("vendor/productaddfrm")
+    public String productAddForm() {
+        //model.addAttribute("products", null);
+        System.out.println(" Product Add Form");
+        return "vendor/productAddForm";
+    }    
+    
+   
+    @RequestMapping(value = "/vendor/addProduct", method = RequestMethod.POST)
+    public String saveProduct(@Valid Product product, BindingResult result) {
+        if (result.hasErrors()) {
+            return "redirect:vendor/dashboard";
+        } else {
+            productService.saveProduct(product);
+        }
+        return "redirect:vendor/dashboard";
+    }
 
 }
