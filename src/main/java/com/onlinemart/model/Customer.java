@@ -54,5 +54,9 @@ public class Customer extends User implements Serializable {
         this.address = address;
     }
     
+    public void addOrder(Order order){
+        this.order.add(order);
+    }
+    
     
 }

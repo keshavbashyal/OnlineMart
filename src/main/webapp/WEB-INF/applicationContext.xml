@@ -104,7 +104,7 @@ removed for testing
     <!--
     for email configuration
     -->
-    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+<!--    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 	<property name="host" value="smtp.gmail.com" />
 	<property name="port" value="587" />
 	<property name="username" value="onlinemartcustomercare" />
@@ -120,7 +120,7 @@ removed for testing
  
 <bean id="Sendmail" class="com.onlinemart.pojo.SendEmail">
 	<property name="mailSender" ref="mailSender" />
-</bean>
+</bean>-->
 <!--
 end of email config
 -->
