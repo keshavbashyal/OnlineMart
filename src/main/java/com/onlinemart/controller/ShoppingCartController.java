@@ -38,10 +38,9 @@ public class ShoppingCartController {
 
     @Autowired
     ShoppingCartService shoppingCartService;
-    
+
 //    @Autowired
 //    OrderService orderService;
-
     private Double totalPrice = 0.0;
 
     @RequestMapping("/restapi/{id}")
@@ -62,9 +61,8 @@ public class ShoppingCartController {
         for (Iterator<ProductShoppingCart> it = cart.getProductShoppingCart().iterator();
                 it.hasNext();) {
             ProductShoppingCart productShoppingCart = it.next();
-            for (Product product : productShoppingCart.getProducts()) {
-                totalPrice += product.getUnitPrice();
-            }
+            Product product = productShoppingCart.getProduct();
+            totalPrice += product.getUnitPrice() * productShoppingCart.getQuantity();
 
         }
 
@@ -89,46 +87,25 @@ public class ShoppingCartController {
         }
 
         return "template/index";
-
     }
 
-    @RequestMapping("/shopping/welcome")
-    public String printWelcome(ModelMap model) {
-        model.addAttribute("message", "Welcome!, Inside Shopping welcome");
-        return "/shoppingcart/welcome";
-    }
-
-    @RequestMapping("/shopping/form")
-    public String shoppingAdd(ShoppingCart shoppingCart) {
-        return "/shoppingcart/form";
-    }
-
-    @RequestMapping(value = "/shopping/save", method = RequestMethod.POST)
-    public String saveUser(@Valid ShoppingCart shoppingCart, BindingResult result) {
-        if (result.hasErrors()) {
-            return "shoppingcart/form";
-        } else {
-            shoppingCartService.saveShoppingCart(shoppingCart);
-        }
-        return "redirect:/shoppingcart/list";
-    }
-
-    @RequestMapping(value = "/shoppingcart/list")
-    public String listUsers(Model model) {
-        model.addAttribute("shoppings", shoppingCartService.listShoppingCart());
-        return "shoppingcart/list";
-    }
-
-    @RequestMapping("/shopping/edit/{shoppingid}")
+    @RequestMapping("/shoppingcart/edit/{shoppingid}")
     public String editUser(@PathVariable("shoppingid") int id, Model model) {
         model.addAttribute("shopping", shoppingCartService.getShoppingCart(id));
         return "shoppingcart/form";
     }
 
-    @RequestMapping("/shopping/delete/{shoppingid}")
+    @RequestMapping("/shoppingcart/delete/{shoppingid}")
     public String deleteUser(@PathVariable("shoppingid") int id, Model model) {
         shoppingCartService.deleteShoppingCart(id);
         return "redirect:/shoppingcart/list";
+    }
+
+    @RequestMapping("/shoppingcart/productlist")
+    public String shoppingCartProductList(Model model, HttpSession httpSession) {
+        ShoppingCart shoppingCart = (ShoppingCart) httpSession.getAttribute("shoppingCart");
+        model.addAttribute("productShoppingCart", shoppingCart.getProductShoppingCart());
+        return "redirect:/shoppingcart/productlist";
     }
 
 }

@@ -26,7 +26,7 @@ public class ProductShoppingCart implements Serializable {
     private int quantity;
     
     @OneToMany
-    private List<Product> products;
+    private Product product;
     
     public int getQuantity() {
         return quantity;
@@ -70,12 +70,12 @@ public class ProductShoppingCart implements Serializable {
         return "com.onlinemart.model.ProductShoppingCart[ id=" + id + " ]";
     }
 
-    public List<Product> getProducts() {
-        return products;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setProducts(List<Product> products) {
-        this.products = products;
+    public void setProduct(Product product) {
+        this.product = product;
     }
     
     

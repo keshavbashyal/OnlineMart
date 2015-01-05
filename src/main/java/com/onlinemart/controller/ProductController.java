@@ -6,6 +6,7 @@
 package com.onlinemart.controller;
 
 import com.onlinemart.model.Product;
+import com.onlinemart.model.ShoppingCart;
 import com.onlinemart.model.Vendor;
 import com.onlinemart.service.ProductService;
 import com.onlinemart.service.VendorService;
@@ -32,7 +33,7 @@ public class ProductController {
     @Autowired
     ProductService productService;
     
-    private int shoppingcartvalue = 0;
+    private ShoppingCart shoppingCart = new ShoppingCart();
 
     @RequestMapping(value = "vendor/product/save", method = RequestMethod.POST)
     public String saveUser(@Valid Product product, BindingResult result) {
@@ -78,7 +79,7 @@ public class ProductController {
     @RequestMapping("/product/productlist")
     public String productList(Model model,HttpSession session) {
         model.addAttribute("products", productService.listProducts());
-        session.setAttribute("shoppingcartvalue",shoppingcartvalue++ );
+        session.setAttribute("shoppingCart",shoppingCart );
 //        model.addAttribute("salary", shoppingcartvalue++);
         return "product/productlist";
     }
