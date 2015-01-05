@@ -6,6 +6,7 @@
 package com.onlinemart.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,14 +20,15 @@ import javax.persistence.OneToMany;
  */
 @Entity
 public class ShoppingCart implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
+
     @OneToMany
-    private List<ProductShoppingCart> productShoppingCart;
-    
+    private List<ProductShoppingCart> productShoppingCart = new ArrayList<ProductShoppingCart>();
+
     public Long getId() {
         return id;
     }
@@ -67,7 +69,10 @@ public class ShoppingCart implements Serializable {
     public void setProductShoppingCart(List<ProductShoppingCart> productShoppingCart) {
         this.productShoppingCart = productShoppingCart;
     }
-    
-    
-    
+
+    public void addProductShoppingCart(ProductShoppingCart psc) {
+        productShoppingCart.add(psc);
+
+    }
+
 }

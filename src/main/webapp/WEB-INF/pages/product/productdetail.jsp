@@ -65,12 +65,14 @@
                     </div>
 
                     <div class="span5">
-                        <div class="productinfo">
+                        <div class="productinfo" >
+                            
                             <h2>${product.productName}</h2>
+                            
                             <h4>By: Brand Name</h4>
 
                             <div class="prices">
-                                <div class="price">${product.unitPrice}</div>
+                                <div class="price" >${product.unitPrice}</div>
                                 <div class="retailprice">Retail Price: $79</div>
                             </div>
 
@@ -90,7 +92,7 @@
                                     <option>3</option>
                                 </select>
 
-                                <a href="<c:url value="/product/productlist" />"  class="btn btn-danger btn-large"><i class="icon-shopping-cart icon-white"></i>  Add to Cart</a>
+                                <a href="<c:url value="/shoppingcart/addProduct/${product.id}" />"  class="btn btn-danger btn-large"><i class="icon-shopping-cart icon-white"></i>  Add to Cart</a>
                                 
                                 <script>
                                     $('#SmartCart').smartCart({productItemTemplate: productTemplateWithSKU});

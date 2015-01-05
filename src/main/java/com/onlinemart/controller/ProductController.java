@@ -6,7 +6,6 @@
 package com.onlinemart.controller;
 
 import com.onlinemart.model.Product;
-import com.onlinemart.model.ShoppingCart;
 import com.onlinemart.model.Vendor;
 import com.onlinemart.service.ProductService;
 import com.onlinemart.service.VendorService;
@@ -26,14 +25,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 public class ProductController {
-    
+
     @Autowired
     VendorService vendorService;
 
     @Autowired
     ProductService productService;
+
     
-    private ShoppingCart shoppingCart = new ShoppingCart();
 
     @RequestMapping(value = "vendor/product/save", method = RequestMethod.POST)
     public String saveProduct(@Valid Product product, BindingResult result) {
@@ -50,14 +49,13 @@ public class ProductController {
         model.addAttribute("products", productService.listProducts());
         return "vendor/productlist";
     }
-    
+
     @RequestMapping(value = "/vendor/{vendorid}/productlist")
-    public String listProductsByVendorId(@PathVariable("vendorid") Long id,Model model) {
+    public String listProductsByVendorId(@PathVariable("vendorid") Long id, Model model) {
         Vendor vendor = vendorService.getVendor(id);
         model.addAttribute("products", vendor.getProducts());
         return "vendor/productlist";
     }
-    
 
     @RequestMapping("vendor/product/edit/{productid}")
     public String editProduct(@PathVariable("productid") Long id, Model model) {
@@ -76,21 +74,19 @@ public class ProductController {
         return "/vendor/productform";
     }
 
+    
+
     @RequestMapping("/product/productlist")
-    public String productList(Model model,HttpSession session) {
+    public String addproductShoppingcart(Model model, HttpSession session) {
         model.addAttribute("products", productService.listProducts());
-        session.setAttribute("shoppingCart",shoppingCart );
-//        model.addAttribute("salary", shoppingcartvalue++);
         return "product/productlist";
     }
-    
-    
+
     @RequestMapping("/product/{productid}/productdetail")
-    public String productDetail(@PathVariable("productid") Long id,Model model) {
+    public String productDetail(@PathVariable("productid") Long id, Model model) {
         Product product = productService.getProduct(id);
-        model.addAttribute("product",product);
+        model.addAttribute("product", product);
         return "product/productdetail";
     }
-    
 
 }
