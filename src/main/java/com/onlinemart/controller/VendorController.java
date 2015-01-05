@@ -54,6 +54,7 @@ public class VendorController {
                
             if (vendor.getPassword().equals(vendor.getRepassword())) {
                 vendor.setRegisterDate(new Date());
+                vendor.setStatus("PENDING");
                 vendorService.saveVendor(vendor);
             }
         }
@@ -67,9 +68,20 @@ public class VendorController {
     }
 
     @RequestMapping("/vendor/edit/{vendorid}")
-    public String editUser(@PathVariable("vendorid") Long id, Model model) {
+    public String editUser(@PathVariable("vendorid") Long id,  Model model) {
         model.addAttribute("vendor", vendorService.getVendor(id));
         return "vendor/form";
+    }
+    @RequestMapping("/vendor/save/{vendorid}")
+    public String varify(@Valid Vendor vendor, BindingResult result) {
+        vendor.setStatus("APPROVED");
+        vendorService.saveVendor(vendor);
+        return "redirect:/vendor/list";
+    }
+     @RequestMapping("/vendor/vendorVarification/{vendorid}")
+    public String varifyvander(@PathVariable("vendorid") Long id, Model model) {
+        model.addAttribute("vendor", vendorService.getVendor(id));
+        return "vendor/vendorVarification";
     }
 
     @RequestMapping("/vendor/delete/{vendorid}")

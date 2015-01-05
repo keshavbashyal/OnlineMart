@@ -35,7 +35,7 @@ public class Subscription implements Serializable {
     @Temporal(TemporalType.DATE)
     @DateTimeFormat (pattern = "yyyy-MM-dd")
     private Date endDate;
-
+    
     private String status;
 
     public double getSubscriptionFee() {
