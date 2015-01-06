@@ -8,16 +8,22 @@
     <div class="nav-header">Navigation</div>
     <ul class="nav nav-list">
         <li>
+            <a href="customer/account">Accounts Home</a>
+        </li>
+        <li>
             <a href="customer/edit/${selected.id}">Update Profile</a>
         </li>
-        <li>
-            <a href="customer/addCreditCard/${selected.id}">Add Credit Card</a>
+         <li>
+            <a href="customer/change">Change Password</a>
         </li>
         <li>
-            <a href="#">Update Address</a>
+            <a href="customer/creditcard">Add Credit Card</a>
         </li>
         <li>
-            <a href="#">Customer Support</a>
+            <a href="customer/address">Update Address</a>
+        </li>
+        <li>
+            <a href="mailto:onlinemartcustomercare@gmail.com?Subject=Customer%20Support">Customer Support</a>
         </li>
     </ul>
 </ul>

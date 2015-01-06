@@ -6,8 +6,10 @@
 package com.onlinemart.controller;
 
 import com.onlinemart.model.Address;
+import com.onlinemart.model.CreditCard;
 import com.onlinemart.model.Customer;
 import com.onlinemart.service.AddressService;
+import com.onlinemart.service.CreditCardService;
 import com.onlinemart.service.CustomerService;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -30,7 +32,10 @@ public class CustomerController {
 
     @Autowired
     private CustomerService customerService;
-
+    
+    @Autowired
+    private CreditCardService creditCardService;
+    
     @RequestMapping("/customer")
     public String printHello(ModelMap model) {
         model.addAttribute("message", "Hello world! Inside Customer hello");
@@ -49,7 +54,7 @@ public class CustomerController {
         if (c == null) {
             session.setAttribute("selected", customerService.getCustomer(1L));
             return "/customer/account";
-            
+
         } else {
             session.setAttribute("selected", c);
             return "/customer/account";
@@ -97,10 +102,28 @@ public class CustomerController {
         System.out.println("Accounts called for customer");
         return "/creditcard/addCreditCard";
     }
-//    @RequestMapping(value = "save", method = RequestMethod.POST)
-//    public String saveCusoter(@ModelAttribute Customer customer, BindingResult result) {
-//        customerService.saveCustomer(customer);
-//        return "redirect:customer";
-//    }
 
+    @RequestMapping("/customer/change")
+    public String changePassword(Model model) {
+        //model.addAttribute("selected", customerService.getCustomer(id));
+        //System.out.println("Accounts called for customer");
+        return "/customer/change";
+    }
+    @RequestMapping("customer/creditcard")
+    public String redirectCreditCard(Model model) {
+         //model.addAttribute("selected", customerService.getCustomer(id));
+        //System.out.println("Accounts called for customer");
+        model.addAttribute("creditcard", null);
+        return "/customer/creditcard";
+    }
+    @RequestMapping("customer/address")
+    public String editAddress(Model model) {
+        //model.addAttribute("selected", customerService.getCustomer(id));
+        //System.out.println("Accounts called for customer");
+        return "/customer/address";
+    }
+//    @RequestMapping("customer/creditcardsave")
+//    public String addCreditCard(@Valid CreditCard creditcard, BindingResult result) {
+//        
+//    }
 }

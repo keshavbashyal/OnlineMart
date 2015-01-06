@@ -34,7 +34,8 @@
 
                     <div class="span9 pull-right">
                         <div class="page-header">
-                            <h3>Edit ${selected.fname} ${selected.lname} </h3>
+                            <h3>Customer &rsaquo; Account &rsaquo; Update Profile </h3>
+                        </div>
                             <spring:form method="post" action="customer/save" modelAttribute="selected">
                                 <spring:errors element="div" cssClass="errors" path="*"/>
                                 <spring:input type="hidden" path="id"/>
@@ -56,11 +57,6 @@
                                         <td><spring:errors path="email" element="div" cssClass="error" /></td>
                                     </tr>
                                     <tr>
-                                        <td><label>Password </label></td>
-                                        <td><spring:input path="password" /></td>
-                                        <td><spring:errors path="password" element="div" cssClass="error" /></td>
-                                    </tr>
-                                    <tr>
                                         <td><label>Phone Number </label></td>
                                         <td><spring:input path="phone" /></td>
                                         <td><spring:errors path="phone" element="div" cssClass="error" /></td>
@@ -76,7 +72,6 @@
                     </div>
                 </div>
             </div>
-        </div>
 
         <%@include file="../includes/footer.jsp" %>
     </body>

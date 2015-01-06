@@ -10,6 +10,7 @@ import com.onlinemart.commons.Sizes;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -53,6 +54,7 @@ public class Product implements Serializable {
     private Date addDate;
 
     @OneToMany (fetch = FetchType.LAZY)
+    @Column(length=100000)
     private List<Image> image;
     
     @Transient

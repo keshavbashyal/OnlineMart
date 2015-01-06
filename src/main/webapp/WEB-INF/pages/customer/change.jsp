@@ -1,7 +1,8 @@
 <%-- 
-    Document   : address
-    Created on : Jan 5, 2015, 1:55:57 PM
+    Document   : change
+    Created on : Jan 6, 2015, 4:26:24 PM
     Author     : psubedi
+    Description: Change Password
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -34,8 +35,9 @@
 
                     <div class="span9 pull-right">
                         <div class="page-header">
-                            <h3>Customer &rsaquo; Account &rsaquo; Update Address</h3>
+                            <h3>Customer &rsaquo; Account &rsaquo; Change Password</h3>
                         </div>
+                         
                     </div>
                 </div>
             </div>
