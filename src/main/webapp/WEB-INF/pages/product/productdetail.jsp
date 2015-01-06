@@ -66,7 +66,7 @@
 
                     <div class="span5">
                         <div class="productinfo" >
-                            <form class="well form-inline" action="vendor/save" commandName="vendor" cssClass="pull-right" >
+                            <form class="well form-inline" action="vendor/save"   >
                                 
                                 
                             <h2>${product.productName}</h2>
