@@ -3,7 +3,7 @@
     Created on : Dec 31, 2014, 3:25:20 PM
     Author     : PTamang
 --%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <header>
     <div class="container">s
         <div class="row">
@@ -13,11 +13,18 @@
                     <div class="span4">
                         <div class="navbar navbar-static">
                             <ul class="nav">                                
-                                <li><a href="<c:url value='/shoppingcart/productlist'/>"><i class="icon-shopping-cart"></i> Shopping Cart
-                                        
+                                <li>
+
+
+                                    <a href="<c:url value='/shoppingcart/productlist'/>"><i class="icon-shopping-cart"></i> Shopping Cart
+
+                                        <c:if test="${(totalquantity > 0)  }">
                                             ${totalquantity}
-                                           
+                                        </c:if>
+                                        
                                     </a></li>
+
+
                                 <li class="divider-vertical"></li>
                                 <li><a href="<c:url value='/customer/account'/>"><i class="icon-user"></i> My Account</a></li>
                             </ul>
