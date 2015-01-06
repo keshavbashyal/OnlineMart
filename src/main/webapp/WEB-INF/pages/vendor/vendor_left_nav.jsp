@@ -6,14 +6,8 @@
 
 <ul class="nav">
     <ul class="nav nav-list">
-        <li class="active">
-            <a href="#" >Dashboard</a>
-        </li>
-        <li>
-            <a href="#">Inventory</a>
-        </li>
-        <li>
-            <a href="#">Recently Added</a>
+        <li class="">
+            <a href="<c:url value='/vendor' />" >Dashboard</a>
         </li>
         <li>
             <a href="#">Sales</a>

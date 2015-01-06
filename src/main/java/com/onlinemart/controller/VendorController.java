@@ -104,7 +104,7 @@ public class VendorController {
     
    
     @RequestMapping(value = "/vendor/addProduct", method = RequestMethod.POST)
-    public String saveProduct(@Valid Product product, BindingResult result) {
+    public String addProduct(@Valid Product product, BindingResult result) {
         if (result.hasErrors()) {
             return "vendor/dashboard";
         } else {

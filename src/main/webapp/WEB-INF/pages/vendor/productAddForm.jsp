@@ -35,7 +35,7 @@
                         <h5>Vendor &rsaquo; Dashboard &rsaquo; Add Product</h5>
                         <br>
                         <div class="span9 pull-right">
-                        <spring:form method="post" action="vendor/product/save" commandName="product" enctype="multipart/form-data" class="pull-right">
+                        <spring:form method="post" action="vendor/addProduct" commandName="product" enctype="multipart/form-data" class="pull-right">
                             <spring:errors element="div" cssClass="errors" path="*"/>
                             <spring:input type="hidden" path="id"/>
                             <table> 
