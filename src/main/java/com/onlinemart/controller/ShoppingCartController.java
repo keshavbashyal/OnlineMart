@@ -7,7 +7,7 @@ package com.onlinemart.controller;
 
 import com.onlinemart.model.CreditCard;
 import com.onlinemart.model.Customer;
-import com.onlinemart.model.Order;
+import com.onlinemart.model.Orders;
 import com.onlinemart.model.Product;
 import com.onlinemart.model.ProductShoppingCart;
 import com.onlinemart.model.ShoppingCart;
@@ -84,10 +84,10 @@ public class ShoppingCartController {
 
         int a = Integer.parseInt(result);
         if (a == 1) {
-            Order order = new Order();
+            Orders order = new Orders();
             order.setOrderDate(new Date());
             order.setTotalPrice(totalPrice);
-            customer.addOrder(order);
+            //customer.addOrder(order);
 
 //            session.setAttribute("shoppingcart","")
         }
