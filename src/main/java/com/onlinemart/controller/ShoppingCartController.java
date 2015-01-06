@@ -42,6 +42,8 @@ public class ShoppingCartController {
     
     
     private ShoppingCart shoppingCart = new ShoppingCart();
+    
+    private int totalQuantity = 0;
 
 //    @Autowired
 //    OrderService orderService;
@@ -121,7 +123,9 @@ public class ShoppingCartController {
         Product product = productService.getProduct(productid);
         ProductShoppingCart productShoppingCart =new ProductShoppingCart();
         productShoppingCart.setProduct(product);
-//        productShoppingCart.setQuantity(quantity);
+        productShoppingCart.setQuantity(totalQuantity);
+        totalQuantity = productShoppingCart.getQuantity();
+        productShoppingCart.setQuantity(totalQuantity);
         
         shoppingCart.addProductShoppingCart(productShoppingCart);
         httpSession.setAttribute("shoppingCart", shoppingCart);

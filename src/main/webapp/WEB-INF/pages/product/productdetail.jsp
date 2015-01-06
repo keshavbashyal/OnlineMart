@@ -66,7 +66,9 @@
 
                     <div class="span5">
                         <div class="productinfo" >
-                            
+                            <form class="well form-inline" action="vendor/save" commandName="vendor" cssClass="pull-right" >
+                                
+                                
                             <h2>${product.productName}</h2>
                             
                             <h4>By: Brand Name</h4>
@@ -77,7 +79,7 @@
                             </div>
 
 
-                            <form class="well form-inline">
+                                
                                 <label class="control-label">Size</label>
                                 <select class="span1">
                                     <option>S</option>
