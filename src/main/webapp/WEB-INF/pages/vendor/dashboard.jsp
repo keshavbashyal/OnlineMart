@@ -22,8 +22,6 @@
             <div class="content">
                 <div class="row">
                     <div class="span3">
-                        <h3>Vendor Account</h3>
-                        <br/>
                         <div class="thumbnail">
                             <img src="resources/img/vendor.jpg" alt="Vendor Avatar" height="50"/>
                         </div>
@@ -37,7 +35,7 @@
                         <div class="span3 pull-right">
                             <a href="<c:url value="vendor/productaddfrm" />" class="btn btn-success pull-right">Add Product</a>
                         </div>
-                        <h5>Vendor &rsaquo; Products</h5>
+                        <h5>Vendor &rsaquo; Dashboards</h5>
                         <table id="tablelist" class="span9 table-bordered table-striped pull-right">
                             <tr class="">
                                 <th>#</th>

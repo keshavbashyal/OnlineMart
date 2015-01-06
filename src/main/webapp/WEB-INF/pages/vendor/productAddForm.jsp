@@ -3,10 +3,9 @@
     Created on : Jan 3, 2015, 10:45:44 AM
     Author     : PTamang
 --%>
-
-<%@page contentType="text/html" pageEncoding="windows-1252"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib  prefix="spring" uri="http://www.springframework.org/tags/form" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -23,8 +22,6 @@
             <div class="content">
                 <div class="row">
                     <div class="span3">
-                        <h3>Vendor Account</h3>
-                        <hr/>
                         <div class="thumbnail">
                             <img src="resources/img/vendor.jpg" alt="Vendor Avatar" height="50"/>
                         </div>
@@ -34,43 +31,42 @@
                         </div>
                     </div>
 
-                    <div class="span9">
-                        <h5>Vendor &rsaquo; Products &rsaquo; Add Product</h5>
-                        <div class="span4 pull-right">
-                        <spring:form method="post" action="vendor/product/save" commandName="product" enctype="multipart/form-data">
+                    <div class="span9 pull-right">
+                        <h5>Vendor &rsaquo; Dashboard &rsaquo; Add Product</h5>
+                        <br>
+                        <div class="span9 pull-right">
+                        <spring:form method="post" action="vendor/product/save" commandName="product" enctype="multipart/form-data" class="pull-right">
                             <spring:errors element="div" cssClass="errors" path="*"/>
                             <spring:input type="hidden" path="id"/>
                             <table> 
                                 <tr>
-                                    <td><label>Product Name</label></td>
-                                    <td><spring:input path="productName" /></td>
+                                    <td><spring:input path="productName" id="name" cssClass="input-xxlarge"/></td>
                                     <td><spring:errors path="productName" element="div" cssClass="error" /></td>
                                 </tr>
                                 <tr>
-                                    <td><label>Product Description</label></td>
-                                    <td><spring:input path="productDescription" /></td>
+                                    <td><spring:input path="productDescription" id="desc" cssClass="input-xxlarge"/></td>
                                     <td><spring:errors path="productDescription" element="div" cssClass="error" /></td>
                                 </tr>
                                 <tr>
-                                    <td><label>Unit Price</label></td>
-                                    <td><spring:input path="unitPrice" /></td>
+                                    <td><spring:input path="unitPrice" id="price" cssClass="input-xxlarge"/></td>
                                     <td><spring:errors path="unitPrice" element="div" cssClass="error" /></td>
                                 </tr>
                                 <tr>
-                                    <td><label>Images</label></td>
-                              
-                                    <td> <input type="file" name="file" path="imagename" size="50" />
-                                         <td><spring:errors path="imagename" element="div" cssClass="error" /></td>
-                                    <br />
-                                
-                                    </td>
+                                    <td><spring:input path="color" id="color" cssClass="input-xxlarge"/></td>
+                                    <td><spring:errors path="color" element="div" cssClass="error" /></td>
                                 </tr>
-
-
+                                <tr>
+                                    <td><spring:input path="sizes" id="size" cssClass="input-xxlarge"/></td>
+                                    <td><spring:errors path="sizes" element="div" cssClass="error" /></td>
+                                </tr>
+                                <tr>
+                                    <td><spring:input path="addDate" id="date" cssClass="input-xxlarge"/></td>
+                                    <td><spring:errors path="addDate" element="div" cssClass="error" /></td>
+                                </tr>
                                 <tr>
                                     <td colspan="2">
-                                        <input type="submit" value="Submit" class="btn btn-primary pull-right"/>
-                                        <input type="button" value="Cancel" class="btn btn-success pull-right" />
+                                        <input type="reset" value="Reset" class="btn btn-danger" />
+                                        <input type="submit" value="Add Product" class="btn btn-success"/>
                                     </td>
                                 </tr>
                             </table>

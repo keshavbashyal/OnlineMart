@@ -148,7 +148,7 @@ input[type="file"]:focus,input[type="radio"]:focus,input[type="checkbox"]:focus,
 .input-medium{width:150px;}
 .input-large{width:210px;}
 .input-xlarge{width:270px;}
-.input-xxlarge{width:530px;}
+.input-xxlarge{width:600px;}
 input[class*="span"],select[class*="span"],textarea[class*="span"],.uneditable-input{float:none;margin-left:0;}
 input.span1,textarea.span1,.uneditable-input.span1{width:50px;}
 input.span2,textarea.span2,.uneditable-input.span2{width:130px;}

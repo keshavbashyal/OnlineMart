@@ -96,7 +96,7 @@ public class VendorController {
 
     // Product Add form
     @RequestMapping("vendor/productaddfrm")
-    public String productAddForm() {
+    public String productAddForm(Product product) {
         //model.addAttribute("products", null);
         System.out.println(" Product Add Form");
         return "vendor/productAddForm";
@@ -106,11 +106,11 @@ public class VendorController {
     @RequestMapping(value = "/vendor/addProduct", method = RequestMethod.POST)
     public String saveProduct(@Valid Product product, BindingResult result) {
         if (result.hasErrors()) {
-            return "redirect:vendor/dashboard";
+            return "vendor/dashboard";
         } else {
             productService.saveProduct(product);
         }
-        return "redirect:vendor/dashboard";
+        return "vendor/dashboard";
     }
 
 }
