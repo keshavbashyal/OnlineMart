@@ -36,11 +36,11 @@
                         <div class="page-header">
                             <h3>Customer &rsaquo; Account</h3>
                         </div>
-                        <h4>${customer.fname} ${customer.lname}</h4>
-                        <h4>${customer.email}</h4>
-                        <h4>${customer.phone}</h4>
-                        <h4>${customer.address.street}</h4>
-                        <h4>${customer.address.city}</h4>
+                        <h4>${selected.fname} ${selected.lname}</h4>
+                        <h4>${selected.email}</h4>
+                        <h4>${selected.phone}</h4>
+                        <h4>${selected.address.street}</h4>
+                        <h4>${selected.address.city}</h4>
                         <div class="page-header">
                             <h3>Recent Orders</h3>
                         </div>

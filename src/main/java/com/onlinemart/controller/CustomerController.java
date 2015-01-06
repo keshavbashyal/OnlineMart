@@ -25,13 +25,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
  *
  * @author Keshav
  */
-
 @Controller
 public class CustomerController {
 
     @Autowired
     private CustomerService customerService;
-    
+
     @RequestMapping("/customer")
     public String printHello(ModelMap model) {
         model.addAttribute("message", "Hello world! Inside Customer hello");
@@ -43,25 +42,28 @@ public class CustomerController {
         model.addAttribute("message", "Welcome!, Inside Customer welcome");
         return "/customer/welcome";
     }
+
     @RequestMapping("/customer/account")
-    public String customerAccount(ModelMap model,HttpSession session) {
+    public String customerAccount(ModelMap model, HttpSession session) {
         Customer c = (Customer) session.getAttribute("user");
-        if (c == null){
-            model.addAttribute("selected",customerService.getCustomer(1L));
+        if (c == null) {
+            session.setAttribute("selected", customerService.getCustomer(1L));
             return "/customer/account";
-        }else{
-            model.addAttribute("selected",c);
+            
+        } else {
+            session.setAttribute("selected", c);
             return "/customer/account";
         }
     }
+
     @RequestMapping("/customer/addCustomer")
-    public String registerCustomer(ModelMap model){
-        model.addAttribute("customer",new Customer());
+    public String registerCustomer(ModelMap model) {
+        model.addAttribute("customer", new Customer());
         return "/customer/addCustomer";
     }
-    
-    @RequestMapping(value = "/customer/save" , method=RequestMethod.POST )
-    public String saveUser(@Valid Customer customer, BindingResult result, HttpSession session){
+
+    @RequestMapping(value = "/customer/save", method = RequestMethod.POST)
+    public String saveUser(@Valid Customer customer, BindingResult result, HttpSession session) {
         if (result.hasErrors()) {
             return "customer/addCustomer";
         } else {
@@ -70,20 +72,30 @@ public class CustomerController {
         }
         return "redirect:/customer/account";
     }
+
     @RequestMapping("/customer/list")
-    public String listCustomer(ModelMap model){
-        model.addAttribute("allcustomers" , customerService.listCustomer());
+    public String listCustomer(ModelMap model) {
+        model.addAttribute("allcustomers", customerService.listCustomer());
         return "/customer/list";
     }
+
     @RequestMapping("/customer/delete/{customerid}")
-    public String deleteCustomer(@PathVariable("customerid") Long id, ModelMap model){
+    public String deleteCustomer(@PathVariable("customerid") Long id, ModelMap model) {
         customerService.deleteCustomer(id);
         return "/customer/list";
     }
+
     @RequestMapping("/customer/edit/{customerid}")
-        public String editUser(@PathVariable("customerid") Long id, Model model) {
-            model.addAttribute("selected",customerService.getCustomer(id));
+    public String editUser(@PathVariable("customerid") Long id, Model model) {
+        model.addAttribute("selected", customerService.getCustomer(id));
         return "/customer/edit";
+    }
+
+    @RequestMapping("/customer/addCreditCard/{customerid}")
+    public String addCredit(@PathVariable("customerid") Long id, Model model) {
+        //model.addAttribute("selected", customerService.getCustomer(id));
+        System.out.println("Accounts called for customer");
+        return "/creditcard/addCreditCard";
     }
 //    @RequestMapping(value = "save", method = RequestMethod.POST)
 //    public String saveCusoter(@ModelAttribute Customer customer, BindingResult result) {

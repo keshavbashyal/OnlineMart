@@ -5,8 +5,11 @@
  */
 package com.onlinemart.model;
 
+import com.onlinemart.commons.Type;
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,8 +32,9 @@ public class CreditCard implements Serializable {
     private int expMonth;
 
     private String ccv;
-
-    private Enum type;
+    
+    @Enumerated(EnumType.STRING)
+    private Type type;
 
     public String getCardNo() {
         return cardNo;
@@ -64,18 +68,14 @@ public class CreditCard implements Serializable {
         this.ccv = ccv;
     }
 
-    public Enum getType() {
+    public Type getType() {
         return type;
     }
 
-    public void setType(Enum type) {
+    public void setType(Type type) {
         this.type = type;
     }
-    
-    
 
-    
-    
     public Long getId() {
         return id;
     }

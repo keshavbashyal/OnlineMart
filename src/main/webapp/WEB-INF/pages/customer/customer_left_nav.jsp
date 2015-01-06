@@ -8,10 +8,10 @@
     <div class="nav-header">Navigation</div>
     <ul class="nav nav-list">
         <li>
-            <a href="customer/edit/${customers.id}">Update Profile</a>
+            <a href="customer/edit/${selected.id}">Update Profile</a>
         </li>
         <li>
-            <a href="#">Add Credit Card</a>
+            <a href="customer/addCreditCard/${selected.id}">Add Credit Card</a>
         </li>
         <li>
             <a href="#">Update Address</a>
