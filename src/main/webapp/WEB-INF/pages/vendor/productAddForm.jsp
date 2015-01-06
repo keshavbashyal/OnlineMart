@@ -55,7 +55,7 @@
                                     <tr>
                                         <td>
                                             <spring:select path="color" id="color">
-                                                <option value="" label="--Select Color"/>
+                                                <spring:option value="" label="--Select Color"/>
                                                 <spring:options items="${enum_color}"/>
                                             </spring:select>
                                         </td>
@@ -64,7 +64,7 @@
                                     <tr>
                                         <td>
                                             <spring:select path="sizes" id="size">
-                                                <option value="" label="--Select Size"/>
+                                                <spring:option value="" label="--Select Size"/>
                                                 <spring:options items="${enum_size}"/>
                                             </spring:select>
                                         </td>

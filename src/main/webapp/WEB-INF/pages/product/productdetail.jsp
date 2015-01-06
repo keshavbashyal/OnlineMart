@@ -66,9 +66,7 @@
 
                     <div class="span5">
                         <div class="productinfo" >
-                            <form class="well form-inline" action="vendor/save"   >
-                                
-                                
+                            
                             <h2>${product.productName}</h2>
                             
                             <h4>By: Brand Name</h4>
@@ -79,7 +77,7 @@
                             </div>
 
 
-                                
+                            <form class="well form-inline">
                                 <label class="control-label">Size</label>
                                 <select class="span1">
                                     <option>S</option>
@@ -93,8 +91,10 @@
                                     <option>2</option>
                                     <option>3</option>
                                 </select>
+                                
+                               
 
-                                <a href="<c:url value="/shoppingcart/addProduct/${product.id}" />"  class="btn btn-danger btn-large"><i class="icon-shopping-cart icon-white"></i>  Add to Cart</a>
+                                <a href="<c:url value="/shoppingcart/addProduct/${product.id}?quantity=15" />"  class="btn btn-danger btn-large"><i class="icon-shopping-cart icon-white"></i>  Add to Cart</a>
                                 
                                 <script>
                                     $('#SmartCart').smartCart({productItemTemplate: productTemplateWithSKU});

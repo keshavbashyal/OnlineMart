@@ -23,16 +23,15 @@
                     <h3>Product List</h3>
                 </div>
 
-                <div class="span12">
-                    <a href="vendor/productform" class="btn btn-success pull-right">Add New Product</a>
-                </div>
+                
 
                 <table id="tablelist" class="span12 table-bordered table-striped">
                      <tr class="">
                          <th></th>
                         <th>Name</th>
-                        <th>Email</th>
-                        <th>Status</th>
+                        <th>Description</th>
+                        <th>Unit Price</th>
+                        <th>Quantity</th>
                         <th>Actions</th>
                     </tr>
                     <c:forEach items="${shoppingCart.productShoppingCart}" var="productShoppingCart">
@@ -42,6 +41,7 @@
                             <td>${productShoppingCart.getProduct().productName}</td>
                             <td>${productShoppingCart.getProduct().productDescription}</td>
                             <td>${productShoppingCart.getProduct().unitPrice}</td>
+                            <td>${productShoppingCart.quantity}</td>
                             
                             <td>
                                 <a href="vendor/product/edit/${product.id}" class="btn btn-primary btn-mini">Edit</a>
@@ -50,7 +50,8 @@
                         </tr>
                     </c:forEach>
                 </table>
-
+                    <a href="<c:url value="/shoppingcart/checkout/" />"  class="btn btn-danger btn-large"><i class="icon-shopping-cart icon-white"></i>  Check out</a>
+                                
             </div>
         </div>
         <%@include file="../includes/footer.jsp" %>

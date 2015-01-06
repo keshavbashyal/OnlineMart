@@ -13,13 +13,14 @@
                     <div class="span4">
                         <div class="navbar navbar-static">
                             <ul class="nav">                                
-                                <li><a href="<c:url value='/shoppingcart/hello'/>"><i class="icon-shopping-cart"></i> Shopping Cart
-                                      
-                                        
-                                        <c:if test="${shoppingcartvalue > 0}">
-                                                   ( ${shoppingcartvalue} )
-                                        </c:if>
-
+                                <li><a href="<c:url value='/shoppingcart/productlist'/>"><i class="icon-shopping-cart"></i> Shopping Cart
+                                        <%
+                                           Long totalquantity = (Long)session.getAttribute("totalquantity");
+                                           if (totalquantity > 0)
+                                           {
+                                               
+                                           }
+                                        %>
                                     </a></li>
                                 <li class="divider-vertical"></li>
                                 <li><a href="<c:url value='/customer/account'/>"><i class="icon-user"></i> My Account</a></li>
