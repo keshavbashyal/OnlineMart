@@ -51,14 +51,21 @@
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th> Status</th>
-                                    <th>Actions</th>
+                                     <th>Actions</th>
                                 </tr>
                                 <c:forEach items="${allvendors}" var="vendor">
                                     <tr>
                                         <td>${vendor.id}</td>
                                         <td>${vendor.vendorName}</td>
                                         <td>${vendor.email}</td>
-                                        <td> <a href="vendor/vendorVarification/${vendor.id}">${vendor.status}</a></td>
+                                       <td> 
+                                           <%--
+                                           <c:set var="color" scope="session" value="green"/>
+                                           <c:if test="${vendor.status}='APPROVED'"> 
+                                              <p>My salary is: <c:out value='color'/></p>  
+                                           </c:if>
+                                           --%>
+                                           <a href="admin/vendorVarification/${vendor.id}">${vendor.status}</a></td>
                                         <td>
                                             <a href="vendor/edit/${vendor.id}" class="btn btn-primary btn-mini">Edit</a>
                                             <a href="vendor/delete/${vendor.id}" onclick="return confirm(' Delete Record ')" class="btn btn-danger btn-mini">Delete</a>
@@ -67,31 +74,31 @@
                                 </c:forEach>
                             </table>
                             <h3> Customer List</h3>
-                            <table id="tablelist" class="span12 table-bordered table-striped">
-                                <tr>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
-                                    <th>Email</th>
-                                    <th>Phone</th>
-                                    <th>Operations</th>
-                                </tr>
-                                <c:forEach items="${allcustomers}" var="customers">
-                                    <tr>
-                                        <td>${customers.fname}</td>
-                                        <td>${customers.lname}</td>
-                                        <td>${customers.email}</td>
-                                        <td>${customers.phone}</td>
-                                        <td>
-                                            <a href="customer/edit/${customers.id}" class="btn btn-success">Edit</a>
-                                            <a href="customer/delete/${customers.id}" class="btn btn-success">Delete</a>
-                                        </td>
-                                    </tr>
-                                </c:forEach>
-                            </table>
+                             <table id="tablelist" class="span12 table-bordered table-striped">
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Operations</th>
+                    </tr>
+                    <c:forEach items="${allcustomers}" var="customers">
+                        <tr>
+                            <td>${customers.fname}</td>
+                            <td>${customers.lname}</td>
+                            <td>${customers.email}</td>
+                            <td>${customers.phone}</td>
+                            <td>
+                                <a href="customer/edit/${customers.id}" class="btn btn-success">Edit</a>
+                                <a href="customer/delete/${customers.id}" class="btn btn-success">Delete</a>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                </table>
                             <h3> Category List</h3>
-                            <div class="span12">
-                                <a href="category/addCategory" class="btn btn-success pull-right">Add New Category</a>
-                            </div>
+                              <div class="span12">
+                    <a href="category/addCategory" class="btn btn-success pull-right">Add New Product</a>
+                </div>
                             <table id="tablelist" class="span12 table-bordered table-striped">
                                 <tr>
                                     <th>id</th>

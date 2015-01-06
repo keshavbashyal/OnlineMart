@@ -6,7 +6,9 @@
 package com.onlinemart.controller;
 
 import com.onlinemart.model.Category;
+import com.onlinemart.model.Vendor;
 import com.onlinemart.service.CategoryService;
+import com.onlinemart.service.VendorService;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class CategoryController {
      @Autowired
     private CategoryService categoryService;
+     @Autowired
+     private VendorService vendorService;
 
     @RequestMapping("/category")
     public String printHello(ModelMap model) {
@@ -85,6 +89,17 @@ public class CategoryController {
         public String editUser(@PathVariable("categoryid") Long id, Model model) {
             model.addAttribute("category",categoryService.getCategory(id));
         return "redirect:/category/list";
+    }
+        @RequestMapping("/admin/save/{vendorid}")
+    public String varify(@Valid Vendor vendor, BindingResult result) {
+        vendor.setStatus("APPROVED");
+        vendorService.saveVendor(vendor);
+        return "redirect:/admin/dashboard";
+    }
+     @RequestMapping("/admin/vendorVarification/{vendorid}")
+    public String varifyvander(@PathVariable("vendorid") Long id, Model model) {
+        model.addAttribute("vendor", vendorService.getVendor(id));
+        return "/admin/vendorVarification";
     }
     
 }
