@@ -28,7 +28,7 @@ public class Transaction implements Serializable {
     private User user;
     
     @OneToOne (cascade=CascadeType.ALL)
-    private Order order;
+    private Orders order;
 
     @OneToOne (cascade=CascadeType.ALL)
     private CreditCard creditCard;

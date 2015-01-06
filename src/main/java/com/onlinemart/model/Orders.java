@@ -7,6 +7,7 @@ package com.onlinemart.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,17 +20,17 @@ import javax.persistence.TemporalType;
  * @author psubedi
  */
 @Entity
-public class Order implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+public class Orders implements Serializable {
+   private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     
     private Long id;
     @Temporal(TemporalType.DATE)
     private Date orderDate;
-
-    private Double totalPrice;
+    
+    @Column(precision=10,scale=2)
+    private double totalPrice;
 
     public Date getOrderDate() {
         return orderDate;
@@ -65,10 +66,10 @@ public class Order implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Order)) {
+        if (!(object instanceof Orders)) {
             return false;
         }
-        Order other = (Order) object;
+        Orders other = (Orders) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -77,7 +78,8 @@ public class Order implements Serializable {
 
     @Override
     public String toString() {
-        return "com.onlinemart.model.Order[ id=" + id + " ]";
+        return "com.onlinemart.model.Orders[ id=" + id + " ]";
     }
 
+    
 }

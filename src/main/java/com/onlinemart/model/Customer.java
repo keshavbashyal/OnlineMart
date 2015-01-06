@@ -22,7 +22,7 @@ public class Customer extends User implements Serializable {
     private static final long serialVersionUID = 1L;
     
     @OneToMany
-    private List<Order> order;
+    private List<Orders> order;
     
     @OneToMany (cascade = CascadeType.ALL)
     private List<CreditCard> creditCard;
@@ -30,11 +30,11 @@ public class Customer extends User implements Serializable {
     @OneToOne (cascade=CascadeType.ALL)
     private Address address;
 
-    public List<Order> getOrder() {
+    public List<Orders> getOrders() {
         return order;
     }
 
-    public void setOrder(List<Order> order) {
+    public void setOrders(List<Orders> order) {
         this.order = order;
     }
 
@@ -54,7 +54,7 @@ public class Customer extends User implements Serializable {
         this.address = address;
     }
     
-    public void addOrder(Order order){
+    public void addOrders(Orders order){
         this.order.add(order);
     }
     
