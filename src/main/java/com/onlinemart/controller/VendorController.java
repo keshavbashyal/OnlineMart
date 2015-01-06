@@ -5,6 +5,7 @@
  */
 package com.onlinemart.controller;
 
+import com.onlinemart.commons.Color;
 import com.onlinemart.commons.Sizes;
 import com.onlinemart.model.Product;
 import com.onlinemart.model.Vendor;
@@ -100,6 +101,7 @@ public class VendorController {
     @RequestMapping("vendor/productaddfrm")
     public String productAddForm(Product product, Model model) {
         model.addAttribute("enum_size", Sizes.values());
+        model.addAttribute("enum_color", Color.values());
         return "vendor/productAddForm";
     }    
     
@@ -110,6 +112,7 @@ public class VendorController {
             model.addAttribute("error", result.toString());
             //return "vendor/dashboard";
         } else {
+            productService.saveProduct(product);
             model.addAttribute("success", " Successfully Added. ");
         }
         return "vendor/dashboard";

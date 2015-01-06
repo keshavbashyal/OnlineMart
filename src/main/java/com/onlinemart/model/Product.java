@@ -49,7 +49,7 @@ public class Product implements Serializable {
     
     
     @Temporal(TemporalType.DATE)
-    @DateTimeFormat (pattern = "yyyy-MM-dd")
+    @DateTimeFormat (pattern = "mm-dd-yy")
     private Date addDate;
 
     @OneToMany (fetch = FetchType.LAZY)

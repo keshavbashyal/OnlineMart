@@ -53,14 +53,19 @@
                                         <td><spring:errors path="unitPrice" element="div" cssClass="error" /></td>
                                     </tr>
                                     <tr>
-                                        <td><spring:input path="color" id="color" cssClass="input-xxlarge"/></td>
+                                        <td>
+                                            <spring:select path="color" id="color">
+                                                <option value="" label="--Select Color"/>
+                                                <spring:options items="${enum_color}"/>
+                                            </spring:select>
+                                        </td>
                                         <td><spring:errors path="color" element="div" cssClass="error" /></td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <spring:select path="sizes" id="size">
-                                                <spring:option value="" label="" id="size"/>
-                                                <spring:options items="${enum_sizes}"/>
+                                                <option value="" label="--Select Size"/>
+                                                <spring:options items="${enum_size}"/>
                                             </spring:select>
                                         </td>
                                         <td><spring:errors path="sizes" element="div" cssClass="error" /></td>
@@ -96,7 +101,7 @@
         <script src="resources/js/jquery-ui.js"></script>
         <script>
             $(function () {
-                $("#datepicker").datepicker();
+                $("#datepicker").datepicker({dateFormat: 'mm-dd-yy' });
             });
         </script>
     </body>

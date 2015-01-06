@@ -11,7 +11,8 @@ package com.onlinemart.commons;
  */
 public enum Color {
     RED ("Red"),
-    WHITE ("White");
+    WHITE ("White"),
+    BLACK ("Black");
     /* Bam please add more colors */
     
     private String label;
