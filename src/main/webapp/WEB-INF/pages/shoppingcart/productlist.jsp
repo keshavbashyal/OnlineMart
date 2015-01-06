@@ -28,14 +28,20 @@
                 </div>
 
                 <table id="tablelist" class="span12 table-bordered table-striped">
-                    <tr class="">
-                        
+                     <tr class="">
+                         <th></th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Status</th>
+                        <th>Actions</th>
                     </tr>
-                    <c:forEach items="${productShoppingCart}" var="productShoppingCart">
+                    <c:forEach items="${shoppingCart.productShoppingCart}" var="productShoppingCart">
                         <tr>
                             <td>${productShoppingCart.id}</td>
                             
                             <td>${productShoppingCart.getProduct().productName}</td>
+                            <td>${productShoppingCart.getProduct().productDescription}</td>
+                            <td>${productShoppingCart.getProduct().unitPrice}</td>
                             
                             <td>
                                 <a href="vendor/product/edit/${product.id}" class="btn btn-primary btn-mini">Edit</a>
