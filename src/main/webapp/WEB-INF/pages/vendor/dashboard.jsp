@@ -32,10 +32,12 @@
                     </div>
 
                     <div class="span9 pull-right">
+                        <div class="error">${error}</div>
+                        <div class="success">${success}</div>
                         <div class="span3 pull-right">
                             <a href="<c:url value="vendor/productaddfrm" />" class="btn btn-success pull-right">Add Product</a>
                         </div>
-                        <h5>Vendor &rsaquo; Dashboards</h5>
+                        <h5>Vendor &rsaquo; Dashboard</h5>
                         <table id="tablelist" class="span9 table-bordered table-striped pull-right">
                             <tr class="">
                                 <th>#</th>

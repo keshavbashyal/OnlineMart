@@ -13,6 +13,7 @@
         <title>OnlineMart - Vendor - Product Add Form</title>
         <base href="<c:url value="/" />"/>
         <link rel="stylesheet" href="resources/css/style.css"/>
+        
     </head>
     <body>
 
@@ -35,43 +36,48 @@
                         <h5>Vendor &rsaquo; Dashboard &rsaquo; Add Product</h5>
                         <br>
                         <div class="span9 pull-right">
-                        <spring:form method="post" action="vendor/addProduct" commandName="product" enctype="multipart/form-data" class="pull-right">
-                            <spring:errors element="div" cssClass="errors" path="*"/>
-                            <spring:input type="hidden" path="id"/>
-                            <table> 
-                                <tr>
-                                    <td><spring:input path="productName" id="name" cssClass="input-xxlarge"/></td>
-                                    <td><spring:errors path="productName" element="div" cssClass="error" /></td>
-                                </tr>
-                                <tr>
-                                    <td><spring:input path="productDescription" id="desc" cssClass="input-xxlarge"/></td>
-                                    <td><spring:errors path="productDescription" element="div" cssClass="error" /></td>
-                                </tr>
-                                <tr>
-                                    <td><spring:input path="unitPrice" id="price" cssClass="input-xxlarge"/></td>
-                                    <td><spring:errors path="unitPrice" element="div" cssClass="error" /></td>
-                                </tr>
-                                <tr>
-                                    <td><spring:input path="color" id="color" cssClass="input-xxlarge"/></td>
-                                    <td><spring:errors path="color" element="div" cssClass="error" /></td>
-                                </tr>
-                                <tr>
-                                    <td><spring:input path="sizes" id="size" cssClass="input-xxlarge"/></td>
-                                    <td><spring:errors path="sizes" element="div" cssClass="error" /></td>
-                                </tr>
-                                <tr>
-                                    <td><spring:input path="addDate" id="date" cssClass="input-xxlarge"/></td>
-                                    <td><spring:errors path="addDate" element="div" cssClass="error" /></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2">
-                                        <input type="reset" value="Reset" class="btn btn-danger" />
-                                        <input type="submit" value="Add Product" class="btn btn-success"/>
-                                    </td>
-                                </tr>
-                            </table>
-                        </spring:form>
-                    </div>
+                            <spring:form method="post" action="vendor/addProduct" commandName="product" enctype="multipart/form-data" class="pull-right">
+                                <spring:errors element="div" cssClass="errors" path="*"/>
+                                <spring:input type="hidden" path="id"/>
+                                <table> 
+                                    <tr>
+                                        <td><spring:input path="productName" id="name" cssClass="input-xxlarge" /></td>
+                                        <td><spring:errors path="productName" element="div" cssClass="error" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td><spring:textarea path="productDescription" id="desc" cssClass="input-xxlarge"/></td>
+                                        <td><spring:errors path="productDescription" element="div" cssClass="error" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td><spring:input path="unitPrice" id="price" cssClass="input-xxlarge" /></td>
+                                        <td><spring:errors path="unitPrice" element="div" cssClass="error" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td><spring:input path="color" id="color" cssClass="input-xxlarge"/></td>
+                                        <td><spring:errors path="color" element="div" cssClass="error" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <spring:select path="sizes" id="size">
+                                                <spring:option value="" label="" id="size"/>
+                                                <spring:options items="${enum_sizes}"/>
+                                            </spring:select>
+                                        </td>
+                                        <td><spring:errors path="sizes" element="div" cssClass="error" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td><spring:input path="addDate" id="datepicker"/></td>
+                                        <td><spring:errors path="addDate" element="div" cssClass="error" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <input type="reset" value="Reset" class="btn btn-danger" />
+                                            <input type="submit" value="Add Product" class="btn btn-success"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </spring:form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -84,7 +90,14 @@
             $("#price").attr('placeholder', 'Product Unit Price');
             $("#size").attr('placeholder', 'Product Size');
             $("#color").attr('placeholder', 'Product Color');
-            $("#date").attr('placeholder', 'Product Add Date');
+            $("#datepicker").attr('placeholder', 'Select Date');
+        </script>
+        <link rel="stylesheet" href="resources/css/jquery-ui.css">
+        <script src="resources/js/jquery-ui.js"></script>
+        <script>
+            $(function () {
+                $("#datepicker").datepicker();
+            });
         </script>
     </body>
 </html>

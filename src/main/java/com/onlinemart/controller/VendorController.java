@@ -5,10 +5,12 @@
  */
 package com.onlinemart.controller;
 
+import com.onlinemart.commons.Sizes;
 import com.onlinemart.model.Product;
 import com.onlinemart.model.Vendor;
 import com.onlinemart.service.ProductService;
 import com.onlinemart.service.VendorService;
+import java.time.Clock;
 import java.util.Date;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -96,19 +98,19 @@ public class VendorController {
 
     // Product Add form
     @RequestMapping("vendor/productaddfrm")
-    public String productAddForm(Product product) {
-        //model.addAttribute("products", null);
-        System.out.println(" Product Add Form");
+    public String productAddForm(Product product, Model model) {
+        model.addAttribute("enum_size", Sizes.values());
         return "vendor/productAddForm";
     }    
     
    
     @RequestMapping(value = "/vendor/addProduct", method = RequestMethod.POST)
-    public String addProduct(@Valid Product product, BindingResult result) {
+    public String addProduct(@Valid Product product, BindingResult result, Model model) {
         if (result.hasErrors()) {
-            return "vendor/dashboard";
+            model.addAttribute("error", result.toString());
+            //return "vendor/dashboard";
         } else {
-            productService.saveProduct(product);
+            model.addAttribute("success", " Successfully Added. ");
         }
         return "vendor/dashboard";
     }
