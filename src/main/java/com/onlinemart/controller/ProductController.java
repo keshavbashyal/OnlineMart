@@ -88,5 +88,18 @@ public class ProductController {
         model.addAttribute("product", product);
         return "product/productdetail";
     }
+    
+    
+    @RequestMapping(value = "/product/search", method = RequestMethod.POST)
+    public String findproduct(Model model) {
+        System.out.println("Done");
+       // List<Product> plist=productService.findProductByName(search);
+        
+        //model.addAttribute("products", productService.findProductByName(search));
+        return "product/productlist";
+        //return null;
+    }
+
+    
 
 }

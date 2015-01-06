@@ -9,6 +9,7 @@ import com.onlinemart.dao.ProductDAO;
 import com.onlinemart.model.Product;
 import com.onlinemart.model.Product;
 import java.util.List;
+import org.hibernate.Criteria;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -49,6 +50,13 @@ public class ProductDAOImpl extends AbstractDAO<Product> implements ProductDAO  
             getSession().delete(product);
         }
     }
+    @Override
+    public List<Product> findProductByName(String name) {
+        String q="SELECT p FROM Product p WHERE p.productName LIKE %" +name+"%";
+        Criteria query = getSession().createCriteria(Product.class, q);
+      return query.list();
+    }
+
 
  
 

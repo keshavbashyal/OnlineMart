@@ -18,5 +18,5 @@ public interface ProductDAO {
     public List<Product> listProducts();
     public Product getProduct(Long id);
     public void deleteProduct(Long id);
-    
+    public List<Product> findProductByName(String name); 
 }
