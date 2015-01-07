@@ -5,12 +5,11 @@
  */
 package com.onlinemart.controller;
 
-import com.onlinemart.model.Address;
-import com.onlinemart.model.CreditCard;
 import com.onlinemart.model.Customer;
-import com.onlinemart.service.AddressService;
 import com.onlinemart.service.CreditCardService;
 import com.onlinemart.service.CustomerService;
+import com.onlinemart.service.UserService;
+import java.security.Principal;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +17,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -30,6 +28,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class CustomerController {
 
+     @Autowired
+    UserService userService;
     @Autowired
     private CustomerService customerService;
     
@@ -48,12 +48,13 @@ public class CustomerController {
         return "/customer/welcome";
     }
 
-    @RequestMapping("/customer/account")
-    public String customerAccount(ModelMap model, HttpSession session) {
+    @RequestMapping("/customer/dashboard")
+    public String customerAccount(ModelMap model,HttpSession session, Principal princ) {
+        session.setAttribute("user", userService.getByEmail(princ.getName()));
         Customer c = (Customer) session.getAttribute("user");
         if (c == null) {
             session.setAttribute("selected", customerService.getCustomer(1L));
-            return "/customer/account";
+            return "/login";
 
         } else {
             session.setAttribute("selected", c);

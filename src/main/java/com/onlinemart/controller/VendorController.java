@@ -10,9 +10,12 @@ import com.onlinemart.commons.Sizes;
 import com.onlinemart.model.Product;
 import com.onlinemart.model.Vendor;
 import com.onlinemart.service.ProductService;
+import com.onlinemart.service.UserService;
 import com.onlinemart.service.VendorService;
+import java.security.Principal;
 //import java.time.Clock;
 import java.util.Date;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,13 +34,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class VendorController {
 
+     @Autowired
+    UserService userService;
     @Autowired
     VendorService vendorService;
     @Autowired
     ProductService productService;
   
-    @RequestMapping("/vendor")
-    public String printHello(ModelMap model) {
+    @RequestMapping("/vendor/dashbboard")
+    public String printHello(ModelMap model,HttpSession session, Principal princ) {
+        session.setAttribute("user", userService.getByEmail(princ.getName()));
         model.addAttribute("products", null);
         return "/vendor/dashboard";
     }

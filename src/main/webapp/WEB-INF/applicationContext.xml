@@ -68,21 +68,21 @@
             
  <security:http auto-config='true'>
      
-<!--
-removed for testing
-
+<security:intercept-url pattern="/category**" access="ROLE_ADMIN"/>
 <security:intercept-url pattern="/admin**" access="ROLE_ADMIN"/>
 <security:intercept-url pattern="/vendor**" access="ROLE_VENDOR"/>
-<security:intercept-url pattern="/user**" access="ROLE_CUSTOMER"/>
+<security:intercept-url pattern="/customer**" access="ROLE_CUSTOMER"/>
 
-        -->
+     
 
         <security:form-login
             login-page="/login" 
-            default-target-url="/home"
+           
             authentication-failure-url="/login?error=loginerror"
             username-parameter="username"
             password-parameter="password"
+            authentication-success-handler-ref="authenticationHandler"
+            
         />
 
         <security:logout logout-success-url="/login?logout=yes"/>

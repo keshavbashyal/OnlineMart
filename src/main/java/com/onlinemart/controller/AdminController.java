@@ -7,12 +7,14 @@ package com.onlinemart.controller;
 
 import com.onlinemart.service.CategoryService;
 import com.onlinemart.service.CustomerService;
+import com.onlinemart.service.UserService;
 import com.onlinemart.service.VendorService;
+import java.security.Principal;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -22,6 +24,8 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class AdminController {
 
+     @Autowired
+    UserService userService;
     @Autowired
     VendorService vendorService;
     @Autowired
@@ -44,7 +48,8 @@ public class AdminController {
 
     @RequestMapping("/admin/dashboard")
  
-    public String admin(Model model) {
+    public String admin(Model model,HttpSession session, Principal princ) {
+        session.setAttribute("user", userService.getByEmail(princ.getName()));
         model.addAttribute("allvendors", vendorService.listVendors());
         model.addAttribute("customersize", customerService.listCustomer().size());
         model.addAttribute("allcustomers", customerService.listCustomer());
