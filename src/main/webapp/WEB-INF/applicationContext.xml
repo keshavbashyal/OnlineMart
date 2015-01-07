@@ -83,6 +83,7 @@
             password-parameter="password"
             authentication-success-handler-ref="authenticationHandler"
             
+            
         />
 
         <security:logout logout-success-url="/login?logout=yes"/>

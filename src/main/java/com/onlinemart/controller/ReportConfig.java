@@ -36,20 +36,20 @@ public class ReportConfig {
     private @Value("C:\\OnlineMartReport.pdf")
     String outputFile;
 
-  // @Autowired
-  //  SalesService salesService;
+  @Autowired
+    SalesService salesService;
 
     public ResultSet getVendorData(Date from, Date to, Long vendorID) {
 
-        //return salesService.getSalesByVendor(vendorID, from, to);
-        return null;
+        return salesService.getSalesByVendor(vendorID, from, to);
+        //return null;
 
     }
 
     public ResultSet getAdminData(Date from, Date to, Long vendorID) {
 
-        //return salesService.getSalesByVendor(vendorID, from, to);
-        return null;
+        return salesService.getSalesByVendor(vendorID, from, to);
+        //return null;
 
     }
 
