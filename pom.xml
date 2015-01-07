@@ -280,6 +280,7 @@
          <systemPath>${basedir}\src\lib\commons-lang-2.1.jar</systemPath>
       </dependency>
       
+      <!--
       <dependency>
          <groupId>commons-logging</groupId>
          <artifactId>commons-logging</artifactId>
@@ -287,7 +288,7 @@
          <version>1.0</version>
          <systemPath>${basedir}\src\lib\commons-logging.jar</systemPath>
       </dependency>
-      
+      -->
       <dependency>
          <groupId>CrystalCommon2</groupId>
          <artifactId>CrystalCommon2</artifactId>
@@ -399,6 +400,7 @@
          <systemPath>${basedir}\src\lib\log4j.jar</systemPath>
       </dependency>
       
+      <!--
       <dependency>
          <groupId>logging</groupId>
          <artifactId>logging</artifactId>
@@ -406,7 +408,7 @@
          <version>1.0</version>
          <systemPath>${basedir}\src\lib\logging.jar</systemPath>
       </dependency>
-      
+      -->
        <dependency>
          <groupId>mysql-connector</groupId>
          <artifactId>mysql-connector</artifactId>
@@ -414,6 +416,7 @@
          <version>1.0</version>
          <systemPath>${basedir}\src\lib\mysql-connector-java-5.1.10.jar</systemPath>
       </dependency>
+      <!--
        <dependency>
          <groupId>org.apache.commons.io</groupId>
          <artifactId>org.apache.commons.io</artifactId>
@@ -421,6 +424,8 @@
          <version>1.0</version>
          <systemPath>${basedir}\src\lib\org.apache.commons.io.jar</systemPath>
       </dependency>
+      
+      -->
        <dependency>
          <groupId>orsoncharts</groupId>
          <artifactId>orsoncharts</artifactId>

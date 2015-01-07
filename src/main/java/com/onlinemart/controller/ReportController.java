@@ -25,22 +25,22 @@ import org.springframework.web.bind.annotation.ResponseBody;
  *
  * @author acer
  */
-@Controller
+//@Controller
 public class ReportController {
 
-    @Autowired
+   // @Autowired
     SalesService salesService;
-    @Autowired
+   // @Autowired
     JDBCConnectionController connection;
 
-    @Autowired
+   // @Autowired
     ReportStreamWriter reportStreamWriter;
 
-    @Autowired
+   // @Autowired
     ReportConfiguration reportConfig;
 
-    @RequestMapping("/vendor/report/{from}/{to}")
-    @ResponseBody
+    //@RequestMapping("/vendor/report/{from}/{to}")
+   // @ResponseBody
     public void printVendorResult(@PathVariable("from") Date from, @PathVariable("to") Date to, HttpSession session, Principal princ, HttpServletResponse response) {
 
         try {
@@ -64,10 +64,12 @@ public class ReportController {
             reportClientDoc.close();
             reportStreamWriter.write(byteArrayInputStream, response);
 
-        } catch (ReportSDKException ex) {
+      } catch (ReportSDKException ex) {
             System.out.println("Report writting error 1");
 
-        } catch (Exception ex) {
+       //
+        }
+            catch (Exception ex) {
             System.out.println("Report writting error 2");
 
         }
