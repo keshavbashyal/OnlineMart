@@ -5,6 +5,10 @@
  */
 package com.onlinemart.controller;
 
+import com.onlinemart.service.SalesService;
+import java.sql.ResultSet;
+import java.util.Date;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 
@@ -18,6 +22,24 @@ public class ReportConfig {
      String inputFile;
      private @Value("C:\\OnlineMartReport.pdf")
      String outputFile;
+     
+     @Autowired
+     SalesService salesService;
+     
+    
+     
+     public ResultSet getVendorData(Date from, Date to, Long vendorID){
+         
+         return salesService.getSalesByVendor(vendorID, from, to);
+         
+     }
+     
+     public ResultSet getAdminData(Date from, Date to, Long vendorID){
+         
+         return salesService.getSalesByVendor(vendorID, from, to);
+         
+     }
+     
 
     public String getInputFile() {
         return inputFile;

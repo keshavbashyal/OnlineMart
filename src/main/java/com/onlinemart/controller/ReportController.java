@@ -18,6 +18,7 @@ import com.crystaldecisions.reports.sdk.*;
 import com.crystaldecisions.sdk.occa.report.lib.*;
 import com.crystaldecisions.sdk.occa.report.exportoptions.*;
 import java.io.*;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
@@ -30,24 +31,48 @@ public class ReportController {
     SalesService salesService;
     @Autowired
     JDBCConnectionController connection;
-    
+
     @Autowired
     ReportStreamWriter reportStreamWriter;
-    
-    @RequestMapping("/vendor/report/{fronm}/{to}")
+
+    @Autowired
+    ReportConfig reportConfig;
+
+    @RequestMapping("/vendor/report/{from}/{to}")
     @ResponseBody
-    public ModelAndView printVendorResult(@PathVariable("from") Date from, @PathVariable("to") Date to, HttpSession session, Principal princ) {
-        
-        try{
-           String email= ((User)session.getAttribute("user")).getEmail();
-           Long vendorID=((User)session.getAttribute("user")).getId();
-           
+    public void printVendorResult(@PathVariable("from") Date from, @PathVariable("to") Date to, HttpSession session, Principal princ, HttpServletResponse response) {
+
+        try {
+            String email = ((User) session.getAttribute("user")).getEmail();
+            Long vendorID = ((User) session.getAttribute("user")).getId();
+
+            String tableName = "";
+            
+            ReportClientDocument reportClientDoc = new ReportClientDocument();
+            reportClientDoc.open(reportConfig.getInputFile(), 0);
+            tableName = reportClientDoc.getDatabaseController().getDatabase().getTables().getTable(0).getName();
+
+            try {
+                reportClientDoc.getDatabaseController().setDataSource(reportConfig.getVendorData(from, to, vendorID), tableName, "sales");
+            } catch (Exception e) {
+                System.out.println("setting data source error for vendor");
+                e.printStackTrace();
+            }
+
+            ByteArrayInputStream byteArrayInputStream = (ByteArrayInputStream) reportClientDoc.getPrintOutputController().export(ReportExportFormat.PDF);
+            reportClientDoc.close();
+            reportStreamWriter.write(byteArrayInputStream, response);
+
+        } catch (ReportSDKException ex) {
+            System.out.println("Report writting error 1");
+
+        } catch (Exception ex) {
+            System.out.println("Report writting error 2");
+
         }
-        catch(NullPointerException e){
-            return null;
-        }
-        
-        return null;
+
     }
 
 }
+
+

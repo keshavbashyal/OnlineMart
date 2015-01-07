@@ -5,6 +5,7 @@
  */
 package com.onlinemart.service.impl;
 
+import com.onlinemart.controller.JDBCConnectionController;
 import com.onlinemart.dao.ProductShoppingCartDAO;
 import com.onlinemart.dao.SalesDAO;
 import com.onlinemart.model.ProductShoppingCart;
@@ -32,6 +33,8 @@ public class SalesServiceImpl implements SalesService {
     @Autowired
     ProductShoppingCartDAO productShoppingCartDAO;
     
+     @Autowired
+     JDBCConnectionController connection;
    //@Autowired
     //ProductShopping
 
