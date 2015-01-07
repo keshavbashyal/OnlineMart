@@ -3,20 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.onlinemart.dao;
+package com.onlinemart.service;
 
-import com.onlinemart.model.User;
 import com.onlinemart.model.UserRole;
 
 /**
  *
  * @author acer
  */
-public interface UserDAO {
-   
-    public User getUserByEmail(String name);
+public interface UserRoleService {
     
-   
-    
-   
+    public UserRole getAdminRole();
+    public UserRole getVendorRole();
+    public UserRole getCustomerRole();
 }
