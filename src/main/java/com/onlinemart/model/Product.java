@@ -47,7 +47,17 @@ public class Product implements Serializable {
     private Sizes sizes;
     @Enumerated(EnumType.STRING)
     private Color color;
+
+    public Vendor getVendor() {
+        return vendor;
+    }
+
+    public void setVendor(Vendor vendor) {
+        this.vendor = vendor;
+    }
     
+    @ManyToOne()
+    private Vendor vendor;
     
     @Temporal(TemporalType.DATE)
     @DateTimeFormat (pattern = "mm-dd-yy")
