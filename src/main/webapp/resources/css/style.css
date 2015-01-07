@@ -765,3 +765,13 @@ z-index: 3; position: relative; border-bottom: dotted 1px #ffffff;clear:both;}
 .nav-list > li{
     border-bottom: 1px solid #e4e4e4;
 }
+
+#navigation ul.anchor-dark li{
+    height: 21;
+    padding: 0;
+    margin: 0;
+}
+#navigation ul.anchor-dark li a{
+    color: #555555;
+    margin: 5px 0;
+}

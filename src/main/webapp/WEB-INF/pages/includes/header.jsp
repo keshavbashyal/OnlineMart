@@ -5,28 +5,36 @@
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <header>
-    <div class="container">s
+    <div class="container">
         <div class="row">
             <h2 id="logo" class="span4"><a href="<c:url value='/'/>" title="Fashion Store">OnlineMart</a></h2>
             <nav class="span8" id="navigation">
                 <div class="accountbox">
                     <div class="span4">
-                        <div class="navbar navbar-static">
+                        <div class="navbar navbar-static navlist">
                             <ul class="nav">                                
                                 <li>
-
-
                                     <a href="<c:url value='/shoppingcart/productlist'/>"><i class="icon-shopping-cart"></i> Shopping Cart
-
                                         <c:if test="${(totalquantity > 0)  }">
                                             ${totalquantity}
                                         </c:if>
-                                        
-                                    </a></li>
-
-
+                                    </a>
+                                </li>
                                 <li class="divider-vertical"></li>
-                                <li><a href="<c:url value='/customer/account'/>"><i class="icon-user"></i> My Account</a></li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                        <i class="icon-user"></i> My Account
+                                    </a>
+                                    <ul class="dropdown-menu anchor-dark">
+                                        <li>
+                                            <a href="#">Basic Info</a>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li>
+                                            <a href="#">Logout</a>
+                                        </li>
+                                    </ul>
+                                </li>
                             </ul>
                         </div>
                     </div>
