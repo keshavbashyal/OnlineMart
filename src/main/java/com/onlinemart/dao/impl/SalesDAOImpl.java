@@ -5,12 +5,14 @@
  */
 package com.onlinemart.dao.impl;
 
-import com.onlinemart.dao.ProductDAO;
 import com.onlinemart.dao.SalesDAO;
-import com.onlinemart.model.Product;
 import com.onlinemart.model.Sales;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.util.Date;
 import java.util.List;
 import org.hibernate.Query;
+import org.hibernate.cfg.Configuration;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -53,6 +55,16 @@ public class SalesDAOImpl extends AbstractDAO<Sales> implements SalesDAO  {
         query.setLong("oid", id);
                  
         return query.list();
+    }
+    
+    
+    public ResultSet getSalesByVendor(Long vendorID, Date from, Date to){
+       // Configuration configuration = new Configuration();
+       // Connection connection=configuration.getc
+        return null;
+    }
+    public ResultSet getSalesByProduct(Long productID, Date from, Date to){
+       return null; 
     }
    
 }

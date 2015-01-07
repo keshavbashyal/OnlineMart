@@ -11,6 +11,7 @@ import com.onlinemart.model.ProductShoppingCart;
 import com.onlinemart.model.Sales;
 import com.onlinemart.model.Transaction;
 import com.onlinemart.service.SalesService;
+import java.sql.ResultSet;
 import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -84,9 +85,17 @@ public class SalesServiceImpl implements SalesService {
         salesDAO.saveSales(sales);
            
        }
-        
-        
-    }
+    }  
+       @Override
+      public ResultSet getSalesByVendor(Long vendorID, Date from, Date to){
+         return salesDAO.getSalesByVendor(vendorID, from, to);
+      }
+      
+      @Override
+    public ResultSet getSalesByProduct(Long productID, Date from, Date to){
+       return salesDAO.getSalesByProduct(productID, from, to);
+    }  
+    
 
     
     

@@ -7,6 +7,8 @@ package com.onlinemart.service;
 
 import com.onlinemart.model.Sales;
 import com.onlinemart.model.Transaction;
+import java.sql.ResultSet;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -22,4 +24,7 @@ public interface SalesService {
     public List<Sales> findSalesByOrderID(Long id); 
     
     public void addSalesFromTransaction(Transaction txn);
+    
+    public ResultSet getSalesByVendor(Long vendorID, Date from, Date to);
+    public ResultSet getSalesByProduct(Long productID, Date from, Date to);
 }

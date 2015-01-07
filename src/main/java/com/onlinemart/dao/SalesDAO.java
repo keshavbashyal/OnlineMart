@@ -7,6 +7,8 @@ package com.onlinemart.dao;
 
 import com.onlinemart.model.Product;
 import com.onlinemart.model.Sales;
+import java.sql.ResultSet;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -21,4 +23,6 @@ public interface SalesDAO {
     public Sales getSales(Long id);
     public void deleteSales(Long id);
     public List<Sales> findSalesByOrderID(Long id); 
+    public ResultSet getSalesByVendor(Long vendorID, Date from, Date to);
+    public ResultSet getSalesByProduct(Long productID, Date from, Date to);
 }
