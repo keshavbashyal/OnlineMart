@@ -36,11 +36,16 @@ public class Transaction implements Serializable {
     @OneToOne (cascade=CascadeType.ALL)
     private Address address;
     
+    @OneToOne (cascade=CascadeType.ALL)
+    private ShoppingCart shoppingCart;
+    
     private String txnStatus;
     
     private Double totalAmount;
     
     private Double grossAmount;
+    
+    
 
     public Long getId() {
         return id;
@@ -74,5 +79,71 @@ public class Transaction implements Serializable {
     public String toString() {
         return "com.onlinemart.model.Transaction[ id=" + id + " ]";
     }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Orders getOrder() {
+        return order;
+    }
+
+    public void setOrder(Orders order) {
+        this.order = order;
+    }
+
+    public CreditCard getCreditCard() {
+        return creditCard;
+    }
+
+    public void setCreditCard(CreditCard creditCard) {
+        this.creditCard = creditCard;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public String getTxnStatus() {
+        return txnStatus;
+    }
+
+    public void setTxnStatus(String txnStatus) {
+        this.txnStatus = txnStatus;
+    }
+
+    public Double getTotalAmount() {
+        return totalAmount;
+    }
+
+    public void setTotalAmount(Double totalAmount) {
+        this.totalAmount = totalAmount;
+    }
+
+    public Double getGrossAmount() {
+        return grossAmount;
+    }
+
+    public void setGrossAmount(Double grossAmount) {
+        this.grossAmount = grossAmount;
+    }
+
+    public ShoppingCart getShoppingCart() {
+        return shoppingCart;
+    }
+
+    public void setShoppingCart(ShoppingCart shoppingCart) {
+        this.shoppingCart = shoppingCart;
+    }
+    
+    
     
 }

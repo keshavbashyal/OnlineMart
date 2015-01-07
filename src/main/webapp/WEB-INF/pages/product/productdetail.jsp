@@ -32,7 +32,7 @@
     </head>
 
     <body>		
-        
+
         <%@include file="../includes/header.jsp" %>
         <div class="container" id="main-content">
             <div class="row">
@@ -66,9 +66,9 @@
 
                     <div class="span5">
                         <div class="productinfo" >
-                            
+
                             <h2>${product.productName}</h2>
-                            
+
                             <h4>By: Brand Name</h4>
 
                             <div class="prices">
@@ -86,21 +86,26 @@
                                 </select>
 
                                 <label class="control-label">Quantity</label>
-                                <select class="span1">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
+                                <select id="quantity" name="quantity" class="span1" onchange="updateQuantity()">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
                                 </select>
-                                
-                               
 
-                                <a href="<c:url value="/shoppingcart/addProduct/${product.id}?quantity=15" />"  class="btn btn-danger btn-large"><i class="icon-shopping-cart icon-white"></i>  Add to Cart</a>
-                                
+                                <a href="<c:url value="/shoppingcart/addProduct/${product.id}?quantity=" />" id="addcart" class="btn btn-danger btn-large"><i class="icon-shopping-cart icon-white"></i>  Add to Cart</a>
+
                                 <script>
                                     $('#SmartCart').smartCart({productItemTemplate: productTemplateWithSKU});
+
+                                    function updateQuantity()
+                                    {
+                                        var quantity = $('#quantity').val();
+                                        $('#addcart').attr("href", "/OnlineMart/shoppingcart/addProduct/${product.id}?quantity=" + quantity);
+                                    }
+
                                 </script>
-                                
-                                
+
+
                             </form>
 
                             <p>

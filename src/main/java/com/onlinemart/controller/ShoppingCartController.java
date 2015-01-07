@@ -11,24 +11,23 @@ import com.onlinemart.model.Orders;
 import com.onlinemart.model.Product;
 import com.onlinemart.model.ProductShoppingCart;
 import com.onlinemart.model.ShoppingCart;
+import com.onlinemart.model.Transaction;
+import com.onlinemart.model.User;
 import com.onlinemart.service.ProductService;
 import com.onlinemart.service.ShoppingCartService;
 import java.io.IOException;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import org.springframework.web.client.RestTemplate;
@@ -48,7 +47,7 @@ public class ShoppingCartController {
 
     private ShoppingCart shoppingCart = new ShoppingCart();
 
-    private Long totalquantity;
+    private Long totalquantity = 0L;
 
 //    @Autowired
 //    OrderService orderService;
@@ -122,26 +121,77 @@ public class ShoppingCartController {
 
     @RequestMapping(value = "/shoppingcart/addProduct/{productid}")
     public String addProductShoppingCart(@PathVariable("productid") Long productid, @RequestParam(value="quantity" ,defaultValue = "1") Long quantity,Model model, HttpSession httpSession) {
-        System.out.println("The quantity inserted is" + quantity);
+//        ShoppingCart sessionShoppingCart = (ShoppingCart) httpSession.getAttribute("shoppingCart");
+//        if (sessionShoppingCart !=null)
+//        {
+//            List<ProductShoppingCart> productShoppingCarts = sessionShoppingCart.getProductShoppingCart();
+//            //List<Product> products = productShoppingCarts
+//           
+//            
+//            
+//        }
+
+        
         Product product = productService.getProduct(productid);
         ProductShoppingCart productShoppingCart = new ProductShoppingCart();
         productShoppingCart.setProduct(product);
+        
         productShoppingCart.setQuantity(quantity);  
-        totalquantity = quantity; 
+        totalquantity = totalquantity + quantity; 
+        
         shoppingCart.addProductShoppingCart(productShoppingCart);
         httpSession.setAttribute("shoppingCart", shoppingCart);
         httpSession.setAttribute("totalquantity", totalquantity);
+        httpSession.setAttribute("totalprice", totalPrice);
+        
+        
+        
+        
         return "redirect:/shoppingcart/productlist";
     }
     
     
     @RequestMapping(value = "/shoppingcart/checkout")
     public String checkout( HttpSession httpSession) {
+        User user;
+//        if (httpSession.getAttribute("user")==null){
+//            return "redirect:/shoppingcart/addcreditcart";
+//            
+//        }
+//        else {
+//            user = (User)httpSession.getAttribute("user");
+//            
+//            
+//        }         
         
+//            user = (User)httpSession.getAttribute("user");
+//            //Order 
+//            Orders order = new Orders();
+//            order.setOrderDate(new Date());
+//            order.setTotalPrice(totalPrice);
+//            
+//            //Transaction
+//            Customer customer = (Customer)user;
+//            
+//            Transaction transaction = new Transaction();
+//            transaction.setUser(customer);
+//            transaction.setAddress(customer.getAddress());
+//            transaction.setCreditCard(customer.getCreditCard().get(1));
+//            transaction.setGrossAmount(totalPrice*0.8);
+//            transaction.setTotalAmount(totalPrice);
+//            transaction.setOrder(order);
+//       
         shoppingCart = new ShoppingCart();
+        totalquantity = 0L;
         
-        httpSession.setAttribute("totalquantity", 0);
+        httpSession.setAttribute("totalquantity", totalquantity);
         httpSession.setAttribute("shoppingCart", shoppingCart);
+        
+        return "redirect:/shoppingcart/productlist";
+    }
+    
+    @RequestMapping("shoppingcart/productshoppingcart/{id}")
+    public String deleteProductShoppingCart(@PathVariable("id") Long id, Model model) {
         
         return "redirect:/shoppingcart/productlist";
     }
