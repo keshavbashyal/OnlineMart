@@ -26,6 +26,10 @@
                             <img src="resources/img/icons/googleplus.png"  width="30" height="30" alt="" />
                         </a>
                     </li>
+                    <hr/>
+                    <li>
+                        <a href="<c:url value='/vendor/form'/>" class="nav nav-list">Sign-up as Vendor</a>
+                    </li>
                 </ul>
             </div>
             <div class="span4">

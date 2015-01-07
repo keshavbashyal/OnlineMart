@@ -22,16 +22,7 @@
     <body>
 
         <%@include file="../includes/header.jsp" %>
-        <div class="container">
-            <div class="pull-right">
-                <a href="<c:url value='/vendor/form'/>" class="btn btn-success btn-small">Vendor Sign-up</a>
-                <c:if test="${empty sessionScope.user}">
-                    <a href="<c:url value='/customer/addCustomer'/>" class="btn btn-success btn-small">Register</a>
-                </c:if>
-                <!--<a href="<c:url value='/vendor/productform'/>" class="btn btn-success btn-small">Add a Product</a>-->
-
-            </div>
-        </div>
+        
         <div id="main-carousel">
             <div class="slides_container container">
                 <div class="span8columns">
@@ -76,27 +67,9 @@
 
         <div class="container" id="main-content">
             <div class="row" id="featured">		
-                <div class="sale">
-                    <div class="span6">
-                        <div class="sale1">
-                            <div class="salebanner">
-                                <a href="listwomen.html"><img src="resources/img/sample/sale.jpg" alt="" />
-                                    <p class="sale1">Purse Sale </p></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="span6">
-                        <div class="sale2">
-                            <a href="product.html"><img src="resources/img/sample/sale2.jpg" alt=""/>
-                                <p class="sale2">Fab heels </p></a>
-                        </div>
-                    </div>
-                </div>
-
                 <br/>				
                 <div class="headtitle">
-                    <h4>FEATURED WOMENS</h4>	
+                    <h4>FEATURED ITEMS</h4>	
                 </div>
 
                 <ul class="product">
@@ -136,99 +109,10 @@
                         </a>
                     </li>
                 </ul>
-
-
-                <div class="headtitle">
-                    <h4>FEATURED MENS</h4>	
-                </div>
-
-                <ul class="product">
-
-                    <li>
-                        <a href="product.html">
-                            <img src="resources/img/sample/men1.jpg" alt="" />	
-                            <div class="producttitlebox"></div>
-                            <div class="producttitle">Men's Suit</div>
-                            <div class="brandtitle">By: Brand Name</div>
-                            <div class="pricetag"></div>
-                            <div class="saleprice">$430</div>
-                            <div class="oldprice">$200</div>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="product.html">
-                            <img src="resources/img/sample/men2.jpg" alt="" />	
-                            <div class="producttitlebox"></div>
-                            <div class="producttitle">Suit Jacket</div>
-                            <div class="brandtitle">By: Brand Name</div>
-                            <div class="pricetag"></div>
-                            <div class="saleprice">$190</div>
-                            <div class="oldprice">$140</div>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="product.html">
-                            <img src="resources/img/sample/men3.jpg" alt="" />	
-                            <div class="producttitlebox"></div>
-                            <div class="producttitle">Army Jacket</div>
-                            <div class="brandtitle">By: Brand Name</div>
-                            <div class="pricetag"></div>
-                            <div class="saleprice">$210</div>
-                            <div class="oldprice">$170</div>
-                        </a>
-                    </li>
-
-                </ul>
-
-                <div class="headtitle">
-                    <h4>FEATURED KIDS</h4>	
-                </div>
-
-                <ul class="product">
-
-                    <li>
-                        <a href="product.html">
-                            <img src="resources/img/sample/kids1.jpg" alt="" />	
-                            <div class="producttitlebox"></div>
-                            <div class="producttitle">Girls Summer Dress</div>
-                            <div class="brandtitle">By: Brand Name</div>
-                            <div class="pricetag"></div>
-                            <div class="saleprice">$80</div>
-                            <div class="oldprice">$40</div>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="product.html">
-                            <img src="img/sample/kids2.jpg" alt="" />	
-                            <div class="producttitlebox"></div>
-                            <div class="producttitle">Boys Sweater</div>
-                            <div class="brandtitle">By: Brand Name</div>
-                            <div class="pricetag"></div>
-                            <div class="saleprice">$50</div>
-                            <div class="oldprice">$35</div>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="product.html">
-                            <img src="img/sample/kids3.jpg" alt="" />	
-                            <div class="producttitlebox"></div>
-                            <div class="producttitle">Girls Summer Dress</div>
-                            <div class="brandtitle">By: Brand Name</div>
-                            <div class="pricetag"></div>
-                            <div class="saleprice">$60</div>
-                            <div class="oldprice">$30</div>
-                        </a>
-                    </li>
-
-                </ul>					
             </div>
         </div>
 
-        <%@include file="../includes/footer.jsp" %> %>
+        <%@include file="../includes/footer.jsp" %>
     </body>
 
 </html>

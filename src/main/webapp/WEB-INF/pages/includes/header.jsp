@@ -28,7 +28,7 @@
                                             </a>
                                             <ul class="dropdown-menu anchor-dark">
                                                 <li>
-                                                    <a href="/customer/dashboard">Basic Info</a>
+                                                    <a href="/vendor/dashboard">Basic Info</a>
                                                 </li>
                                                 <li class="divider"></li>
                                                 <li>
@@ -38,7 +38,15 @@
                                         </li>
                                     </c:if>
                                     <c:if test= "${empty sessionScope.user}">
-                                        <li><a href="<c:url value='/login'/>"><i class="icon-user"></i> My Account</a></li>
+                                        <li>
+                                            <a href="<c:url value="/customer/addCustomer" />">Sign Up</a>
+                                        </li>
+                                        <li class="divider-vertical"></li>
+                                        <li>
+                                            <a href="<c:url value='/login'/>">
+                                                Login
+                                            </a>
+                                        </li>
                                     </c:if>        
                             </ul>
                         </div>
@@ -57,57 +65,15 @@
                         <div class="span8">
                             <ul class="nav">
                                 <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">WOMENS <b class="caret"></b></a>
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">CATEGORIES <b class="caret"></b></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="<c:url value='/template/product'/>">Dresses</a></li>
+                                        <li><a href="<c:url value='/template/product'/>">Watches</a></li>
                                         <li class="divider"></li>
-                                        <li><a href="listwomen.jsp">Tops</a></li>
+                                        <li><a href="listwomen.jsp">Shoes</a></li>
                                         <li class="divider"></li>
-                                        <li><a href="listwomen.jsp">Suits</a></li>
+                                        <li><a href="listwomen.jsp">Shirts</a></li>
                                         <li class="divider"></li>
-                                        <li><a href="listwomen.jsp">Jeans</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="listwomen.jsp">Swim</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="listwomen.jsp">Jewelry</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="listwomen.jsp">Beauty</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">MENS <b class="caret"></b></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="listmen.jsp">Shirts</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="listmen.jsp">Jeans</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="listmen.jsp">Suits</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="listmen.jsp">Shoes</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="listmen.jsp">Swim</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="listmen.jsp">Active</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="listmen.html">Polos</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">KIDS <b class="caret"></b></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="listwomen.html">Shirts</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="listwomen.html">Jeans</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="listwomen.html">Dresses</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="listwomen.html">Shoes</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="listwomen.html">Swim</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="listwomen.html">Active</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="listwomen.html">Polos</a></li>
+                                        <li><a href="listwomen.jsp">Ties</a></li>
                                     </ul>
                                 </li>
                             </ul>
