@@ -47,6 +47,12 @@ public class CreditCardController {
 //    }
 
     @RequestMapping(value = "/creditcard/save",method = RequestMethod.POST)
+    
+    @ModelAttribute
+    public void addCustomer(){
+        
+    }
+    
     public String save(@ModelAttribute("creditcard") CreditCard creditCard, BindingResult result, HttpSession session, ModelMap model) {
         creditCardService.saveCreditCard(creditCard);
         model.addAttribute("creditcard", creditCard);

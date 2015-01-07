@@ -47,6 +47,14 @@ public class VendorController {
     @RequestMapping("/vendor/dashbboard")
     public String printHello(ModelMap model,HttpSession session, Principal princ) {
         session.setAttribute("user", userService.getByEmail(princ.getName()));
+        
+        Vendor vendor=(Vendor)princ;
+       
+        if(vendor.getStatus().equalsIgnoreCase("PENDING"))
+        {
+            session.removeAttribute("user");
+            return "redirect:/login";
+        }
         model.addAttribute("products", null);
         return "/vendor/dashboard";
     }
