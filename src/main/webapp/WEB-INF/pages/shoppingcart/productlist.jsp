@@ -41,9 +41,9 @@
                             <td>${productShoppingCart.id}</td>                            
                             <td>${productShoppingCart.getProduct().productName}</td>
                             <td>${productShoppingCart.getProduct().productDescription}</td>
-                            <td id="unitPrice">${productShoppingCart.getProduct().unitPrice}</td>
-                            <td id="quantity">${productShoppingCart.quantity}</td>
-                            <td id="totalquantity" onload="add()">  </td>
+                            <td>${productShoppingCart.getProduct().unitPrice}</td>
+                            <td>${productShoppingCart.quantity}</td>
+                            <td>${productShoppingCart.quantity * productShoppingCart.getProduct().unitPrice }  </td>
 
 
                             <td>
@@ -74,13 +74,7 @@
         </div>
         <%@include file="../includes/footer.jsp" %>
 
-        <script>
-            function add(){
-                
-                $("#totalquantity").text() = $("#unitPrice").text() + $("#quantity").text() ;
-                
-            }
-        </script>
+        
     </body>
 
 
