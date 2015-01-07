@@ -21,20 +21,25 @@
                                     </a>
                                 </li>
                                 <li class="divider-vertical"></li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                        <i class="icon-user"></i> My Account
-                                    </a>
-                                    <ul class="dropdown-menu anchor-dark">
-                                        <li>
-                                            <a href="#">Basic Info</a>
+                                    <c:if test= "${not empty sessionScope.user}" >
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                <i class="icon-user"></i> My Account
+                                            </a>
+                                            <ul class="dropdown-menu anchor-dark">
+                                                <li>
+                                                    <a href="/customer/dashboard">Basic Info</a>
+                                                </li>
+                                                <li class="divider"></li>
+                                                <li>
+                                                    <a href="<c:url value="/j_spring_security_logout" />">Logout</a>
+                                                </li>
+                                            </ul>
                                         </li>
-                                        <li class="divider"></li>
-                                        <li>
-                                            <a href="#">Logout</a>
-                                        </li>
-                                    </ul>
-                                </li>
+                                    </c:if>
+                                    <c:if test= "${empty sessionScope.user}">
+                                        <li><a href="<c:url value='/login'/>"><i class="icon-user"></i> My Account</a></li>
+                                    </c:if>        
                             </ul>
                         </div>
                     </div>

@@ -25,9 +25,10 @@
         <div class="container">
             <div class="pull-right">
                 <a href="<c:url value='/vendor/form'/>" class="btn btn-success btn-small">Vendor Sign-up</a>
-                <a href="<c:url value='/customer/addCustomer'/>" class="btn btn-success btn-small">Register</a>
+                <c:if test="${empty sessionScope.user}">
+                    <a href="<c:url value='/customer/addCustomer'/>" class="btn btn-success btn-small">Register</a>
+                </c:if>
                 <!--<a href="<c:url value='/vendor/productform'/>" class="btn btn-success btn-small">Add a Product</a>-->
-                <a href="<c:url value='/login'/>" class="btn btn-success btn-small">Login</a>
 
             </div>
         </div>
