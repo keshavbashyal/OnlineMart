@@ -12,6 +12,7 @@ import com.onlinemart.model.Vendor;
 import com.onlinemart.service.ProductService;
 import com.onlinemart.service.UserService;
 import com.onlinemart.service.VendorService;
+import java.io.IOException;
 import java.security.Principal;
 //import java.time.Clock;
 import java.util.Date;
@@ -25,6 +26,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -113,11 +116,16 @@ public class VendorController {
     
    
     @RequestMapping(value = "/vendor/addProduct", method = RequestMethod.POST)
-    public String addProduct(@Valid Product product, BindingResult result, Model model) {
+    public String addProduct(@Valid Product product, @RequestParam("file") MultipartFile file, BindingResult result, Model model) {
         if (result.hasErrors()) {
             model.addAttribute("error", result.toString());
             //return "vendor/dashboard";
         } else {
+              try {
+                product.setImage(file.getBytes());
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
             productService.saveProduct(product);
             model.addAttribute("success", " Successfully Added. ");
         }
