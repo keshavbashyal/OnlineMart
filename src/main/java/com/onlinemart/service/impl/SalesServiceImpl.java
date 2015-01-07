@@ -6,6 +6,7 @@
 package com.onlinemart.service.impl;
 
 import com.onlinemart.controller.JDBCConnectionController;
+import com.onlinemart.controller.MysqlConnectionController;
 import com.onlinemart.dao.ProductShoppingCartDAO;
 import com.onlinemart.dao.SalesDAO;
 import com.onlinemart.model.ProductShoppingCart;
@@ -23,7 +24,7 @@ import org.springframework.transaction.annotation.Transactional;
  *
  * @author acer
  */
-@Service
+@Service()
 @Transactional
 public class SalesServiceImpl implements SalesService {
 
@@ -34,7 +35,7 @@ public class SalesServiceImpl implements SalesService {
     ProductShoppingCartDAO productShoppingCartDAO;
     
      @Autowired
-     JDBCConnectionController connection;
+     JDBCConnectionController connection;//=new MysqlConnectionController();
    //@Autowired
     //ProductShopping
 

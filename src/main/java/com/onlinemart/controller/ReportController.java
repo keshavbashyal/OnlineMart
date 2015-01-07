@@ -36,7 +36,7 @@ public class ReportController {
     ReportStreamWriter reportStreamWriter;
 
     @Autowired
-    ReportConfig reportConfig;
+    ReportConfiguration reportConfig;
 
     @RequestMapping("/vendor/report/{from}/{to}")
     @ResponseBody
