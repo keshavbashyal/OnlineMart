@@ -5,10 +5,14 @@
  */
 package com.onlinemart.controller;
 
+import static com.businessobjects.reports.datainterface.SummaryOperation.p;
 import com.onlinemart.model.Product;
 import com.onlinemart.model.Vendor;
 import com.onlinemart.service.ProductService;
 import com.onlinemart.service.VendorService;
+import java.io.IOException;
+import java.io.OutputStream;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -83,8 +87,16 @@ public class ProductController {
     }
 
     @RequestMapping("/product/{productid}/productdetail")
-    public String productDetail(@PathVariable("productid") Long id, Model model) {
+    public String productDetail(@PathVariable("productid") Long id, Model model, HttpServletResponse response) {
         Product product = productService.getProduct(id);
+        try{
+        if (product != null) {
+                OutputStream out = response.getOutputStream();
+                out.write(product.getImage());
+                response.flushBuffer();
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();}
         model.addAttribute("product", product);
         return "product/productdetail";
     }
@@ -99,7 +111,8 @@ public class ProductController {
         return "product/productlist";
         //return null;
     }
+}
 
     
 
-}
+

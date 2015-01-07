@@ -74,6 +74,15 @@
                                         <td><spring:input path="addDate" id="datepicker"/></td>
                                         <td><spring:errors path="addDate" element="div" cssClass="error" /></td>
                                     </tr>
+                                     <tr>
+                                    <td><label>Images</label></td>
+                              
+                                    <td> <input type="file" name="file"  />
+                                     
+                                    <br />
+                                
+                                    </td>
+                                </tr>
                                     <tr>
                                         <td colspan="2">
                                             <input type="reset" value="Reset" class="btn btn-danger" />

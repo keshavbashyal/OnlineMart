@@ -13,9 +13,11 @@ import com.onlinemart.service.ProductService;
 import com.onlinemart.service.UserService;
 import com.onlinemart.service.VendorService;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.security.Principal;
 //import java.time.Clock;
 import java.util.Date;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +46,7 @@ public class VendorController {
     @Autowired
     ProductService productService;
   
-    @RequestMapping("/vendor/dashbboard")
+    @RequestMapping("/vendor/dashboard")
     public String printHello(ModelMap model,HttpSession session, Principal princ) {
         session.setAttribute("user", userService.getByEmail(princ.getName()));
         
@@ -115,7 +117,7 @@ public class VendorController {
     }
 
     // Product Add form
-    @RequestMapping("vendor/productaddfrm")
+    @RequestMapping("vendor/productAddForm")
     public String productAddForm(Product product, Model model) {
         model.addAttribute("enum_size", Sizes.values());
         model.addAttribute("enum_color", Color.values());
@@ -140,4 +142,18 @@ public class VendorController {
         return "vendor/dashboard";
     }
 
+ @RequestMapping(value = "/productImage/{id}", method = RequestMethod.GET)
+    public void getProductImage(Model model, @PathVariable long id, HttpServletResponse response) {
+        try {
+            Product p = productService.getProduct(id);
+            if (p != null) {
+                OutputStream out = response.getOutputStream();
+                out.write(p.getImage());
+               
+                response.flushBuffer();
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
 }

@@ -40,7 +40,7 @@
                             <td>${vendor.id}</td>
                             <td>${vendor.vendorName}</td>
                             <td>${vendor.email}</td>
-                       <td> <a href="vendor/vendorVarification/${vendor.id}">${vendor.status}</a></td>
+                       <td> ${vendor.status}</td>
                             <td>
                                 <a href="vendor/edit/${vendor.id}" class="btn btn-primary btn-mini">Edit</a>
                                 <a href="vendor/delete/${vendor.id}" onclick="return confirm(' Delete Record ')" class="btn btn-danger btn-mini">Delete</a>

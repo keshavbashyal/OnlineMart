@@ -24,7 +24,7 @@
                 </div>
 
                 <div class="span12">
-                    <a href="vendor/productform" class="btn btn-success pull-right">Add New Product</a>
+                    <a href="vendor/productAddForm" class="btn btn-success pull-right">Add New Product</a>
                 </div>
 
                 <table id="tablelist" class="span12 table-bordered table-striped">

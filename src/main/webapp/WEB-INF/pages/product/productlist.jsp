@@ -29,7 +29,7 @@
                     <c:forEach items="${products}" var="product">
                     <li>
                         <a href="<c:url value="/product/${product.id}/productdetail"/>">
-                            <img src="resources/img/sample/women1.jpg" alt="" />	
+                            <img src="productImage/${product.id}" alt="hi its me" />	
                             <div class="producttitlebox"></div>
                             <div class="producttitle">${product.productName}</div>
                             <div class="brandtitle">By: Brand Name</div>

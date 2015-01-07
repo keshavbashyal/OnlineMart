@@ -43,7 +43,7 @@
                                 <tr>
                                     <td><label>Images</label></td>
                               
-                                    <td> <input type="file" name="file" path="imagename" size="50" />
+                                    <td> <input type="file" name="file"  />
                                          <td><spring:errors path="imagename" element="div" cssClass="error" /></td>
                                     <br />
                                 
