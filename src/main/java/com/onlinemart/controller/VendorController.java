@@ -86,7 +86,7 @@ public class VendorController {
                 vendorService.saveVendor(vendor);
             }
         }
-        return "redirect:/vendor/list";
+        return "redirect:/";
     }
 
     @RequestMapping(value = "/vendor/list")
