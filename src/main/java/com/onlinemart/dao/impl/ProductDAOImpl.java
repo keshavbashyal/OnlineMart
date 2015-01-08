@@ -63,9 +63,9 @@ public class ProductDAOImpl extends AbstractDAO<Product> implements ProductDAO {
 
     @Override
     public List<Product> getProductByVendorId(Long vendor_id) {
-        Query query = getSession().createQuery("from Product where vendor_id=:vendor");
+        Query query = getSession().createQuery("from Product p where p.vendor_id=:vendor");
         query.setParameter("vendor", vendor_id);
-        System.out.println(query.list().size());
+        //System.out.println(query.list().size());
         return query.list();
     }
 

@@ -22,5 +22,5 @@ public interface ProductService {
     public void deleteProduct(Long id);
     public List<Product> findProductByName(String name); 
 
-    public Object getProductByVendorId(Long id);
+    public List<Product> getProductByVendorId(Long id);
 }

@@ -8,6 +8,7 @@ package com.onlinemart.controller;
 import com.onlinemart.commons.Color;
 import com.onlinemart.commons.Sizes;
 import com.onlinemart.model.Product;
+import com.onlinemart.model.User;
 import com.onlinemart.model.Vendor;
 import com.onlinemart.service.ProductService;
 import com.onlinemart.service.UserService;
@@ -25,7 +26,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 /**
  *
@@ -43,19 +43,23 @@ public class VendorController {
 
     @RequestMapping("/vendor/dashboard")
     public String vendorDashboard(ModelMap model, HttpSession session, Principal princ) {
-        session.setAttribute("user", userService.getByEmail(princ.getName()));
+         User usr=(User)userService.getByEmail(princ.getName());
+        session.setAttribute("user", usr);
 
-        Vendor vendor = (Vendor) session.getAttribute("user");
+        
+        Vendor vendor = (Vendor) usr;
         session.setAttribute("userType", "vendor");
 
         if (vendor.getStatus().equalsIgnoreCase("PENDING")) {
             session.removeAttribute("user");
             return "redirect:/login";
         } else {
-            model.addAttribute("products", productService.getProductByVendorId(vendor.getId()));
+            model.addAttribute("products", vendor.getProducts());
             return "/vendor/dashboard";
         }
     }
+    
+    
 
 //    @RequestMapping(value = "/vendor/home")
 //    public ModelAndView vendorHome() {
