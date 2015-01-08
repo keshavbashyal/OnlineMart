@@ -10,10 +10,16 @@
             <a href="<c:url value='/vendor' />" >Dashboard</a>
         </li>
         <li>
-            <a href="#">Sales</a>
+            <a href="#">Report Weekly</a>
         </li>
         <li>
-            <a href="#">Report</a>
+            <a href="#">Report Monthly</a>
+        </li>
+        <li>
+            <a href="#">Report Quaterly</a>
+        </li>
+        <li>
+            <a href="#">Report Ad-hoc</a>
         </li>
     </ul>
 </ul>
