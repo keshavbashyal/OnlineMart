@@ -18,7 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author s_paw_000
  */
 @Service
-public class UserTypeServiceImpl implements UserRoleService {
+public class UserRoleServiceImpl implements UserRoleService {
     
     @Autowired
     private UserRoleDAO userRoleDAO;
