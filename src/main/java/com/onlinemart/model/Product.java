@@ -9,6 +9,7 @@ import com.onlinemart.commons.Color;
 import com.onlinemart.commons.Sizes;
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -51,7 +52,7 @@ public class Product implements Serializable {
         this.vendor = vendor;
     }
     
-    @ManyToOne()
+    @ManyToOne(cascade = CascadeType.ALL)
     private Vendor vendor;
     
     @Temporal(TemporalType.DATE)

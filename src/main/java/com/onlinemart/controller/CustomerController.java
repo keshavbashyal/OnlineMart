@@ -9,7 +9,6 @@ import com.onlinemart.model.CreditCard;
 import com.onlinemart.model.Customer;
 import com.onlinemart.service.CreditCardService;
 import com.onlinemart.service.CustomerService;
-import com.onlinemart.service.UserRoleService;
 import com.onlinemart.service.UserService;
 import java.security.Principal;
 import javax.servlet.http.HttpSession;
@@ -40,9 +39,6 @@ public class CustomerController {
     @Autowired
     private CreditCardService creditCardService;
     
-    @Autowired
-    private UserRoleService userRoleService;
-    
     @RequestMapping("/customer")
     public String printHello(ModelMap model) {
         model.addAttribute("message", "Hello world! Inside Customer hello");
@@ -58,8 +54,10 @@ public class CustomerController {
     @RequestMapping("/customer/dashboard")
     public String customerAccount(ModelMap model,HttpSession session, Principal princ) {
         session.setAttribute("user", userService.getByEmail(princ.getName()));
+        
+       // User u=(User)session.getAttribute("user");
         Customer c = (Customer)session.getAttribute("user");
-        System.out.println(userRoleService.getCustomer().getRole());
+        session.setAttribute("userType", "customer");
         if (c == null) {
            // session.setAttribute("selected", customerService.getCustomer(1L));
             return "/login";
@@ -98,19 +96,12 @@ public class CustomerController {
     }
 
     @RequestMapping(value = "/customer/save", method = RequestMethod.POST)
-    public String saveUser(@Valid Customer customer, BindingResult result, HttpSession session, Model model) {
+    public String saveUser(@Valid Customer customer, BindingResult result, HttpSession session) {
         if (result.hasErrors()) {
             return "customer/addCustomer";
         } else {
-            if (customer.getPassword().equals(customer.getRepassword())){
-                customer.setUserRoles(userRoleService.getCustomer());
-                customerService.saveCustomer(customer);
-                session.setAttribute("user", customer);
-            }
-            else{
-                model.addAttribute("msg", "Passwords don't match");
-                return "/customer/addCustomer";
-            }
+            customerService.saveCustomer(customer);
+            session.setAttribute("user", customer);
         }
         return "redirect:/customer/account";
     }

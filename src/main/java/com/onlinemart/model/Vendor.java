@@ -76,7 +76,9 @@ public class Vendor extends User implements Serializable {
         this.products = products;
     }
     
-    
+    public void addProduct(Product product){
+        this.products.add(product);
+    }
 
    
 }

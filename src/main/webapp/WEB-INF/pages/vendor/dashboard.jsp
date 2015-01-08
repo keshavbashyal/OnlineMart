@@ -32,8 +32,7 @@
                     </div>
 
                     <div class="span9 pull-right">
-                        <div class="error">${error}</div>
-                        <div class="success">${success}</div>
+                        <div class="${errType}">${msg}</div>
                         <div class="span3 pull-right">
                             <a href="<c:url value="vendor/productaddfrm" />" class="btn btn-success pull-right">Add Product</a>
                         </div>

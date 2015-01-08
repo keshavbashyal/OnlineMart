@@ -13,7 +13,7 @@
         <title>OnlineMart - Vendor - Product Add Form</title>
         <base href="<c:url value="/" />"/>
         <link rel="stylesheet" href="resources/css/style.css"/>
-        
+
     </head>
     <body>
 
@@ -33,26 +33,30 @@
                     </div>
 
                     <div class="span9 pull-right">
-                        <h5>Vendor &rsaquo; Dashboard &rsaquo; Add Product</h5>
+                        <div class="breadcrumb">Vendor &rsaquo; Dashboard &rsaquo; Add Product</div>
                         <br>
                         <div class="span9 pull-right">
                             <spring:form method="post" action="vendor/addProduct" commandName="product" enctype="multipart/form-data" class="pull-right">
                                 <spring:errors element="div" cssClass="errors" path="*"/>
                                 <spring:input type="hidden" path="id"/>
-                                <table> 
+                                <table class="table table-condensed pull-right"> 
                                     <tr>
+                                        <td>Name</td>
                                         <td><spring:input path="productName" id="name" cssClass="input-xxlarge" /></td>
                                         <td><spring:errors path="productName" element="div" cssClass="error" /></td>
                                     </tr>
                                     <tr>
+                                        <td>Description</td>
                                         <td><spring:textarea path="productDescription" id="desc" cssClass="input-xxlarge"/></td>
                                         <td><spring:errors path="productDescription" element="div" cssClass="error" /></td>
                                     </tr>
                                     <tr>
+                                        <td>Price</td>
                                         <td><spring:input path="unitPrice" id="price" cssClass="input-xxlarge" /></td>
                                         <td><spring:errors path="unitPrice" element="div" cssClass="error" /></td>
                                     </tr>
                                     <tr>
+                                        <td>Color</td>
                                         <td>
                                             <spring:select path="color" id="color">
                                                 <spring:option value="" label="--Select Color"/>
@@ -62,6 +66,7 @@
                                         <td><spring:errors path="color" element="div" cssClass="error" /></td>
                                     </tr>
                                     <tr>
+                                        <td>Size</td>
                                         <td>
                                             <spring:select path="sizes" id="size">
                                                 <spring:option value="" label="--Select Size"/>
@@ -71,19 +76,17 @@
                                         <td><spring:errors path="sizes" element="div" cssClass="error" /></td>
                                     </tr>
                                     <tr>
+                                        <td>Date</td>
                                         <td><spring:input path="addDate" id="datepicker"/></td>
                                         <td><spring:errors path="addDate" element="div" cssClass="error" /></td>
                                     </tr>
-                                     <tr>
-                                    <td><label>Images</label></td>
-                              
-                                    <td> <input type="file" name="file"  />
-                                     
-                                    <br />
-                                
-                                    </td>
-                                </tr>
                                     <tr>
+                                        <td>Images</td>
+                                        <td> <input type="file" name="file" /></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
                                         <td colspan="2">
                                             <input type="reset" value="Reset" class="btn btn-danger" />
                                             <input type="submit" value="Add Product" class="btn btn-success"/>
@@ -110,7 +113,7 @@
         <script src="resources/js/jquery-ui.js"></script>
         <script>
             $(function () {
-                $("#datepicker").datepicker({dateFormat: 'mm-dd-yy' });
+                $("#datepicker").datepicker({dateFormat: 'mm-dd-yy'});
             });
         </script>
     </body>

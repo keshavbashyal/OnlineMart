@@ -10,7 +10,6 @@ import com.onlinemart.commons.Sizes;
 import com.onlinemart.model.Product;
 import com.onlinemart.model.Vendor;
 import com.onlinemart.service.ProductService;
-import com.onlinemart.service.UserRoleService;
 import com.onlinemart.service.UserService;
 import com.onlinemart.service.VendorService;
 import java.security.Principal;
@@ -32,46 +31,40 @@ import org.springframework.web.servlet.ModelAndView;
  *
  * @author Keshav
  */
-
 @Controller
 public class VendorController {
 
-     @Autowired
+    @Autowired
     UserService userService;
     @Autowired
     VendorService vendorService;
     @Autowired
     ProductService productService;
-    @Autowired
-    UserRoleService userRoleService;
-  
-    
+
     @RequestMapping("/vendor/dashboard")
-    public String printHello(ModelMap model,HttpSession session, Principal princ) {
+    public String printHello(ModelMap model, HttpSession session, Principal princ) {
         session.setAttribute("user", userService.getByEmail(princ.getName()));
-        
-        Vendor vendor=(Vendor)session.getAttribute("user");
-       
-        if(vendor.getStatus().equalsIgnoreCase("PENDING"))
-        {
+
+        Vendor vendor = (Vendor) session.getAttribute("user");
+        session.setAttribute("userType", "vendor");
+
+        if (vendor.getStatus().equalsIgnoreCase("PENDING")) {
             session.removeAttribute("user");
             return "redirect:/login";
+        } else {
+            return "redirect:/vendor/home";
         }
-        else return "redirect:/vendor/home";
        //model.addAttribute("products", null);
-       // return "redirect:/vendor/dashboard";
+        // return "redirect:/vendor/dashboard";
     }
-    
-    
-    
-    
-    @RequestMapping(value="/vendor/home")
-    public ModelAndView vendorHome(){
-        ModelAndView model=new ModelAndView("/vendor/dashboard");
+
+    @RequestMapping(value = "/vendor/home")
+    public ModelAndView vendorHome() {
+        ModelAndView model = new ModelAndView("/vendor/dashboard");
         return model;
     }
 
-    @RequestMapping(value="/vendor/welcome")
+    @RequestMapping(value = "/vendor/welcome")
     public String printWelcome(ModelMap model) {
         model.addAttribute("message", "Welcome!, Inside Vendor welcome");
         return "/vendor/welcome";
@@ -87,11 +80,10 @@ public class VendorController {
         if (result.hasErrors()) {
             return "vendor/form";
         } else {
-               
+
             if (vendor.getPassword().equals(vendor.getRepassword())) {
                 vendor.setRegisterDate(new Date());
                 vendor.setStatus("PENDING");
-                vendor.setUserRoles(userRoleService.getVendor());
                 vendorService.saveVendor(vendor);
             }
         }
@@ -105,17 +97,19 @@ public class VendorController {
     }
 
     @RequestMapping("/vendor/edit/{vendorid}")
-    public String editUser(@PathVariable("vendorid") Long id,  Model model) {
+    public String editUser(@PathVariable("vendorid") Long id, Model model) {
         model.addAttribute("vendor", vendorService.getVendor(id));
         return "vendor/form";
     }
+
     @RequestMapping("/vendor/save/{vendorid}")
     public String varify(@Valid Vendor vendor, BindingResult result) {
         vendor.setStatus("APPROVED");
         vendorService.saveVendor(vendor);
         return "redirect:/vendor/list";
     }
-     @RequestMapping("/vendor/vendorVarification/{vendorid}")
+
+    @RequestMapping("/vendor/vendorVarification/{vendorid}")
     public String varifyvander(@PathVariable("vendorid") Long id, Model model) {
         model.addAttribute("vendor", vendorService.getVendor(id));
         return "vendor/vendorVarification";
@@ -133,17 +127,21 @@ public class VendorController {
         model.addAttribute("enum_size", Sizes.values());
         model.addAttribute("enum_color", Color.values());
         return "vendor/productAddForm";
-    }    
-    
-   
+    }
+
     @RequestMapping(value = "/vendor/addProduct", method = RequestMethod.POST)
-    public String addProduct(@Valid Product product, BindingResult result, Model model) {
+    public String addProduct(@Valid Product product, BindingResult result, Model model, HttpSession session) {
         if (result.hasErrors()) {
-            model.addAttribute("error", result.toString());
+            model.addAttribute("errType", "alert error");
+            model.addAttribute("msg", result.toString());
             //return "vendor/dashboard";
         } else {
+            Vendor vendor = (Vendor) session.getAttribute("user");
+            product.setVendor(vendor);
+            vendor.addProduct(product);
             productService.saveProduct(product);
-            model.addAttribute("success", " Successfully Added. ");
+            model.addAttribute("errType", "alert success");
+            model.addAttribute("msg", " Successfully Added. ");
         }
         return "vendor/dashboard";
     }
