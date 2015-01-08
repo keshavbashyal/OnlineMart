@@ -98,14 +98,20 @@ public class ProductController {
     
     @RequestMapping(value = "/product/search", method = RequestMethod.POST)
     public String findproduct(@RequestParam("search") String search, Model model)  {
-        System.out.println("Done");
-       // List<Product> plist=productService.findProductByName(search);
+        
+       // model.addAttribute("products", productService.findProductByName(search));
+        return "redirect:/product/search/"+search;
+        //return null;
+    }
+     @RequestMapping(value = "/product/search/{search}", method = RequestMethod.GET)
+    public String findproductFromSearch(@PathVariable("search") String search, Model model)  {
+        
+        model.addAttribute("search", search);
         
         model.addAttribute("products", productService.findProductByName(search));
         return "product/productlist";
         //return null;
     }
-    
 }
 
     
