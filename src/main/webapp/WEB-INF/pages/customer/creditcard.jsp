@@ -44,27 +44,27 @@
                             <table>
                                 <tr>
                                     <td><label>Card Number </label></td>
-                                    <td><input type="text" name="card.cardNo" /></td>
+                                    <td><input type="text" name="cardNo" /></td>
                                     <td><spring:errors path="cardNo" element="div" cssClass="error" /></td>
                                 </tr>
                                 <tr>
                                     <td><label>Expiry Date : Year </label></td>
-                                    <td><input type="number" name="card.expYear" /></td>
+                                    <td><input type="number" name="expYear" /></td>
                                     <td><spring:errors path="expYear" element="div" cssClass="error" /></td>
                                 </tr>
                                 <tr>
                                     <td><label>Expiry Date : Month </label></td>
-                                    <td><input type="number" name="card.expMonth" /></td>
+                                    <td><input type="number" name="expMonth" /></td>
                                     <td><spring:errors path="expMonth" element="div" cssClass="error" /></td>
                                 </tr>
                                 <tr>
                                     <td><label>CCV Code </label></td>
-                                    <td><input type="text" name="card.ccv" /></td>
+                                    <td><input type="text" name="ccv" /></td>
                                     <td><spring:errors path="ccv" element="div" cssClass="error" /></td>
                                 </tr>
                                 <tr>
                                     <td><label>Credit Card Type </label></td>
-                                    <td><input type="text" name="card.type" /></td>
+                                    <td><input type="text" name="type" /></td>
                                     <td><spring:errors path="type" element="div" cssClass="error" /></td>
                                 </tr>
                                 

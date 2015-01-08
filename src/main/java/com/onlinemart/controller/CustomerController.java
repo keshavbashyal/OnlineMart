@@ -78,19 +78,32 @@ public class CustomerController {
         return "/customer/addCustomer";
     }
     
-   @RequestMapping(value = "/customer/card/save", method = RequestMethod.POST)
-    public ModelAndView saveUserCard(@ModelAttribute("card") CreditCard card,BindingResult result,HttpSession session) {
-        ModelAndView model=new ModelAndView("/customer/dashboard/");
+ 
+    
+    
+      @RequestMapping(value = "/customer/card/save", method = RequestMethod.POST)
+    public String saveUserCard(@ModelAttribute("card") CreditCard card,BindingResult result,HttpSession session) {
+         
+        //creditCardService.saveCreditCard(card);
+        
+        
+         Customer cus=(Customer)session.getAttribute("user");
+         cus.addCard(card);
+         customerService.saveCustomer(cus);
+        //System.out.println("card="+card.getCardNo());
+        //model=new ModelAndView("/customer/account/");
+         String model="/customer/account";
         if (result.hasErrors()) {
-            return model;
+           //return model;
+            System.out.println("error s");
         } else {
             
-            Customer cus=(Customer)session.getAttribute("user");
-            //creditCardService.saveCreditCard(card);
-            cus.addCard(card);
+            //Customer cus=(Customer)session.getAttribute("user");
+           
+           //cus.addCard(card);
             
-            customerService.saveCustomer(cus);
-            model=new ModelAndView("/customer/account");
+           // customerService.saveCustomer(cus);
+           // model=new ModelAndView("/customer/account");
            // session.setAttribute("user", customer);
         }
        // return "redirect:/customer/account";
@@ -98,6 +111,7 @@ public class CustomerController {
        // return null;
         return model;
     }
+
 
     @RequestMapping(value = "/customer/save", method = RequestMethod.POST)
     public String saveUser(@Valid Customer customer, BindingResult result, HttpSession session) {
