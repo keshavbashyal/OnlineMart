@@ -19,4 +19,6 @@ public interface ProductDAO {
     public Product getProduct(Long id);
     public void deleteProduct(Long id);
     public List<Product> findProductByName(String name); 
+
+    public List<Product> getProductByVendorId(Long vendor_id);
 }

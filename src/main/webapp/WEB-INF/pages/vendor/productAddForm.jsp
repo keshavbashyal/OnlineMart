@@ -82,7 +82,7 @@
                                     </tr>
                                     <tr>
                                         <td>Images</td>
-                                        <td> <input type="file" name="file" /></td>
+                                        <td><input type="file" name="file" /></td>
                                         <td></td>
                                     </tr>
                                     <tr>

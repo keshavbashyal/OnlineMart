@@ -42,7 +42,7 @@ public class VendorController {
     ProductService productService;
 
     @RequestMapping("/vendor/dashboard")
-    public String printHello(ModelMap model, HttpSession session, Principal princ) {
+    public String vendorDashboard(ModelMap model, HttpSession session, Principal princ) {
         session.setAttribute("user", userService.getByEmail(princ.getName()));
 
         Vendor vendor = (Vendor) session.getAttribute("user");
@@ -52,17 +52,16 @@ public class VendorController {
             session.removeAttribute("user");
             return "redirect:/login";
         } else {
-            return "redirect:/vendor/home";
+            model.addAttribute("products", productService.getProductByVendorId(vendor.getId()));
+            return "/vendor/dashboard";
         }
-       //model.addAttribute("products", null);
-        // return "redirect:/vendor/dashboard";
     }
 
-    @RequestMapping(value = "/vendor/home")
-    public ModelAndView vendorHome() {
-        ModelAndView model = new ModelAndView("/vendor/dashboard");
-        return model;
-    }
+//    @RequestMapping(value = "/vendor/home")
+//    public ModelAndView vendorHome() {
+//        ModelAndView model = new ModelAndView("/vendor/dashboard");
+//        return model;
+//    }
 
     @RequestMapping(value = "/vendor/welcome")
     public String printWelcome(ModelMap model) {
@@ -139,11 +138,12 @@ public class VendorController {
             Vendor vendor = (Vendor) session.getAttribute("user");
             product.setVendor(vendor);
             vendor.addProduct(product);
+            //vendorService.saveVendor(vendor);
             productService.saveProduct(product);
             model.addAttribute("errType", "alert success");
             model.addAttribute("msg", " Successfully Added. ");
         }
-        return "vendor/dashboard";
+        return "redirect:/vendor/dashboard";
     }
 
 }

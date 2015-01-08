@@ -7,7 +7,7 @@
 <ul class="nav">
     <ul class="nav nav-list">
         <li class="">
-            <a href="<c:url value='/vendor' />" >Dashboard</a>
+            <a href="<c:url value='/vendor/dashboard' />" >Dashboard</a>
         </li>
         <li>
             <a href="#">Report Weekly</a>

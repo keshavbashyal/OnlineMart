@@ -89,7 +89,7 @@
                             <i class="icon-search"></i>
                         </span>
                     <input name="search" class="span3" data-provide="typeahead" placeholder="Search product" id="prependedInput" size="16" type="text" data-source='["Womens Dresses", "Womens Tops", "Womens Suites", "Womens Jeans", "Womens Swim", "Womens Jewelry", "Womens Beauty", "Mens Shirts", "Mens Jeans", "Mens Suits", "Mens Shoes", "Mens Swim", "Mens Active", "Mens polos", "Kids Shirts", "Kids Jeans", "Kids Dresses", "Kids Shoes", "Kids Swim", "Kids Active", "Kids Polos"]'/>
-                        <input type="submit" value="Submit" class="btn btn-primary pull-right"/>
+                        <input type="submit" value="Submit" class="" id="prependedInput"/>
                     </form>
                 </div>
             </div>	
