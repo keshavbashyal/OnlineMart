@@ -67,7 +67,7 @@
     </bean>
            
   <security:http pattern="/customer/addCustomer" security="none"/>
-   
+  <security:http pattern="/customer/save" security="none"/> 
   
            
  <security:http auto-config='true'>
