@@ -29,14 +29,14 @@
                         <div class="thumbnail">
                             <img src="resources/img/user-male.svg" alt="Customer Image" />
                         </div>
-                        <%@include file="customer_left_nav.jsp" %>
+                        
                     </div>
 
                     <div class="span9 pull-right">
                         <div class="page-header">
                             <h3>Customer &rsaquo; Account &rsaquo; Add Credit Card</h3>
                         </div>
-                        <form method="post" action="customer/card/save" >
+                        <form method="post" action="shoppingcart/checkoutGuest" >
                             
                             <spring:errors element="div" cssClass="errors" path="*"/>
                            

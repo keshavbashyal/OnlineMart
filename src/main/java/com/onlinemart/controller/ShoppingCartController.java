@@ -14,8 +14,11 @@ import com.onlinemart.model.ProductShoppingCart;
 import com.onlinemart.model.ShoppingCart;
 import com.onlinemart.model.Transaction;
 import com.onlinemart.model.User;
+import com.onlinemart.service.FinancialRecordService;
 import com.onlinemart.service.ProductService;
+import com.onlinemart.service.SalesService;
 import com.onlinemart.service.ShoppingCartService;
+import com.onlinemart.service.TransactionService;
 import java.util.Date;
 import java.util.List;
 
@@ -43,13 +46,24 @@ public class ShoppingCartController {
 
     @Autowired
     ProductService productService;
+    
+    @Autowired
+    TransactionService transactionService;
+    
+    @Autowired
+    FinancialRecordService financialRecordService;
 
+    @Autowired
+    SalesService salesService;
+    
     private ShoppingCart shoppingCart = new ShoppingCart();
 
     private Long totalquantity = 0L;
 
 //    @Autowired
 //    OrderService orderService;
+    
+    
     private Double totalPrice = 0.0;
 
     @RequestMapping("/shoppingcart/edit/{shoppingid}")
@@ -122,6 +136,7 @@ public class ShoppingCartController {
         Orders order = new Orders();
         order.setOrderDate(new Date());
         order.setTotalPrice(totalPrice);
+        
 
         //Checking the creditcard
         //RestTemplate restTemplate = new RestTemplate();
@@ -143,9 +158,11 @@ public class ShoppingCartController {
             financialRecord.setTotalAmount(400F);
             financialRecord.setDateOfTransaction(new Date());
 
+          //  financialRecordService.saveFinancialRecord(financialRecord);
+            
             //Calling the RESTful webservices for posting financial data
-            String uri = "http://localhost:8080/financialServiceProvider/webresources/entitiies.financialrecord";
-            restTemplate.postForObject(uri, financialRecord, FinancialRecord.class);
+//            String uri = "http://localhost:8080/financialServiceProvider/webresources/entitiies.financialrecord";
+//            restTemplate.postForObject(uri, financialRecord, FinancialRecord.class);
 
             shoppingCart = new ShoppingCart();
             totalquantity = 0L;
@@ -163,7 +180,12 @@ public class ShoppingCartController {
 
         return "redirect:/shoppingcart/productlist";
     }
-
+    
+    @RequestMapping(value = "/shoppingcart/addcreditcart")
+    public String creditcardadd(HttpSession httpSession) {
+        return "/shoppingcart/addcreditcard";
+    }
+    
     @RequestMapping(value = "/shoppingcart/checkout")
     public String checkout(HttpSession httpSession) {
         User user;
@@ -191,6 +213,12 @@ public class ShoppingCartController {
         transaction.setGrossAmount(totalPrice*0.8);
         transaction.setTotalAmount(totalPrice);
         transaction.setOrder(order);
+        
+        //Saving transactionService and salesSercive        
+        transactionService.saveTransaction(transaction);
+        salesService.addSalesFromTransaction(transaction);
+        
+//        transactionService.saveTransaction(transaction);
        
         //Checking the creditcard
         RestTemplate restTemplate = new RestTemplate();
@@ -209,6 +237,8 @@ public class ShoppingCartController {
             financialRecord.setVendorId(1);
             financialRecord.setTotalAmount(400F);
             financialRecord.setDateOfTransaction(new Date());
+            
+//            financialRecordService.saveFinancialRecord(financialRecord);
 
             //Calling the RESTful webservices for posting financial data
             //String uri = "http://localhost:8080/financialServiceProvider/webresources/entitiies.financialrecord";

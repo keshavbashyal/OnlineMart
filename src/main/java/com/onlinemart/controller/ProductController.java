@@ -89,14 +89,14 @@ public class ProductController {
     @RequestMapping("/product/{productid}/productdetail")
     public String productDetail(@PathVariable("productid") Long id, Model model, HttpServletResponse response) {
         Product product = productService.getProduct(id);
-        try{
-        if (product != null) {
-                OutputStream out = response.getOutputStream();
-                out.write(product.getImage());
-                response.flushBuffer();
-            }
-        } catch (IOException ex) {
-            ex.printStackTrace();}
+//        try{
+//        if (product != null) {
+//                OutputStream out = response.getOutputStream();
+//                out.write(product.getImage());
+//                response.flushBuffer();
+//            }
+//        } catch (IOException ex) {
+//            ex.printStackTrace();}
         model.addAttribute("product", product);
         return "product/productdetail";
     }
