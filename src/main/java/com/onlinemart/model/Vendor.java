@@ -5,9 +5,11 @@
  */
 package com.onlinemart.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,7 +23,8 @@ import org.springframework.format.annotation.DateTimeFormat;
  * @author Keshav
  */
 @Entity
-public class Vendor extends User {
+@DiscriminatorValue("ROLE_VENDOR")
+public class Vendor extends User implements Serializable {
     
 //    private static final long serialVersionUID = 1L;
 //    @Id
@@ -32,7 +35,6 @@ public class Vendor extends User {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date registerDate; 
     private String vendorName; 
- 
     
     private String Status;
     

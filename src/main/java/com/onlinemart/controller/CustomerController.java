@@ -5,6 +5,7 @@
  */
 package com.onlinemart.controller;
 
+import com.onlinemart.model.CreditCard;
 import com.onlinemart.model.Customer;
 import com.onlinemart.service.CreditCardService;
 import com.onlinemart.service.CustomerService;
@@ -17,9 +18,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  *
@@ -51,9 +54,11 @@ public class CustomerController {
     @RequestMapping("/customer/dashboard")
     public String customerAccount(ModelMap model,HttpSession session, Principal princ) {
         session.setAttribute("user", userService.getByEmail(princ.getName()));
-        Customer c = (Customer) session.getAttribute("user");
+        
+       // User u=(User)session.getAttribute("user");
+        Customer c = (Customer)session.getAttribute("user");
         if (c == null) {
-            session.setAttribute("selected", customerService.getCustomer(1L));
+           // session.setAttribute("selected", customerService.getCustomer(1L));
             return "/login";
 
         } else {
@@ -66,6 +71,27 @@ public class CustomerController {
     public String registerCustomer(ModelMap model) {
         model.addAttribute("customer", new Customer());
         return "/customer/addCustomer";
+    }
+    
+   @RequestMapping(value = "/customer/card/save", method = RequestMethod.POST)
+    public ModelAndView saveUserCard(@ModelAttribute("card") CreditCard card,BindingResult result,HttpSession session) {
+        ModelAndView model=new ModelAndView("/customer/dashboard/");
+        if (result.hasErrors()) {
+            return model;
+        } else {
+            
+            Customer cus=(Customer)session.getAttribute("user");
+            //creditCardService.saveCreditCard(card);
+            cus.addCard(card);
+            
+            customerService.saveCustomer(cus);
+            model=new ModelAndView("/customer/account");
+           // session.setAttribute("user", customer);
+        }
+       // return "redirect:/customer/account";
+        
+       // return null;
+        return model;
     }
 
     @RequestMapping(value = "/customer/save", method = RequestMethod.POST)

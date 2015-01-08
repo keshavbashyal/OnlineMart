@@ -10,6 +10,7 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,7 +27,9 @@ import javax.persistence.Transient;
  * @author psubedi
  */
 @Inheritance(strategy = InheritanceType.JOINED)
-//@DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING)
+//@DiscriminatorColumn(name = "usertype", discriminatorType = DiscriminatorType.STRING)
+@DiscriminatorValue("ROLE_USER")
+
 @Entity
 public class User implements Serializable {
 
@@ -34,7 +37,6 @@ public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
     private String email;
     private String fname;
     private String lname;

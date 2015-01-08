@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author s_paw_000
  */
 @Service
+@Transactional
 public class CreditCardServiceImpl implements CreditCardService{
     @Autowired
     private CreditCardDAO creditCardDAO;

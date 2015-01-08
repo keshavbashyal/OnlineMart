@@ -89,6 +89,7 @@ public class ProductController {
     @RequestMapping("/product/{productid}/productdetail")
     public String productDetail(@PathVariable("productid") Long id, Model model, HttpServletResponse response) {
         Product product = productService.getProduct(id);
+
         model.addAttribute("product", product);
         return "product/productdetail";
     }

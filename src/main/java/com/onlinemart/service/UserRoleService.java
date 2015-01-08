@@ -6,14 +6,16 @@
 package com.onlinemart.service;
 
 import com.onlinemart.model.UserRole;
+import org.hibernate.usertype.UserType;
+import org.springframework.stereotype.Service;
 
 /**
  *
- * @author acer
+ * @author s_paw_000
  */
+@Service
 public interface UserRoleService {
-    
-    public UserRole getAdminRole();
-    public UserRole getVendorRole();
-    public UserRole getCustomerRole();
+    public UserRole getAdmin();
+    public UserRole getCustomer();
+    public UserRole getVendor();
 }
