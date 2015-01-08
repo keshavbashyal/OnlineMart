@@ -14,7 +14,7 @@
         <div class="container min-height-4">
             <div class="row">
                 <div class="col-md-4">
-                    <h3 class="text-center">Admin Login</h3>
+                    <h5 class="text-center"> Login </h5>
                     <form name='loginForm' action="<c:url value='j_spring_security_check' />" class="form-horizontal form-control"
                           method='POST'>
                                      

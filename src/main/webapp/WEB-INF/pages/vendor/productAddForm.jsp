@@ -39,7 +39,7 @@
                             <spring:form method="post" action="vendor/addProduct" commandName="product" enctype="multipart/form-data" class="pull-right">
                                 <spring:errors element="div" cssClass="errors" path="*"/>
                                 <spring:input type="hidden" path="id"/>
-                                <table class="table table-condensed pull-right"> 
+                                <table class="table table-condensed table-striped pull-right"> 
                                     <tr>
                                         <td>Name</td>
                                         <td><spring:input path="productName" id="name" cssClass="input-xxlarge" /></td>

@@ -57,6 +57,7 @@
                 <prop key="hibernate.hbm2ddl.auto">update</prop>
                 <prop key="hibernate.dialect">${jdbc.dialect}</prop>
                 <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.enable_lazy_load_no_trans">true</prop>
             </props>
         </property>
     </bean>
@@ -78,10 +79,10 @@
 
 <security:intercept-url pattern="/admin**" access="ROLE_ADMIN"/>
 <security:intercept-url pattern="/admin/**" access="ROLE_ADMIN"/>
-<!--
+
 <security:intercept-url pattern="/vendor**" access="ROLE_VENDOR"/>
 <security:intercept-url pattern="/vendor/**" access="ROLE_VENDOR"/>
--->
+
 <security:intercept-url pattern="/customer**" access="ROLE_CUSTOMER"/>
 <security:intercept-url pattern="/customer/**" access="ROLE_CUSTOMER"/>
 

@@ -37,8 +37,9 @@
                             <a href="<c:url value="vendor/productaddfrm" />" class="btn btn-success pull-right">Add Product</a>
                         </div>
                         <h5>Vendor &rsaquo; Dashboard</h5>
-                        <table id="tablelist" class="span9 table-bordered table-striped pull-right">
-                            <tr class="">
+                        <br/>
+                        <table id="" class="table table-condensed table-striped pull-right">
+                            <tr id="navbar" class="table-bordered">
                                 <th>#</th>
                                 <th>Product Name</th>
                                 <th>Description</th>
