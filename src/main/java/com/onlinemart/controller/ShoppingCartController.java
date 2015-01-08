@@ -15,6 +15,7 @@ import com.onlinemart.model.ShoppingCart;
 import com.onlinemart.model.Transaction;
 import com.onlinemart.model.User;
 import com.onlinemart.service.FinancialRecordService;
+import com.onlinemart.service.OrderService;
 import com.onlinemart.service.ProductService;
 import com.onlinemart.service.SalesService;
 import com.onlinemart.service.ShoppingCartService;
@@ -56,12 +57,14 @@ public class ShoppingCartController {
     @Autowired
     SalesService salesService;
     
+    @Autowired
+    OrderService orderService;
+    
     private ShoppingCart shoppingCart = new ShoppingCart();
 
     private Long totalquantity = 0L;
 
-//    @Autowired
-//    OrderService orderService;
+
     
     
     private Double totalPrice = 0.0;
@@ -136,12 +139,29 @@ public class ShoppingCartController {
         Orders order = new Orders();
         order.setOrderDate(new Date());
         order.setTotalPrice(totalPrice);
+        orderService.saveOrder(order);
         
-
+        //Transaction
+        
+        System.out.println("before transaction");
+       //Transaction
+        Transaction transaction = new Transaction();
+        //transaction.setUser();
+        //transaction.setAddress(((Customer)user).getAddress());
+        //transaction.setCreditCard(((Customer)user).getCreditCard().get(1));
+        transaction.setGrossAmount(totalPrice*0.8);
+        transaction.setTotalAmount(totalPrice);
+        transaction.setOrder(order);
+        transactionService.saveTransaction(transaction);
+        
+        //Saving salese  
+        //salesService.addSalesFromTransaction(transaction);
+  
         //Checking the creditcard
         //RestTemplate restTemplate = new RestTemplate();
         //String result = restTemplate.getForObject("http://10.10.13.146:8080/cardgateway/webresources/verify/ccDetails?no=4854251425585698&requested=100", String.class);
         //For testing
+        
         RestTemplate restTemplate = new RestTemplate();
         String result = "1";
 
@@ -158,7 +178,7 @@ public class ShoppingCartController {
             financialRecord.setTotalAmount(400F);
             financialRecord.setDateOfTransaction(new Date());
 
-          //  financialRecordService.saveFinancialRecord(financialRecord);
+            financialRecordService.saveFinancialRecord(financialRecord);
             
             //Calling the RESTful webservices for posting financial data
 //            String uri = "http://localhost:8080/financialServiceProvider/webresources/entitiies.financialrecord";
@@ -196,32 +216,33 @@ public class ShoppingCartController {
             System.out.println("Inside session");
             user = (User) httpSession.getAttribute("user");
         }
+        
+        if (!(user instanceof Customer)) {
+            System.out.println("Inside Customer.class check");
+            return "redirect:/shoppingcart/unabletochekout";
+        }
 
         //Order 
         Orders order = new Orders();
         order.setOrderDate(new Date());
         order.setTotalPrice(totalPrice);
+        orderService.saveOrder(order);
 
-        //Transaction            
-        if (!(user instanceof Customer)) {
-            System.out.println("Inside Customer.class check");
-            return "redirect:/shoppingcart/unabletochekout";
-        }
-    
-        //Transaction
-        
+        //Transaction        
         System.out.println("before transaction");
-//        Transaction transaction = new Transaction();
-//        transaction.setUser(user);
-//        transaction.setAddress(((Customer)user).getAddress());
-//        transaction.setCreditCard(((Customer)user).getCreditCard().get(1));
-//        transaction.setGrossAmount(totalPrice*0.8);
-//        transaction.setTotalAmount(totalPrice);
-//        transaction.setOrder(order);
+        Transaction transaction = new Transaction();
+        transaction.setUser(user);
+        //transaction.setAddress(((Customer)user).getAddress());
+        //transaction.setCreditCard(((Customer)user).getCreditCard().get(1));
+        transaction.setGrossAmount(totalPrice*0.8);
+        transaction.setTotalAmount(totalPrice);
+        transaction.setOrder(order);
         
         //Saving transactionService and salesSercive        
-        //transactionService.saveTransaction(transaction);
-        //salesService.addSalesFromTransaction(transaction);
+        transactionService.saveTransaction(transaction);
+        
+        //Saving transactionService and salesSercive  
+        salesService.addSalesFromTransaction(transaction);
         System.out.println("after TransactionService");
         
 //        transactionService.saveTransaction(transaction);
