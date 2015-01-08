@@ -164,9 +164,11 @@ public class CustomerController {
         return "/customer/creditcard";
     }
     @RequestMapping("customer/address")
-    public String editAddress(Model model) {
+    public String editAddress(@ModelAttribute("customer") Customer customer, Model model, HttpSession session) {
         //model.addAttribute("selected", customerService.getCustomer(id));
         //System.out.println("Accounts called for customer");
+        Customer c = (Customer)session.getAttribute("user");
+        model.addAttribute("customer", c);
         return "/customer/address";
     }
 //    @RequestMapping("customer/creditcardsave")
