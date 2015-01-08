@@ -27,7 +27,7 @@ import javax.persistence.Transient;
  * @author psubedi
  */
 @Inheritance(strategy = InheritanceType.JOINED)
-@DiscriminatorColumn(name = "usertype", discriminatorType = DiscriminatorType.STRING)
+//@DiscriminatorColumn(name = "usertype", discriminatorType = DiscriminatorType.STRING)
 @DiscriminatorValue("ROLE_USER")
 
 @Entity
