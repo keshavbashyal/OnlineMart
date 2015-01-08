@@ -68,7 +68,7 @@
                 </table>
 
                 <br/>
-                <a href="<c:url value="/shoppingcart/checkout/" />"  class="btn btn-danger btn-large"><i class="icon-shopping-cart icon-white"></i>  Check out</a>
+                <a href="<c:url value="/shoppingcart/checkout" />"  class="btn btn-danger btn-large"><i class="icon-shopping-cart icon-white"></i>Check out</a>
 
             </div>
         </div>

@@ -6,11 +6,13 @@
 package com.onlinemart.controller;
 
 import com.onlinemart.model.CreditCard;
+import com.onlinemart.model.Customer;
 import com.onlinemart.model.FinancialRecord;
 import com.onlinemart.model.Orders;
 import com.onlinemart.model.Product;
 import com.onlinemart.model.ProductShoppingCart;
 import com.onlinemart.model.ShoppingCart;
+import com.onlinemart.model.Transaction;
 import com.onlinemart.model.User;
 import com.onlinemart.service.ProductService;
 import com.onlinemart.service.ShoppingCartService;
@@ -121,22 +123,13 @@ public class ShoppingCartController {
         order.setOrderDate(new Date());
         order.setTotalPrice(totalPrice);
 
-        //Transaction
-//        Transaction transaction = new Transaction();
-//        transaction.setUser();
-//        transaction.setAddress(customer.getAddress());
-//        transaction.setCreditCard(customer.getCreditCard().get(1));
-//        transaction.setGrossAmount(totalPrice * 0.8);
-//        transaction.setTotalAmount(totalPrice);
-//        transaction.setOrder(order);
-//Checking the creditcard
+        //Checking the creditcard
         //RestTemplate restTemplate = new RestTemplate();
         //String result = restTemplate.getForObject("http://10.10.13.146:8080/cardgateway/webresources/verify/ccDetails?no=4854251425585698&requested=100", String.class);
-        
         //For testing
         RestTemplate restTemplate = new RestTemplate();
         String result = "1";
-        
+
         if (result.equals("1")) {
             //FinancialRecord to store in OnlineMart
             FinancialRecord financialRecord = new FinancialRecord();
@@ -163,9 +156,9 @@ public class ShoppingCartController {
             httpSession.setAttribute("shoppingCart", shoppingCart);
 
         } else if (result.equals("-1")) {
-            return "shoppingcart/invalidcart";
+            return "shoppingcart/error/invalidcart";
         } else {
-            return "shoppingcart/invalidamount";
+            return "shoppingcart/error/invalidamount";
         }
 
         return "redirect:/shoppingcart/productlist";
@@ -176,33 +169,33 @@ public class ShoppingCartController {
         User user;
         if (httpSession.getAttribute("user") == null) {
             return "redirect:/shoppingcart/addcreditcart";
+        } else {
+            user = (User) httpSession.getAttribute("user");
         }
-//        else {
-//            user = (User)httpSession.getAttribute("user");
-//            
-//            
-//        }         
 
-//            user = (User)httpSession.getAttribute("user");
-//            //Order 
-//            Orders order = new Orders();
-//            order.setOrderDate(new Date());
-//            order.setTotalPrice(totalPrice);
-//            
-//            //Transaction
-//            Customer customer = (Customer)user;
-//            
-//            Transaction transaction = new Transaction();
-//            transaction.setUser(customer);
-//            transaction.setAddress(customer.getAddress());
-//            transaction.setCreditCard(customer.getCreditCard().get(1));
-//            transaction.setGrossAmount(totalPrice*0.8);
-//            transaction.setTotalAmount(totalPrice);
-//            transaction.setOrder(order);
-//       
+        //Order 
+        Orders order = new Orders();
+        order.setOrderDate(new Date());
+        order.setTotalPrice(totalPrice);
+
+        //Transaction            
+        if (user.getClass() != Customer.class) {
+            return "redirect:/shoppingcart/unabletochekout";
+        }
+    
+        
+        Transaction transaction = new Transaction();
+        transaction.setUser(user);
+        transaction.setAddress(((Customer)user).getAddress());
+        transaction.setCreditCard(((Customer)user).getCreditCard().get(1));
+        transaction.setGrossAmount(totalPrice*0.8);
+        transaction.setTotalAmount(totalPrice);
+        transaction.setOrder(order);
+       
         //Checking the creditcard
         RestTemplate restTemplate = new RestTemplate();
-        String result = restTemplate.getForObject("http://10.10.13.146:8080/cardgateway/webresources/verify/ccDetails?no=4854251425585698&requested=100", String.class);
+        //String result = restTemplate.getForObject("http://10.10.13.146:8080/cardgateway/webresources/verify/ccDetails?no=4854251425585698&requested=100", String.class);
+        String result = "1";
 
         if (result.equals("1")) {
             //FinancialRecord to store in OnlineMart
@@ -212,15 +205,14 @@ public class ShoppingCartController {
 
             financialRecord.setProfit(200F);
             financialRecord.setProfitToMycompany(100F);
-            financialRecord.setTransactionId(3);
+//            financialRecord.setTransactionId(transaction.getId());
             financialRecord.setVendorId(1);
             financialRecord.setTotalAmount(400F);
             financialRecord.setDateOfTransaction(new Date());
 
             //Calling the RESTful webservices for posting financial data
-            String uri = "http://localhost:8080/financialServiceProvider/webresources/entitiies.financialrecord";
-            restTemplate.postForObject(uri, financialRecord, FinancialRecord.class);
-
+            //String uri = "http://localhost:8080/financialServiceProvider/webresources/entitiies.financialrecord";
+            //restTemplate.postForObject(uri, financialRecord, FinancialRecord.class);
             shoppingCart = new ShoppingCart();
             totalquantity = 0L;
             totalPrice = 0.0;

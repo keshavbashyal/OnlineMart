@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.onlinemart.pojo;
+package com.onlinemart.utils;
 import java.util.Properties;
 import javax.ejb.Asynchronous;
 //import javax.ejb.Stateless;

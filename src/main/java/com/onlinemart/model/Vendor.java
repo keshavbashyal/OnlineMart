@@ -32,6 +32,7 @@ public class Vendor extends User {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date registerDate; 
     private String vendorName; 
+ 
     
     private String Status;
     
