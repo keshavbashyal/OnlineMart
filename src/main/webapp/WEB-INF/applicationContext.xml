@@ -81,7 +81,7 @@
 <security:intercept-url pattern="/customer**" access="ROLE_CUSTOMER"/>
 <security:intercept-url pattern="/customer/**" access="ROLE_CUSTOMER"/>
 
-<sec:intercept-url pattern="/customer/addCustomer" filters="none" />
+<security:intercept-url pattern="/customer/addCustomer" filters="none" />
 
 
      
