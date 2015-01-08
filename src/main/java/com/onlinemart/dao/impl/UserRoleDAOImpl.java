@@ -16,7 +16,7 @@ import org.springframework.stereotype.Repository;
  * @author s_paw_000
  */
 @Repository
-public class UserRoleDAOImpl extends AbstractDAO<UserType> implements UserRoleDAO {
+public class UserRoleDAOImpl extends AbstractDAO<UserRole> implements UserRoleDAO {
 
     @Override
     public UserRole getRole(String role) {
@@ -24,6 +24,12 @@ public class UserRoleDAOImpl extends AbstractDAO<UserType> implements UserRoleDA
         String q = "FROM UserRole where role=:role";
         Query query = getSession().createQuery(q);
         query.setParameter("role", role);
+        if (query.list().isEmpty()){
+            System.out.println("Not Found Saving");
+            UserRole temp = new UserRole();
+            temp.setRole(role);
+            getSession().merge(temp);
+        }
         return (UserRole) query.list().get(0);
     }
     
