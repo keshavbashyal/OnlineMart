@@ -22,6 +22,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -96,11 +97,11 @@ public class ProductController {
     
     
     @RequestMapping(value = "/product/search", method = RequestMethod.POST)
-    public String findproduct(Model model) {
+    public String findproduct(@RequestParam("search") String search, Model model)  {
         System.out.println("Done");
        // List<Product> plist=productService.findProductByName(search);
         
-        //model.addAttribute("products", productService.findProductByName(search));
+        model.addAttribute("products", productService.findProductByName(search));
         return "product/productlist";
         //return null;
     }
