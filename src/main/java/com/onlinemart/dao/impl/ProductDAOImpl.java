@@ -54,8 +54,8 @@ public class ProductDAOImpl extends AbstractDAO<Product> implements ProductDAO  
     @Override
     public List<Product> findProductByName(String name) {
         
-        Query query = getSession().createQuery("from Product where productName = :name ");
-        query.setParameter("name", name);
+        Query query = getSession().createQuery("from Product where productName LIKE  :name ");
+        query.setParameter("name", "%"+name+"%");
        
         System.out.println(query.list().size());
       return query.list();
