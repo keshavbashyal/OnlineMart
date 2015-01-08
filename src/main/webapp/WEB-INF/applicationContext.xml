@@ -65,7 +65,11 @@
           class="org.springframework.orm.hibernate4.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>
-            
+           
+  <security:http pattern="/customer/addCustomer" security="none"/>
+   
+  
+           
  <security:http auto-config='true'>
      
 <security:intercept-url pattern="/category**" access="ROLE_ADMIN"/>
@@ -81,7 +85,6 @@
 <security:intercept-url pattern="/customer**" access="ROLE_CUSTOMER"/>
 <security:intercept-url pattern="/customer/**" access="ROLE_CUSTOMER"/>
 
-<security:intercept-url pattern="/customer/addCustomer" filters="none" />
 
 
      
