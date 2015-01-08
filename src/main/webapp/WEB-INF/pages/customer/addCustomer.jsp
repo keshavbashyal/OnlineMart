@@ -59,6 +59,12 @@
                             <td><spring:errors path="password" element="div" cssClass="error" /></td>
                         </tr>
                         <tr>
+                            <td><label>Retype Password </label></td>
+                            <td><form:password path="repassword" /></td>
+                            <td><spring:errors path="repassword" element="div" cssClass="error" /></td>
+                        </tr>
+                        
+                        <tr>
                             <td><label>Phone Number </label></td>
                             <td><spring:input path="phone" /></td>
                             <td><spring:errors path="phone" element="div" cssClass="error" /></td>

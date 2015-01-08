@@ -98,13 +98,19 @@ public class CustomerController {
     }
 
     @RequestMapping(value = "/customer/save", method = RequestMethod.POST)
-    public String saveUser(@Valid Customer customer, BindingResult result, HttpSession session) {
+    public String saveUser(@Valid Customer customer, BindingResult result, HttpSession session, Model model) {
         if (result.hasErrors()) {
             return "customer/addCustomer";
         } else {
-            customer.setUserRoles(userRoleService.getCustomer());
-            customerService.saveCustomer(customer);
-            session.setAttribute("user", customer);
+            if (customer.getPassword().equals(customer.getRepassword())){
+                customer.setUserRoles(userRoleService.getCustomer());
+                customerService.saveCustomer(customer);
+                session.setAttribute("user", customer);
+            }
+            else{
+                model.addAttribute("msg", "Passwords don't match");
+                return "/customer/addCustomer";
+            }
         }
         return "redirect:/customer/account";
     }
