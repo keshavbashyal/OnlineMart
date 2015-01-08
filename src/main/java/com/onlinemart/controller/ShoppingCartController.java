@@ -190,8 +190,10 @@ public class ShoppingCartController {
     public String checkout(HttpSession httpSession) {
         User user;
         if (httpSession.getAttribute("user") == null) {
+            System.out.println("Inside not session");
             return "redirect:/shoppingcart/addcreditcart";
         } else {
+            System.out.println("Inside session");
             user = (User) httpSession.getAttribute("user");
         }
 
@@ -201,22 +203,26 @@ public class ShoppingCartController {
         order.setTotalPrice(totalPrice);
 
         //Transaction            
-        if (user.getClass() != Customer.class) {
+        if (!(user instanceof Customer)) {
+            System.out.println("Inside Customer.class check");
             return "redirect:/shoppingcart/unabletochekout";
         }
     
+        //Transaction
         
-        Transaction transaction = new Transaction();
-        transaction.setUser(user);
-        transaction.setAddress(((Customer)user).getAddress());
-        transaction.setCreditCard(((Customer)user).getCreditCard().get(1));
-        transaction.setGrossAmount(totalPrice*0.8);
-        transaction.setTotalAmount(totalPrice);
-        transaction.setOrder(order);
+        System.out.println("before transaction");
+//        Transaction transaction = new Transaction();
+//        transaction.setUser(user);
+//        transaction.setAddress(((Customer)user).getAddress());
+//        transaction.setCreditCard(((Customer)user).getCreditCard().get(1));
+//        transaction.setGrossAmount(totalPrice*0.8);
+//        transaction.setTotalAmount(totalPrice);
+//        transaction.setOrder(order);
         
         //Saving transactionService and salesSercive        
-        transactionService.saveTransaction(transaction);
-        salesService.addSalesFromTransaction(transaction);
+        //transactionService.saveTransaction(transaction);
+        //salesService.addSalesFromTransaction(transaction);
+        System.out.println("after TransactionService");
         
 //        transactionService.saveTransaction(transaction);
        
@@ -224,9 +230,10 @@ public class ShoppingCartController {
         RestTemplate restTemplate = new RestTemplate();
         //String result = restTemplate.getForObject("http://10.10.13.146:8080/cardgateway/webresources/verify/ccDetails?no=4854251425585698&requested=100", String.class);
         String result = "1";
-
+        
         if (result.equals("1")) {
             //FinancialRecord to store in OnlineMart
+            System.out.println("Before FinancialRecord");
             FinancialRecord financialRecord = new FinancialRecord();
             financialRecord.setCcNumbeer(50);
             financialRecord.setAmountToVendor(500F);
@@ -238,8 +245,9 @@ public class ShoppingCartController {
             financialRecord.setTotalAmount(400F);
             financialRecord.setDateOfTransaction(new Date());
             
-//            financialRecordService.saveFinancialRecord(financialRecord);
-
+            financialRecordService.saveFinancialRecord(financialRecord);
+            System.out.println("After FinancialRecordService");
+            
             //Calling the RESTful webservices for posting financial data
             //String uri = "http://localhost:8080/financialServiceProvider/webresources/entitiies.financialrecord";
             //restTemplate.postForObject(uri, financialRecord, FinancialRecord.class);
