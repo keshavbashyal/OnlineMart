@@ -36,39 +36,46 @@
                         <div class="page-header">
                             <h3>Customer &rsaquo; Account &rsaquo; Add Credit Card</h3>
                         </div>
-                        <spring:form method="post" action="customer/save" modelAttribute="customer" >
+                        <form method="post" action="customer/card/save" >
+                            
                             <spring:errors element="div" cssClass="errors" path="*"/>
-                            <spring:input type="hidden" path="id"/>
+                           
 
                             <table>
                                 <tr>
                                     <td><label>Card Number </label></td>
-                                    <td><spring:input path="cardNo" /></td>
+                                    <td><input type="text" name="card.cardNo" /></td>
                                     <td><spring:errors path="cardNo" element="div" cssClass="error" /></td>
                                 </tr>
                                 <tr>
                                     <td><label>Expiry Date : Year </label></td>
-                                    <td><spring:input path="expYear" /></td>
+                                    <td><input type="number" name="card.expYear" /></td>
                                     <td><spring:errors path="expYear" element="div" cssClass="error" /></td>
                                 </tr>
                                 <tr>
                                     <td><label>Expiry Date : Month </label></td>
-                                    <td><spring:input path="expMonth" /></td>
+                                    <td><input type="number" name="card.expMonth" /></td>
                                     <td><spring:errors path="expMonth" element="div" cssClass="error" /></td>
                                 </tr>
                                 <tr>
                                     <td><label>CCV Code </label></td>
-                                    <td><spring:input path="ccv" /></td>
+                                    <td><input type="text" name="card.ccv" /></td>
                                     <td><spring:errors path="ccv" element="div" cssClass="error" /></td>
                                 </tr>
                                 <tr>
                                     <td><label>Credit Card Type </label></td>
-                                    <td><spring:input path="type" /></td>
+                                    <td><input type="text" name="card.type" /></td>
                                     <td><spring:errors path="type" element="div" cssClass="error" /></td>
+                                </tr>
+                                
+                                <tr>
+                                    <td><label>&nbsp; </label></td>
+                                    <td><input type="submit" value="Save" /></td>
+                                    <td>&nbsp;</td>
                                 </tr>
 
                             </table>
-                        </spring:form>
+                        </form>
                     </div>
                 </div>
             </div>

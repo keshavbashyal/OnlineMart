@@ -17,17 +17,16 @@ import javax.persistence.DiscriminatorValue;
  * @author psubedi
  */
 @Entity
-@DiscriminatorValue("A")
+@DiscriminatorValue("ROLE_ADMIN")
 public class Admin extends User implements Serializable{
-    private static final long serialVersionUID = 1L;
     
-    private String password;
+    private String password1;
 
-    public String getPassword() {
-        return password;
+    public String getPassword1() {
+        return password1;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPassword1(String password1) {
+        this.password1 = password1;
     }
 }

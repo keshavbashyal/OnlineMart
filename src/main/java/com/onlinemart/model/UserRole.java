@@ -5,6 +5,7 @@
  */
 package com.onlinemart.model;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,12 +17,28 @@ import javax.persistence.Id;
  */
 
 @Entity
-public class UserRole {
+public class UserRole implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long Id;
     private String role;
+
+    public Long getId() {
+        return Id;
+    }
+
+    public void setId(Long Id) {
+        this.Id = Id;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
    
     
     
