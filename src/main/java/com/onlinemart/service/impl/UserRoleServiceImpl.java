@@ -5,6 +5,7 @@
  */
 package com.onlinemart.service.impl;
 
+import com.onlinemart.dao.UserRoleDAO;
 import com.onlinemart.model.UserRole;
 import com.onlinemart.service.UserRoleService;
 import org.springframework.stereotype.Service;
@@ -18,20 +19,21 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 public class UserRoleServiceImpl implements UserRoleService {
-
+    private UserRoleDAO userRoleDAO;
+    
     @Override
     public UserRole getAdminRole() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return userRoleDAO.getUserRole("Admin");
     }
 
     @Override
     public UserRole getVendorRole() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return userRoleDAO.getUserRole("Vendor");
     }
 
     @Override
     public UserRole getCustomerRole() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return userRoleDAO.getUserRole("Customer");
     }
-    
+
 }
