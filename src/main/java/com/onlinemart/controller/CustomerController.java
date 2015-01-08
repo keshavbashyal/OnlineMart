@@ -81,6 +81,7 @@ public class CustomerController {
         } else {
             
             Customer cus=(Customer)session.getAttribute("user");
+            //creditCardService.saveCreditCard(card);
             cus.addCard(card);
             
             customerService.saveCustomer(cus);

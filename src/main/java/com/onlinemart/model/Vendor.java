@@ -5,6 +5,7 @@
  */
 package com.onlinemart.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Column;
@@ -23,7 +24,7 @@ import org.springframework.format.annotation.DateTimeFormat;
  */
 @Entity
 @DiscriminatorValue("ROLE_VENDOR")
-public class Vendor extends User {
+public class Vendor extends User implements Serializable {
     
 //    private static final long serialVersionUID = 1L;
 //    @Id

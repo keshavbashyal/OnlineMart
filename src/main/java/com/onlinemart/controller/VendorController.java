@@ -43,10 +43,11 @@ public class VendorController {
     ProductService productService;
   
     
+    @RequestMapping("/vendor/dashboard")
     public String printHello(ModelMap model,HttpSession session, Principal princ) {
         session.setAttribute("user", userService.getByEmail(princ.getName()));
         
-        Vendor vendor=(Vendor)princ;
+        Vendor vendor=(Vendor)session.getAttribute("user");
        
         if(vendor.getStatus().equalsIgnoreCase("PENDING"))
         {

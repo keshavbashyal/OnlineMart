@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import com.crystaldecisions.report.web.viewer.CrystalReportViewer;
 import com.crystaldecisions.reports.sdk.*;
 import com.crystaldecisions.sdk.occa.report.lib.*;
 import com.crystaldecisions.sdk.occa.report.exportoptions.*;
@@ -64,8 +65,8 @@ public class ReportController {
             reportClientDoc.close();
             reportStreamWriter.write(byteArrayInputStream, response);
 
-      } catch (ReportSDKException ex) {
-            System.out.println("Report writting error 1");
+     // } catch (ReportSDKException ex) {
+        //    System.out.println("Report writting error 1");
 
        //
         }

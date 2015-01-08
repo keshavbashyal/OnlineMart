@@ -23,7 +23,8 @@ public class CreditCardDAOImpl extends AbstractDAO<CreditCard> implements Credit
 
     @Override
     public void saveCreditCard(CreditCard creditcard) {
-        super.create(creditcard);
+       
+        getSession().merge(creditcard);
     }
 
     
