@@ -11,6 +11,7 @@ import com.onlinemart.model.Product;
 import com.onlinemart.model.User;
 import com.onlinemart.model.Vendor;
 import com.onlinemart.service.ProductService;
+import com.onlinemart.service.UserRoleService;
 import com.onlinemart.service.UserService;
 import com.onlinemart.service.VendorService;
 import java.security.Principal;
@@ -40,6 +41,8 @@ public class VendorController {
     VendorService vendorService;
     @Autowired
     ProductService productService;
+    @Autowired
+    UserRoleService UserRoleService;
 
     @RequestMapping("/vendor/dashboard")
     public String vendorDashboard(ModelMap model, HttpSession session, Principal princ) {
@@ -78,6 +81,7 @@ public class VendorController {
     }
 
     @RequestMapping(value = "/vendor/save", method = RequestMethod.POST)
+    
     public String saveUser(@Valid Vendor vendor, BindingResult result) {
         if (result.hasErrors()) {
             return "vendor/form";
@@ -86,6 +90,7 @@ public class VendorController {
             if (vendor.getPassword().equals(vendor.getRepassword())) {
                 vendor.setRegisterDate(new Date());
                 vendor.setStatus("PENDING");
+                vendor.setUserRoles(UserRoleService.getVendor());
                 vendorService.saveVendor(vendor);
             }
         }

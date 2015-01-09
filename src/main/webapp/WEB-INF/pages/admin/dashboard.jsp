@@ -69,6 +69,18 @@
                                         <td>
                                             <a href="vendor/edit/${vendor.id}" class="btn btn-primary btn-mini">Edit</a>
                                             <a href="vendor/delete/${vendor.id}" onclick="return confirm(' Delete Record ')" class="btn btn-danger btn-mini">Delete</a>
+                                            
+                                            <c:if test="${vendor.status == 'PENDING'}">
+                                 <a href="admin/vendor/status/${vendor.id}" onclick="return confirm(' Change status ')" class="btn btn-primary btn-mini">Approve</a>
+                                    </c:if>
+                                            
+                                 
+                                
+                                  <c:if test="${vendor.status == 'APPROVED'}">
+                                     <a href="admin/vendor/status/${vendor.id}" onclick="return confirm(' Change status ')" class="btn btn-danger btn-mini">Disable</a>
+                                  </c:if>
+                                 
+                                            
                                         </td>
                                     </tr>
                                 </c:forEach>
