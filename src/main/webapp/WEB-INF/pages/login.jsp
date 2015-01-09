@@ -15,22 +15,21 @@
             <div class="row">
                 <div class="col-md-4">
                     <h5 class="text-center"> Login </h5>
-                    
+
                     <c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION}">
-      <font color="red">
-        Error 001: Login error<br/>
-        <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}"/>.
-      </font>
-</c:if>
-      
-      
-                         <c:if test="${param.error eq 'pending'}">
-      <font color="red">
-        
-        <c:out value="This vendor Account is still pending, please contact administrator"/>.
-      </font>
-</c:if>
-                    
+                        <div class="alert error">
+                            Error 001: Login error<br/>
+                            <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}"/>.
+                        </div>
+                    </c:if>
+
+
+                    <c:if test="${param.error eq 'pending'}">
+                        <div class="alert error">
+                            Error 002: Vendor Status error<br/>
+                        <c:out value="This vendor Account is still pending, please contact administrator"/>.
+                        </div>
+                    </c:if>
                     <form name='loginForm' action="<c:url value='j_spring_security_check' />" class="form-horizontal form-control"
                           method='POST'>
                                      
