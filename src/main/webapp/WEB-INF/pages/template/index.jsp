@@ -71,43 +71,22 @@
                 <div class="headtitle">
                     <h4>FEATURED ITEMS</h4>	
                 </div>
-
-                <ul class="product">
+  <ul class="product">
+                    
+                    <c:forEach items="${products}" var="product">
                     <li>
-                        <a href="product.html">
-                            <img src="resources/img/sample/women1.jpg" alt="" />	
+                        <a href="<c:url value="/product/${product.id}/productdetail"/>">
+                            <img  width="300" height="200" src="productImage/${product.id}" alt="hi its me" />	
                             <div class="producttitlebox"></div>
-                            <div class="producttitle">Women's Dress</div>
+                            <div class="producttitle">${product.productName}</div>
                             <div class="brandtitle">By: Brand Name</div>
                             <div class="pricetag"></div>
-                            <div class="saleprice">$80</div>
-                            <div class="oldprice">$50</div>
+                            <div class="saleprice">${product.unitPrice}</div>
+                            <div class="oldprice">${product.unitPrice}</div>
                         </a>
                     </li>
-
-                    <li>
-                        <a href="product.html">
-                            <img src="resources/img/sample/women2.jpeg" alt="" />	
-                            <div class="producttitlebox"></div>
-                            <div class="producttitle">Bright Dress</div>
-                            <div class="brandtitle">By: Brand Name</div>
-                            <div class="pricetag"></div>
-                            <div class="saleprice">$130</div>
-                            <div class="oldprice">$89</div>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="product.html">
-                            <img src="resources/img/sample/women3.jpg" alt="" />	
-                            <div class="producttitlebox"></div>
-                            <div class="producttitle">Summer Dress</div>
-                            <div class="brandtitle">By: Brand Name</div>
-                            <div class="pricetag"></div>
-                            <div class="saleprice">$59</div>
-                            <div class="oldprice">$39</div>
-                        </a>
-                    </li>
+                    
+                    </c:forEach>
                 </ul>
             </div>
         </div>

@@ -86,13 +86,16 @@
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">CATEGORIES <b class="caret"></b></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="<c:url value='/template/product'/>">Watches</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="listwomen.jsp">Shoes</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="listwomen.jsp">Shirts</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="listwomen.jsp">Ties</a></li>
+                                        <c:forEach items="${allCategories}" var="category">
+                                            <li class="divider"></li>
+                                            <li>
+                                                
+                                                <a href="<c:url value="/category/${category.id}/products" />">
+                                                   ${category.categoryDescription}</a>
+                                            </li>
+                                            </c:forEach>
+                                             <li class="divider"></li>
+                                            <li><a href="product/productlist">All Products</a></li>
                                     </ul>
                                 </li>
                             </ul>

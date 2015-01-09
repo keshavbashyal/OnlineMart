@@ -68,5 +68,11 @@ public class ProductDAOImpl extends AbstractDAO<Product> implements ProductDAO {
         //System.out.println(query.list().size());
         return query.list();
     }
-
+     @Override
+    public List<Product> getProductByCategoryId(Long id) {
+        Query query = getSession().createQuery("from Product p where p.categoryId=:id");
+        query.setParameter("id", id);
+        //System.out.println(query.list().size());
+        return query.list();
+    }
 }

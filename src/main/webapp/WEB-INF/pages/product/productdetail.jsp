@@ -44,23 +44,8 @@
                             <!-- Carousel items -->
                             <div class="carousel-inner">
 
-                                <div class="active item">
-                                    <img src="resources/img/sample/dress.jpg" alt="" class="pull-left" />
-                                </div>
-
-                                <div class="item">
-                                    <img src="resources/img/sample/dress2.jpg" alt="" class="pull-left" />
-                                </div>
-
-                                <div class="item">
-                                    <img src="resources/img/sample/dress3.jpg" alt="" class="pull-left" />
-                                </div>
-
+                                 <img src="productImage/${product.id}" alt="hi its me" />
                             </div>
-
-                            <!-- Carousel nav -->
-                            <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-                            <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
                         </div>
                     </div>
 
@@ -73,7 +58,7 @@
 
                             <div class="prices">
                                 <div class="price" >${product.unitPrice}</div>
-                                <div class="retailprice">Retail Price: $79</div>
+                                <div class="retailprice">Retail Price: ${product.unitPrice*1.1}</div>
                             </div>
 
 
@@ -109,8 +94,7 @@
                             </form>
 
                             <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut interdum placerat elementum. Pellentesque faucibus tristique lectus ut commodo. Vivamus at odio eu turpis aliquam pellentesque eu vel orci. Suspendisse ac sapien augue. Donec vitae ipsum ut nulla adipiscing laoreet. 
-                            </p>	
+                                ${product.productDescription}</p>
 
                             <div class="social">
                                 <img src="resources/img/sample/emailbutton.png" alt=""  /><img src="resources/img/sample/likebutton.png" alt="" /><img src="resources/img/sample/pinbutton.png" alt=""  /><img src="resources/img/sample/tweetbutton.png" alt="" />
@@ -127,7 +111,7 @@
                                     <div class="tab-content">
                                         <div class="tab-pane active" id="tab1">
                                             <p>
-                                                Vestibulum dapibus enim nunc. Nunc suscipit, turpis at condimentum rutrum, nisl nibh varius ligula, vitae aliquam orci lacus ut ligula. Nunc varius, mi vel lacinia elementum, odio magna euismod sapien, quis facilisis mauris mi a urna. Aenean purus lectus, semper eget laoreet eget, suscipit et nisi.
+                                                ${product.productDescription}
                                             </p>
                                         </div>
                                         <div class="tab-pane" id="tab2">
@@ -155,42 +139,23 @@
                 </div>
 
                 <ul class="product">
+                    
+                    <c:forEach items="${products}" var="product">
                     <li>
-                        <a href="product.html">
-                            <img src="resources/img/sample/women1.jpg" alt="" />	
+                        <a href="<c:url value="/product/${product.id}/productdetail"/>">
+                            <img src="productImage/${product.id}" alt="hi its me" />	
                             <div class="producttitlebox"></div>
-                            <div class="producttitle">Women's Dress</div>
+                            <div class="producttitle">${product.productName}</div>
                             <div class="brandtitle">By: Brand Name</div>
                             <div class="pricetag"></div>
-                            <div class="saleprice">$80</div>
-                            <div class="oldprice">$50</div>
+                            <div class="saleprice">${product.unitPrice}</div>
+                            <div class="oldprice">${product.unitPrice}</div>
                         </a>
                     </li>
-
-                    <li>
-                        <a href="product.html">
-                            <img src="resources/img/sample/women2.jpeg" alt="" />	
-                            <div class="producttitlebox"></div>
-                            <div class="producttitle">Bright Dress</div>
-                            <div class="brandtitle">By: Brand Name</div>
-                            <div class="pricetag"></div>
-                            <div class="saleprice">$130</div>
-                            <div class="oldprice">$89</div>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="product.html">
-                            <img src="resources/img/sample/women3.jpg" alt="" />	
-                            <div class="producttitlebox"></div>
-                            <div class="producttitle">Summer Dress</div>
-                            <div class="brandtitle">By: Brand Name</div>
-                            <div class="pricetag"></div>
-                            <div class="saleprice">$59</div>
-                            <div class="oldprice">$39</div>
-                        </a>
-                    </li>
+                    
+                    </c:forEach>
                 </ul>
+      
 
             </div>
         </div>

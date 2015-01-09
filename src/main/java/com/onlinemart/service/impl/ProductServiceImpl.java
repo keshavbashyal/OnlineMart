@@ -52,8 +52,10 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> getProductByVendorId(Long vendor_id) {
         return productDao.getProductByVendorId(vendor_id);
+    }@Override
+    public List<Product> findProductByCategoryId(Long id) {
+        return productDao.getProductByCategoryId(id);
     }
-
 
     
 

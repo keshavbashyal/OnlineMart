@@ -23,4 +23,6 @@ public interface ProductService {
     public List<Product> findProductByName(String name); 
 
     public List<Product> getProductByVendorId(Long id);
+
+    public Object findProductByCategoryId(Long id);
 }
