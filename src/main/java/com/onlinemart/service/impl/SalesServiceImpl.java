@@ -17,6 +17,7 @@ import java.sql.ResultSet;
 import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,6 +39,13 @@ public class SalesServiceImpl implements SalesService {
      JDBCConnectionController connection;//=new MysqlConnectionController();
    //@Autowired
     //ProductShopping
+     
+     
+      private @Value("${error.sales.nullTxn}")
+      String nullTxnErrMsg;
+      
+       private @Value("${error.sales.nullOrder}")
+      String nullOrderErrMsg;
 
     @Override
     public void saveSales(Sales sales) {
@@ -67,8 +75,24 @@ public class SalesServiceImpl implements SalesService {
     @Override
     public void addSalesFromTransaction(Transaction txn) {
        Sales  sales;
-        Long orderID=txn.getOrder().getId();
-        Long txnID=txn.getId();
+        Long orderID=null;
+        Long txnID=null;
+        
+        
+        
+        try{
+            txnID=txn.getId();
+        }
+        catch(NullPointerException e){
+            System.out.println(nullTxnErrMsg);
+        }
+        try{
+            orderID=txn.getOrder().getId();
+        }
+       catch(NullPointerException e) {
+            System.out.println(nullOrderErrMsg);
+       }
+       
         Date ordedate=txn.getOrder().getOrderDate();
         
         
