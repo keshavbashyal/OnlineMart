@@ -134,7 +134,7 @@ public class ShoppingCartController {
     }
 
     @RequestMapping(value = "/shoppingcart/checkoutCreditcard")
-    public String checkoutGuest(@Valid CreditCard creditcard, HttpSession httpSession) {
+    public String checkoutGuest(@Valid CreditCard creditcard, HttpSession httpSession,Model model) {
 
         shoppingCart = (ShoppingCart) httpSession.getAttribute("shoppingcart");
         //Order 
@@ -202,11 +202,15 @@ public class ShoppingCartController {
             httpSession.setAttribute("totalquantity", totalquantity);
             httpSession.setAttribute("totalprice", totalPrice);
             httpSession.setAttribute("shoppingCart", shoppingCart);
+            model.addAttribute("creditcarderror","The checkout is successfully completed");
+            return "shoppingcart/error";
 
         } else if (result1.equals("-1")) {
-            return "shoppingcart/error/invalidcart";
-        } else {
-            return "shoppingcart/error/invalidamount";
+            model.addAttribute("creditcarderror","Invalid creditcard");
+            return "shoppingcart/error";
+        } else if (result1.equals("0")) {
+            model.addAttribute("creditcarderror","The amount is unavailable in creditcard");
+            return "shoppingcart/error";
         }
 
         return "redirect:/shoppingcart/productlist";
@@ -219,7 +223,7 @@ public class ShoppingCartController {
     }
 
     @RequestMapping(value = "/shoppingcart/checkout")
-    public String checkout(HttpSession httpSession) {
+    public String checkout(HttpSession httpSession,Model model) {
         User user;
         if (httpSession.getAttribute("user") == null) {
             System.out.println("Inside not session");
@@ -321,14 +325,21 @@ public class ShoppingCartController {
             httpSession.setAttribute("totalprice", totalPrice);
             httpSession.setAttribute("shoppingCart", shoppingCart);
 
+            model.addAttribute("creditcarderror","The checkout is successfully completed");
+            return "shoppingcart/error";
+
         } else if (result.equals("-1")) {
-            return "shoppingcart/invalidcart";
-        } else {
-            return "shoppingcart/invalidamount";
+            model.addAttribute("creditcarderror","Invalid creditcard");
+            return "shoppingcart/error";
+        } else if (result.equals("0")){
+            model.addAttribute("creditcarderror","The amount is unavailable in creditcard");
+            return "shoppingcart/error";
         }
 
         return "redirect:/shoppingcart/productlist";
+
     }
+
 
     @RequestMapping("shoppingcart/productshoppingcart/{id}")
     public String deleteProductShoppingCart(@PathVariable("id") Long id, Model model) {
