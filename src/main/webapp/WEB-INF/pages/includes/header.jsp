@@ -90,7 +90,7 @@
                                             <li class="divider"></li>
                                             <li>
                                                 
-                                                <a href="<c:url value="/category/${category.id}/products" />">
+                                                <a href="<c:url value="/product/${category.id}/products" />">
                                                    ${category.categoryDescription}</a>
                                             </li>
                                             </c:forEach>

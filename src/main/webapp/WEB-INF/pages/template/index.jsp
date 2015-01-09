@@ -34,7 +34,7 @@
                                 <div class="shading-left">
                                     <h2>The best quality watches in the planet</h2>
                                     <p>Online Mart provides you the best watches in the planet on a reasonable price. Brand watches include Omega, Bvlgari, Rolex, Taguer and Swiss</p>
-                                    <a class="btn btn-large btn-danger" href="listwomen.html">Find it Now</a>
+                                    <a class="btn btn-large btn-danger" href="product/productlist">Find it Now</a>
                                 </div>
                                 <div class="numberslide">1/3</div>
                             </div>

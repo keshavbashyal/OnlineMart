@@ -34,7 +34,7 @@ public class HelloController {
 		model.addAttribute("message", "Welcome!");
 		return "welcome";
 	}
-        @RequestMapping("/category/{categoryid}/products")
+        @RequestMapping("/product/{categoryid}/products")
     public String SearchProductByCateegory(@PathVariable("categoryid") Long id, Model model) {
         model.addAttribute("products", productService.findProductByCategoryId(id));
         return "product/productlist";
