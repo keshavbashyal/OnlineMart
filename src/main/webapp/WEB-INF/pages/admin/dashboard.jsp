@@ -151,6 +151,8 @@
         </div>
 
         <%@include file="../includes/footer.jsp" %>
+        <link rel="stylesheet" href="resources/css/jquery-ui.css">
+        <script src="resources/js/jquery-ui.js"></script>
         <script>
             $(function () {
                 $("#from").datepicker({dateFormat: 'yy-mm-dd'});
