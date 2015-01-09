@@ -28,6 +28,9 @@ public class UserDAOImpl extends AbstractDAO<User> implements UserDAO {
         return (User)query.list().get(0);
        
     }
-
-    
+    @Override
+       public void addUser(User u){
+         getSession().merge(u);
+       }
+ 
 }

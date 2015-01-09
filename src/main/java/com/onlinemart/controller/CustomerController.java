@@ -7,6 +7,8 @@ package com.onlinemart.controller;
 
 import com.onlinemart.model.CreditCard;
 import com.onlinemart.model.Customer;
+import com.onlinemart.model.User;
+
 import com.onlinemart.service.CreditCardService;
 import com.onlinemart.service.CustomerService;
 import com.onlinemart.service.UserRoleService;
@@ -57,12 +59,14 @@ public class CustomerController {
         return "/customer/welcome";
     }
 
-    @RequestMapping("/customer/dashboard")
+
+  @RequestMapping("/customer/dashboard")
     public String customerAccount(ModelMap model,HttpSession session, Principal princ) {
-        session.setAttribute("user", userService.getByEmail(princ.getName()));
+        User usr = (User) userService.getByEmail(princ.getName());
+        session.setAttribute("user", usr);
         
        // User u=(User)session.getAttribute("user");
-        Customer c = (Customer)session.getAttribute("user");
+        Customer c = customerService.getCustomer(usr.getId());
         session.setAttribute("userType", "customer");
         if (c == null) {
            // session.setAttribute("selected", customerService.getCustomer(1L));

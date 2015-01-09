@@ -56,12 +56,12 @@ public class VendorController {
     @Autowired
     CategoryService categoryService;
 
-    @RequestMapping("/vendor/dashboard")
+ @RequestMapping("/vendor/dashboard")
     public String vendorDashboard(ModelMap model, HttpSession session, Principal princ) {
         User usr = (User) userService.getByEmail(princ.getName());
         session.setAttribute("user", usr);
 
-        Vendor vendor = (Vendor) usr;
+        Vendor vendor = vendorService.getVendor(usr.getId());
         session.setAttribute("userType", "vendor");
 
         if (vendor.getStatus().equalsIgnoreCase("PENDING")) {
@@ -72,6 +72,7 @@ public class VendorController {
             return "/vendor/dashboard";
         }
     }
+
 
     @RequestMapping(value = "/vendor")
     public String vendorHome() {
