@@ -74,9 +74,14 @@ public class ProductController {
     }
 
     @RequestMapping("vendor/product/delete/{productid}")
-    public String deleteProduct(@PathVariable("productid") Long id, Model model) {
-        productService.deleteProduct(id);
-        return "redirect:/vendor/productlist";
+    public String deleteProduct(@PathVariable("productid") Long id, Model model, HttpSession session) {
+        Vendor vendor = (Vendor) session.getAttribute("user");
+        System.out.println(vendor.getEmail());
+        vendor.removeProduct(productService.getProduct(id));
+        vendorService.saveVendor(vendor);
+        //productService.deleteProduct(id);
+        
+        return "redirect:/vendor/dashboard";
     }
 
     @RequestMapping("/vendor/productform")
