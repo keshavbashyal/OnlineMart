@@ -14,9 +14,12 @@ import com.onlinemart.service.ProductService;
 import com.onlinemart.service.UserRoleService;
 import com.onlinemart.service.UserService;
 import com.onlinemart.service.VendorService;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.security.Principal;
 //import java.time.Clock;
 import java.util.Date;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +30,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -137,12 +142,17 @@ public class VendorController {
     }
 
     @RequestMapping(value = "/vendor/addProduct", method = RequestMethod.POST)
-    public String addProduct(@Valid Product product, BindingResult result, Model model, HttpSession session) {
+    public String addProduct(@Valid Product product, BindingResult result, Model model, HttpSession session,@RequestParam("file") MultipartFile file) {
         if (result.hasErrors()) {
             model.addAttribute("errType", "alert error");
             model.addAttribute("msg", result.toString());
             //return "vendor/dashboard";
         } else {
+            try {
+                product.setImage(file.getBytes());
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
             Vendor vendor = (Vendor) session.getAttribute("user");
             product.setVendor(vendor);
             vendor.addProduct(product);
@@ -153,5 +163,21 @@ public class VendorController {
         }
         return "redirect:/vendor/dashboard";
     }
+    @RequestMapping(value = "/productImage/{id}", method = RequestMethod.GET)
+    public void getProductImage(Model model, @PathVariable Long id, HttpServletResponse response) {
+        try {
+            Product p = productService.getProduct(id);
+            if (p != null) {
+                OutputStream out = response.getOutputStream();
+                out.write(p.getImage());
+               
+                response.flushBuffer();
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+
+        }
 
 }
+}
+
