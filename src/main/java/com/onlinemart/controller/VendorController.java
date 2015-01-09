@@ -27,6 +27,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -56,11 +57,14 @@ public class VendorController {
     @Autowired
     CategoryService categoryService;
 
- @RequestMapping("/vendor/dashboard")
+    private @Value("${report.serveraddresss.vendor}")
+    String reportURL;
+
+    @RequestMapping("/vendor/dashboard")
     public String vendorDashboard(ModelMap model, HttpSession session, Principal princ) {
         User usr = (User) userService.getByEmail(princ.getName());
         session.setAttribute("user", usr);
-
+        model.addAttribute("reportURL", reportURL);
         Vendor vendor = vendorService.getVendor(usr.getId());
         session.setAttribute("userType", "vendor");
 
@@ -72,7 +76,6 @@ public class VendorController {
             return "/vendor/dashboard";
         }
     }
-
 
     @RequestMapping(value = "/vendor")
     public String vendorHome() {
@@ -170,7 +173,7 @@ public class VendorController {
             DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
             Date date = new Date();
             System.out.println(dateFormat.format(date)); //2014/08/06
-            
+
             Vendor vendor = (Vendor) session.getAttribute("user");
             product.setAddDate(date);
             product.setVendor(vendor);
@@ -204,6 +207,12 @@ public class VendorController {
             model.addAttribute("msg", " Successfully Updated. ");
         }
         return "redirect:/vendor/dashboard";
+    }
+
+    @RequestMapping("vendor/reportFrm")
+    public String reportFrm(ModelMap model) {
+        model.addAttribute("reportURL", "http://10.10.14.51:8080/CRviewer/rv.jsp");
+        return "vendor/report";
     }
 
     @RequestMapping(value = "/productImage/{id}", method = RequestMethod.GET)

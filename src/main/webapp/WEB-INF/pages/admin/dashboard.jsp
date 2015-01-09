@@ -23,19 +23,38 @@
                 <fieldset>
                     <legend>Admin &rsaquo; Dashboard</legend>
                     <div class="pull-left">
-                        <spring:form method="post" action="/admin/dashboard" >
+                        <table class="table table-condensed table-head"> 
+                            <tr>
+                                <td><label>Total Customers</label></td>
+                                <td><a href="customer/list"><label> ${customersize}</label></a></td>
+                                <td><spring:errors path="customersize" element="div" cssClass="error" /></td>
+                            <td><label>Total Vendor </label></td>
+                            <td><label><a href="vendor/list"> ${vendorsize}</label></a></td>
+                            <td><spring:errors path="vendorsize" element="div" cssClass="error" /></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="span12 thumbnail">
+                        <div class="breadcrumb">Report</div>
+                        <spring:form id="reportFrm"  method="get" action="${reportURL}" class="pull-right">
+
                             <spring:errors element="div" cssClass="errors" path="*"/>
-                            <spring:input type="hidden" path="id"/>
-                            <table class="table table-condensed table-head"> 
+                            <input type="hidden" value="${sessionScope.user.id}" name="vendorID"/>
+                            <table class="table table-striped">
+                                <tr class='pull-left'>
+                                    <td><label>From Date</label></td>
+                                    <td><input type="text" id="from" name="fromDate"/></td>
+                                    <td><label>To Date</label></td>
+                                    <td><input type="text" id="to" name="toDate"/></td>
+                                </tr>
                                 <tr>
-                                    <td><label>Total Customers</label></td>
-                                    <td><a href="customer/list"><label> ${customersize}</label></a></td>
-                                    <td><spring:errors path="customersize" element="div" cssClass="error" /></td>
-                                <td><label>Total Vendor </label></td>
-                                <td><label><a href="vendor/list"> ${vendorsize}</label></a></td>
-                                <td><spring:errors path="vendorsize" element="div" cssClass="error" /></td>
+                                    <td colspan="4">
+                                        <input type="submit" value="Get Report" class="btn btn-success pull-right"/>
+                                    </td>
                                 </tr>
                             </table>
+
+                        </spring:form>
                     </div>
                     <div class="span12 thumbnail">
                         <div class="breadcrumb"><h5>Vendor Information</h5></div>
@@ -82,7 +101,7 @@
                     </div>  
                     <div class="span12 thumbnail">
                         <div class="breadcrumb"><h5> Customer List</h5></div>
-                        
+
                         <table class="table table-condensed table-striped">
                             <tr>
                                 <th>First Name</th>
@@ -131,7 +150,6 @@
                             </c:forEach>
                         </table>
                     </div>
-                    </spring:form>
                 </fieldset>
             </div>
         </div>
