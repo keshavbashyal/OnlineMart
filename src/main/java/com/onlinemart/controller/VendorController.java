@@ -60,7 +60,7 @@ public class VendorController {
 
         if (vendor.getStatus().equalsIgnoreCase("PENDING")) {
             session.removeAttribute("user");
-            return "redirect:/login";
+            return "redirect:/login?error=pending";
         } else {
             model.addAttribute("products", vendor.getProducts());
             return "/vendor/dashboard";
