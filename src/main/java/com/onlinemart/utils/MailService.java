@@ -37,36 +37,65 @@ public class MailService {
                     }
                 });
         try {
- 
-			MimeMessage message = new MimeMessage(session);
-                        
-			message.setFrom(new InternetAddress("onlinemartcustomercare@gmail.com"));
-			message.setRecipients(MimeMessage.RecipientType.TO,
-				InternetAddress.parse(to));
-			message.setSubject(subject);
-			message.setText(body);
-                        
-                        message.setContent(body, "text/html; charset=utf-8");
-                        message.saveChanges();
-                        
-			Transport.send(message);
- 
-			System.out.println("Done");
- 
-		} catch (MessagingException e) {
-			throw new RuntimeException(e);
-		}
+
+            MimeMessage message = new MimeMessage(session);
+
+            message.setFrom(new InternetAddress("onlinemartcustomercare@gmail.com"));
+            message.setRecipients(MimeMessage.RecipientType.TO,
+                    InternetAddress.parse(to));
+            message.setSubject(subject);
+            message.setText(body);
+
+            message.setContent(body, "text/html; charset=utf-8");
+            message.saveChanges();
+
+            Transport.send(message);
+
+            System.out.println("Done");
+
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
+        }
     }
-    public void sendRegistrationEmail(String recipient, String fname, String lname ){
+
+    public void sendRegistrationEmail(String recipient, String fname, String lname) {
         String subject = "Welcome to Online Mart";
-        String message = "<h3>Dear</h3><br/>"
-                + "<h3>"+fname + " " + lname + "</h3><br/>"
-                + "<br/>"
+        String message = "<h3>Dear,<br/>"
+                + fname + " " + lname + "</h3><br/>"
                 + "Thank you for registering at OnlineMart.<br/>"
-                + "Happy Shopping<br/>"
-                + "<br/>"
+                + "We hope you will find the best items at the lowest price on Internet.<br/>"
+                + "Our Customer Service is there to help you 24-7, 365 days a year<br/>"
+                + "Please use the contact link on the website if you have any concerns or queries."
+                + "Happy Shopping,<br/>"
                 + "Online Mart Team";
-        sendEmail(recipient,subject,message);
+        sendEmail(recipient, subject, message);
     }
-    
+
+    public void sendVendorSignUpEmail(String recipient, String fname) {
+        String subject = "Registration for your company "+fname;
+        String message = "<h3>Greetings,<br/>"
+                + "Thank you for registering at OnlineMart.<br/>"
+                + "We are the best online retail mart in the planet<br/>"
+                + "Please wait for an email from our team while we go ahead and prepare the best<br/>"
+                + "platform for your retail shop<br/>"
+                + "Our team will send you an email shortly after you are approved<br/>"
+                + "You will then be able to login and advertise your products.<br/>"
+                + "Our Customer Service is there to help you 24-7, 365 days a year<br/>"
+                + "Please use the contact link on the website if you have any concerns or queries."
+                + "Happy Shopping,<br/>"
+                + "Online Mart Team";
+        sendEmail(recipient, subject, message);
+    }
+
+    public void sendVendorSuccessEmail(String recipient, String fname) {
+        String subject = "Registration for your company " + fname;
+        String message = "<h3>Greetings,<br/>"
+                + "Thank you for registering at OnlineMart.<br/>"
+                + "Your account is verified and you may now login<br/>"
+                + "Our Customer Service is there to help you 24-7, 365 days a year<br/>"
+                + "Please use the contact link on the website if you have any concerns or queries."
+                + "Happy Shopping,<br/>"
+                + "Online Mart Team";
+        sendEmail(recipient, subject, message);
+    }
 }

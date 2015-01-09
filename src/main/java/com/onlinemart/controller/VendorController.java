@@ -15,6 +15,7 @@ import com.onlinemart.service.ProductService;
 import com.onlinemart.service.UserRoleService;
 import com.onlinemart.service.UserService;
 import com.onlinemart.service.VendorService;
+import com.onlinemart.utils.MailService;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.security.Principal;
@@ -104,6 +105,8 @@ public class VendorController {
                 vendor.setStatus("PENDING");
                 vendor.setUserRoles(UserRoleService.getVendor());
                 vendorService.saveVendor(vendor);
+                MailService sendEmail = new MailService();
+                sendEmail.sendVendorSignUpEmail(vendor.getEmail(),vendor.getVendorName());
             }
         }
         return "redirect:/";
