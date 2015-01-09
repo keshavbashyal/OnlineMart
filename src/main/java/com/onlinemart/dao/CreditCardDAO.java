@@ -5,6 +5,7 @@
  */
 package com.onlinemart.dao;
 
+import com.onlinemart.commons.Type;
 import com.onlinemart.model.CreditCard;
 import java.util.List;
 
@@ -18,4 +19,5 @@ public interface CreditCardDAO {
     public void deleteCreditCard(Long id);
     public List<CreditCard> getAll(); 
     public void updateCreditCard(CreditCard creditcard);
+    public Type[] getTypes();
 }

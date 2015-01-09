@@ -13,6 +13,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -35,7 +36,10 @@ public class CreditCard implements Serializable {
     
     @Enumerated(EnumType.STRING)
     private Type type;
-
+    
+    @OneToOne
+    private Address address;
+    
     public String getCardNo() {
         return cardNo;
     }

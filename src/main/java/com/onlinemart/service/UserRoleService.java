@@ -6,7 +6,6 @@
 package com.onlinemart.service;
 
 import com.onlinemart.model.UserRole;
-import org.hibernate.usertype.UserType;
 import org.springframework.stereotype.Service;
 
 /**

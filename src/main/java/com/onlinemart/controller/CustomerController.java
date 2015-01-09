@@ -11,11 +11,12 @@ import com.onlinemart.service.CreditCardService;
 import com.onlinemart.service.CustomerService;
 import com.onlinemart.service.UserRoleService;
 import com.onlinemart.service.UserService;
+import com.onlinemart.utils.MailService;
 import java.security.Principal;
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -115,7 +116,7 @@ public class CustomerController {
 
 
     @RequestMapping(value = "/customer/save", method = RequestMethod.POST)
-    public String saveUser(@Valid Customer customer, BindingResult result, HttpSession session) {
+    public String saveUser(@Valid Customer customer, BindingResult result, HttpSession session) throws MessagingException {
         if (result.hasErrors()) {
             return "customer/addCustomer";
         } else {
@@ -129,9 +130,14 @@ public class CustomerController {
                  
             customer.setPassword(hashedPassword);
             customerService.saveCustomer(customer);
+            MailService sendEmail = new MailService();
+            
+            //SendEmail sendEmail = new SendEmail();
+            //sendEmail.sendEmail(customer.getEmail(), "Hello", "How are yoiui");
+            sendEmail.sendRegistrationEmail(customer.getEmail(),customer.getFname(),customer.getLname());
             session.setAttribute("user", customer);
         }
-        return "redirect:/customer/account";
+        return "redirect:/customer/dashboard";
     }
 
     @RequestMapping("/customer/list")

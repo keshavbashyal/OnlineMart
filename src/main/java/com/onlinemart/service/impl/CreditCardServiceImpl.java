@@ -5,6 +5,7 @@
  */
 package com.onlinemart.service.impl;
 
+import com.onlinemart.commons.Type;
 import com.onlinemart.dao.CreditCardDAO;
 import com.onlinemart.model.CreditCard;
 import com.onlinemart.service.CreditCardService;
@@ -50,6 +51,11 @@ public class CreditCardServiceImpl implements CreditCardService{
     @Transactional
     public void updateCreditCard(CreditCard creditcard) {
         creditCardDAO.updateCreditCard(creditcard);
+    }
+
+    @Override
+    public Type[] getTypes() {
+        return creditCardDAO.getTypes();
     }
     
 }

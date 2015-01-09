@@ -5,6 +5,7 @@
  */
 package com.onlinemart.service;
 
+import com.onlinemart.commons.Type;
 import java.util.List;
 import org.springframework.stereotype.Service;
 
@@ -19,4 +20,5 @@ public interface CreditCardService {
     public void deleteCreditCard(Long id);
     public List<com.onlinemart.model.CreditCard> getAll(); 
     public void updateCreditCard(com.onlinemart.model.CreditCard creditcard);
+    public Type[] getTypes();
 }

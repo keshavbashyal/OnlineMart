@@ -37,6 +37,7 @@ public class CreditCardController {
     @RequestMapping("/creditcard")
     public void newCreditCard(ModelMap model){
         model.addAttribute("creditcard",null);
+        model.addAttribute("cctypes",creditCardService.getTypes());
     }
     
 //    @RequestMapping("/creditcard/addCreditCard/{customerid}")

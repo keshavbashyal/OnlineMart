@@ -5,6 +5,7 @@
  */
 package com.onlinemart.dao.impl;
 
+import com.onlinemart.commons.Type;
 import com.onlinemart.dao.CreditCardDAO;
 import com.onlinemart.model.CreditCard;
 import java.util.List;
@@ -49,6 +50,11 @@ public class CreditCardDAOImpl extends AbstractDAO<CreditCard> implements Credit
     @Override
     public void updateCreditCard(CreditCard creditcard) {
         super.edit(creditcard);
+    }
+
+    @Override
+    public Type[] getTypes() {
+        return Type.values();
     }
     
 }
