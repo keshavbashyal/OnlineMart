@@ -23,6 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -51,10 +52,9 @@ public class VendorController {
 
     @RequestMapping("/vendor/dashboard")
     public String vendorDashboard(ModelMap model, HttpSession session, Principal princ) {
-         User usr=(User)userService.getByEmail(princ.getName());
+        User usr = (User) userService.getByEmail(princ.getName());
         session.setAttribute("user", usr);
 
-        
         Vendor vendor = (Vendor) usr;
         session.setAttribute("userType", "vendor");
 
@@ -66,8 +66,6 @@ public class VendorController {
             return "/vendor/dashboard";
         }
     }
-    
-    
 
     @RequestMapping(value = "/vendor")
     public String vendorHome() {
@@ -86,13 +84,19 @@ public class VendorController {
     }
 
     @RequestMapping(value = "/vendor/save", method = RequestMethod.POST)
-    
+
     public String saveUser(@Valid Vendor vendor, BindingResult result) {
         if (result.hasErrors()) {
             return "vendor/form";
         } else {
 
             if (vendor.getPassword().equals(vendor.getRepassword())) {
+
+                String password = vendor.getPassword();
+
+                BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+                String hashedPassword = passwordEncoder.encode(password);
+                vendor.setPassword(hashedPassword);
                 vendor.setRegisterDate(new Date());
                 vendor.setStatus("PENDING");
                 vendor.setUserRoles(UserRoleService.getVendor());
@@ -142,7 +146,7 @@ public class VendorController {
     }
 
     @RequestMapping(value = "/vendor/addProduct", method = RequestMethod.POST)
-    public String addProduct(@Valid Product product, BindingResult result, Model model, HttpSession session,@RequestParam("file") MultipartFile file) {
+    public String addProduct(@Valid Product product, BindingResult result, Model model, HttpSession session, @RequestParam("file") MultipartFile file) {
         if (result.hasErrors()) {
             model.addAttribute("errType", "alert error");
             model.addAttribute("msg", result.toString());
@@ -163,6 +167,7 @@ public class VendorController {
         }
         return "redirect:/vendor/dashboard";
     }
+
     @RequestMapping(value = "/productImage/{id}", method = RequestMethod.GET)
     public void getProductImage(Model model, @PathVariable Long id, HttpServletResponse response) {
         try {
@@ -170,7 +175,7 @@ public class VendorController {
             if (p != null) {
                 OutputStream out = response.getOutputStream();
                 out.write(p.getImage());
-               
+
                 response.flushBuffer();
             }
         } catch (IOException ex) {
@@ -178,6 +183,5 @@ public class VendorController {
 
         }
 
+    }
 }
-}
-
