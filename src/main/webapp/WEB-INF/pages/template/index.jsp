@@ -79,7 +79,7 @@
                             <img  width="300" height="200" src="productImage/${product.id}" alt="hi its me" />	
                             <div class="producttitlebox"></div>
                             <div class="producttitle">${product.productName}</div>
-                            <div class="brandtitle">By: Brand Name</div>
+                            <div class="brandtitle">By: ${product.vendor.vendorName}</div>
                             <div class="pricetag"></div>
                             <div class="saleprice">${product.unitPrice}</div>
                             <div class="oldprice">${product.unitPrice}</div>

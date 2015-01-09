@@ -67,7 +67,7 @@ public class ShoppingCartController {
     private ShoppingCart shoppingCart = new ShoppingCart();
 
     private Long totalquantity = 0L;
-    
+
     private Double totalPrice = 0.0;
 
     @RequestMapping("/shoppingcart/edit/{shoppingid}")
@@ -84,7 +84,7 @@ public class ShoppingCartController {
 
     @RequestMapping("/shoppingcart/productlist")
     public String shoppingCartProductList(Model model, HttpSession httpSession) {
-        ShoppingCart shoppingCart = (ShoppingCart) httpSession.getAttribute("shoppingCart");
+        shoppingCart = (ShoppingCart) httpSession.getAttribute("shoppingCart");
         //model.addAttribute("productShoppingCart", shoppingCart.getProductShoppingCart());
 
         return "/shoppingcart/productlist";
@@ -133,10 +133,10 @@ public class ShoppingCartController {
         return "redirect:/shoppingcart/productlist";
     }
 
-    
     @RequestMapping(value = "/shoppingcart/checkoutCreditcard")
-    public String checkoutGuest(@Valid CreditCard creditcard, HttpSession httpSession) {
-        
+    public String checkoutGuest(@Valid CreditCard creditcard, HttpSession httpSession,Model model) {
+
+        shoppingCart = (ShoppingCart) httpSession.getAttribute("shoppingcart");
         //Order 
         Orders order = new Orders();
         order.setOrderDate(new Date());
@@ -155,14 +155,11 @@ public class ShoppingCartController {
         transaction.setOrder(order);
         transaction.setShoppingCart(shoppingCart);
         transaction.setTxnStatus("Success");
-        
+
         transactionService.saveTransaction(transaction);
 
         //Saving transactionService and salesSercive  
 //        salesService.addSalesFromTransaction(transaction);
-
-        //Saving salese  
-        //salesService.addSalesFromTransaction(transaction);
         //Checking the creditcard
         RestTemplate restTemplate = new RestTemplate();
         try {
@@ -176,25 +173,26 @@ public class ShoppingCartController {
         if (result1.equals("1")) {
             //FinancialRecord to store in OnlineMart
             FinancialRecord financialRecord = new FinancialRecord();
-//            financialRecord.setCcNumbeer(creditCard.getCardNo());
-//            financialRecord.setAmountToVendor(totalPrice);
-//
-//            financialRecord.setProfit(totalPrice*0.1);
-//            financialRecord.setProfitToMycompany(totalPrice * 0.2);
-//            financialRecord.setTransactionId(3);
+            System.out.println("The value of creditCard Number is"+ creditcard.getCardNo());
+            financialRecord.setCcNumbeer(creditcard.getCardNo());
+            financialRecord.setAmountToVendor(totalPrice);
+
+            financialRecord.setProfit(totalPrice * 0.1);
+            financialRecord.setProfitToMycompany(totalPrice * 0.2);
+            financialRecord.setTransactionId(transaction.getId());
 //            financialRecord.setVendorId(1);
-//            financialRecord.setTotalAmount(100F);
-//            financialRecord.setDateOfTransaction(new Date());
+            financialRecord.setTotalAmount(totalPrice);
+            financialRecord.setDateOfTransaction(new Date());
 
             financialRecordService.saveFinancialRecord(financialRecord);
 
+             //Calling the RESTful webservices for posting financial data
             try {
-                //Calling the RESTful webservices for posting financial data
-                //String uri = "http://10.10.11.131:8080/com.Testmyfiance_FinancialServiceProvider_war_1.0-SNAPSHOT/webresources/entitiies.financialrecord";
-                //restTemplate.postForObject(uri, financialRecord, FinancialRecord.class);
+                
+                String uri = "http://10.10.56.170:8080/com.Testmyfiance_FinancialServiceProvider_war_1.0-SNAPSHOT/webresources/entitiies.financialrecord";
+                restTemplate.postForObject(uri, financialRecord, FinancialRecord.class);
             } catch (Exception e) {
-                System.out.println("Exception Caught" + e.getMessage());
-
+                System.out.println("Exception Caught " + e.getMessage());
             }
 
             shoppingCart = new ShoppingCart();
@@ -204,16 +202,19 @@ public class ShoppingCartController {
             httpSession.setAttribute("totalquantity", totalquantity);
             httpSession.setAttribute("totalprice", totalPrice);
             httpSession.setAttribute("shoppingCart", shoppingCart);
+            model.addAttribute("creditcarderror","The checkout is successfully completed");
+            return "shoppingcart/error";
 
         } else if (result1.equals("-1")) {
-            return "shoppingcart/error/invalidcart";
-        } else {
-            return "shoppingcart/error/invalidamount";
+            model.addAttribute("creditcarderror","Invalid creditcard");
+            return "shoppingcart/error";
+        } else if (result1.equals("0")) {
+            model.addAttribute("creditcarderror","The amount is unavailable in creditcard");
+            return "shoppingcart/error";
         }
 
         return "redirect:/shoppingcart/productlist";
-        
-        
+
     }
 
     @RequestMapping(value = "/shoppingcart/addcreditcart")
@@ -222,7 +223,7 @@ public class ShoppingCartController {
     }
 
     @RequestMapping(value = "/shoppingcart/checkout")
-    public String checkout(HttpSession httpSession) {
+    public String checkout(HttpSession httpSession,Model model) {
         User user;
         if (httpSession.getAttribute("user") == null) {
             System.out.println("Inside not session");
@@ -242,6 +243,7 @@ public class ShoppingCartController {
 
         }
 
+        shoppingCart = (ShoppingCart) httpSession.getAttribute("shoppingcart");
         Customer c = (Customer) user;
 
         //Order 
@@ -252,22 +254,29 @@ public class ShoppingCartController {
         c.addOrders(order);
         orderService.saveOrder(order);
 
+//        for (CreditCard creditCard : c.getCreditCard()) {
+//            creditCard 
+//        
+//        }
+        
+        
+
         Transaction transaction = new Transaction();
-        transaction.setUser(c);
+        transaction.setUser(user);
         transaction.setAddress(c.getAddress());
-        transaction.setCreditCard(c.getCreditCard().get(1));
+        transaction.setCreditCard(c.getCreditCard().get(0));
         transaction.setGrossAmount(totalPrice * 0.8);
         transaction.setTotalAmount(totalPrice);
         transaction.setOrder(order);
         transaction.setShoppingCart(shoppingCart);
         transaction.setTxnStatus("Success");
-        
+
         transactionService.saveTransaction(transaction);
 
-        //Saving transactionService and salesSercive  
-        salesService.addSalesFromTransaction(transaction);
+        //Saving transactionService and salesService  
+        // salesService.addSalesFromTransaction(transaction);
         System.out.println("after TransactionService");
-       
+
         //Checking the creditcard
         RestTemplate restTemplate = new RestTemplate();
 
@@ -279,34 +288,35 @@ public class ShoppingCartController {
 
         String result = "1";
 
-        if (result.equals(
-                "1")) {
+        if (result.equals("1")) {
             //FinancialRecord to store in OnlineMart
             System.out.println("Before FinancialRecord");
             FinancialRecord financialRecord = new FinancialRecord();
-            financialRecord.setCcNumbeer(c.getCreditCard().get(1).getCardNo());
-                     
-            financialRecord.setAmountToVendor(totalPrice*0.8);
-            financialRecord.setProfit(totalPrice*0.1);
-            financialRecord.setProfitToMycompany(totalPrice*0.1);
+            
+            financialRecord.setCcNumbeer(c.getCreditCard().get(0).getCardNo());
+            financialRecord.setAmountToVendor(totalPrice * 0.8);
+            financialRecord.setProfit(totalPrice * 0.1);
+            financialRecord.setProfitToMycompany(totalPrice * 0.1);
             financialRecord.setTransactionId(transaction.getId());
             financialRecord.setVendorId(1L);
             financialRecord.setTotalAmount(totalPrice);
             financialRecord.setDateOfTransaction(new Date());
+            
 
             financialRecordService.saveFinancialRecord(financialRecord);
-            ;
+
             System.out.println("After FinancialRecordService");
 
             //Calling the RESTful webservices for posting financial data
             try {
-                //String uri = "http://localhost:8080/financialServiceProvider/webresources/entitiies.financialrecord";
-
+                
+                String uri = "http://10.10.56.170:8080/com.Testmyfiance_FinancialServiceProvider_war_1.0-SNAPSHOT/webresources/entitiies.financialrecord";
+                restTemplate.postForObject(uri, financialRecord, FinancialRecord.class);
             } catch (Exception e) {
                 System.out.println("Exception Caught " + e.getMessage());
             }
 
-            //restTemplate.postForObject(uri, financialRecord, FinancialRecord.class);
+            
             shoppingCart = new ShoppingCart();
             totalquantity = 0L;
             totalPrice = 0.0;
@@ -315,15 +325,21 @@ public class ShoppingCartController {
             httpSession.setAttribute("totalprice", totalPrice);
             httpSession.setAttribute("shoppingCart", shoppingCart);
 
-        } else if (result.equals(
-                "-1")) {
-            return "shoppingcart/invalidcart";
-        } else {
-            return "shoppingcart/invalidamount";
+            model.addAttribute("creditcarderror","The checkout is successfully completed");
+            return "shoppingcart/error";
+
+        } else if (result.equals("-1")) {
+            model.addAttribute("creditcarderror","Invalid creditcard");
+            return "shoppingcart/error";
+        } else if (result.equals("0")){
+            model.addAttribute("creditcarderror","The amount is unavailable in creditcard");
+            return "shoppingcart/error";
         }
 
         return "redirect:/shoppingcart/productlist";
+
     }
+
 
     @RequestMapping("shoppingcart/productshoppingcart/{id}")
     public String deleteProductShoppingCart(@PathVariable("id") Long id, Model model) {

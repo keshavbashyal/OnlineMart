@@ -46,7 +46,7 @@
                                 <tr>
                                     <td colspan="2">
                                         <input type="reset" onclick="" value="Reset" class="btn btn-success" />
-                                        <input type="submit" value="Varify" class="btn btn-primary"/>
+                                        <input type="submit" value="Verify" class="btn btn-primary"/>
                                     
                                     </td>
                                 </tr>
