@@ -36,10 +36,10 @@
                     </div>
                     <div class="span12 thumbnail">
                         <div class="breadcrumb">Report</div>
-                        <spring:form id="reportFrm"  method="get" action="${reportURL}" class="pull-right">
+                        <spring:form id="reportFrm"  method="get" action="http://10.10.14.51:8080/CRviewer/ra.jsp" class="pull-right">
 
                             <spring:errors element="div" cssClass="errors" path="*"/>
-                            <input type="hidden" value="${sessionScope.user.id}" name="vendorID"/>
+                            <input type="hidden" value="1" name="productID"/>
                             <table class="table table-striped">
                                 <tr class='pull-left'>
                                     <td><label>From Date</label></td>
@@ -47,13 +47,9 @@
                                     <td><label>To Date</label></td>
                                     <td><input type="text" id="to" name="toDate"/></td>
                                 </tr>
-                                <tr>
-                                    <td colspan="4">
-                                        <input type="submit" value="Get Report" class="btn btn-success pull-right"/>
-                                    </td>
-                                </tr>
+                                
                             </table>
-
+                            <input type="submit" value="Get Report" class="btn btn-success pull-right"/>
                         </spring:form>
                     </div>
                     <div class="span12 thumbnail">
@@ -155,6 +151,12 @@
         </div>
 
         <%@include file="../includes/footer.jsp" %>
-
+        <script>
+            $(function () {
+                $("#from").datepicker({dateFormat: 'yy-mm-dd'});
+                $("#to").datepicker({dateFormat: 'yy-mm-dd'});
+                $("#reportFrm").validate();
+            });
+        </script>
     </body>
 </html>
