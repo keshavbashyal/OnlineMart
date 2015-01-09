@@ -24,7 +24,6 @@ public class HelloController {
 
         model.addAttribute("allCategories", categoryService.listCategory());
         model.addAttribute("products", productService.listProducts());
- System.out.println("inside search index");
         return "template/index";
     }
 
@@ -38,7 +37,6 @@ public class HelloController {
         @RequestMapping("/category/{categoryid}/products")
     public String SearchProductByCateegory(@PathVariable("categoryid") Long id, Model model) {
         model.addAttribute("products", productService.findProductByCategoryId(id));
-        System.out.println("inside search category");
         return "product/productlist";
     }
     

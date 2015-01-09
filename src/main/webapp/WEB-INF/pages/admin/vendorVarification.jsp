@@ -22,9 +22,11 @@
                         </div>
                     </div>
                     <div class="span4 pull-right">
-                        <spring:form method="post" action="admin/save/${vendor.id}" commandName="vendor" cssClass="pull-right">
+                        <spring:form method="post" action="admin/vendor/save/${vendor.id}" commandName="vendor" cssClass="pull-right">
                             <spring:errors element="div" cssClass="errors" path="*"/>
                             <spring:input type="hidden" path="id"/>
+                            <spring:input type="hidden" path="password"/>
+                             <spring:input type="hidden" path="userRoles.id"/>
                             <table> 
                                 <tr>
                                     <td><spring:input path="vendorName" id="name"/></td>
