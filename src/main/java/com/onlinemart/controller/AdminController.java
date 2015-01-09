@@ -42,7 +42,12 @@ public class AdminController {
         ModelAndView model = new ModelAndView("login");
         return model;
     }
-
+    @RequestMapping("/admin/vendor/save/{vendor.id}")
+public String VerifyVendor(Vendor vendor){
+    vendor.setStatus("APPROVED");
+    vendorService.saveVendor(vendor);
+    return "admin/dashboard";
+}
     @RequestMapping("/admin/welcome")
  
     public String home() {
@@ -69,17 +74,13 @@ public class AdminController {
     }
     
     
-     @RequestMapping("admin/vendor/status/{id}")
+     @RequestMapping("/admin/vendor/status/{id}")
     public String changeVendorStatus(@PathVariable Long id,   Model model, HttpSession session){
       Vendor v=vendorService.getVendor(id);
       
       if(v.getStatus().equalsIgnoreCase("PENDING"))
           v.setStatus("APPROVED");
-      
-      if(v.getStatus().equalsIgnoreCase("APPROVED"))
-          v.setStatus("PENDING");
-      
-       
+     
       vendorService.saveVendor(v);
       
     // model.addAttribute("venders", vendorService.listVendors());
