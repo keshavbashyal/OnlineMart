@@ -4,27 +4,20 @@
  * and open the template in the editor.
  */
 package com.onlinemart.model;
-
-/**
- *
- * @author Keshav
- */
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.Basic;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -32,6 +25,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author gduresso
  */
 @Entity
+
 public class FinancialRecord implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -39,30 +33,22 @@ public class FinancialRecord implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "transactionId")
-    private Integer transactionId;
-    @Column(name = "ccNumbeer")
-    private Integer ccNumbeer;
-    @Column(name = "vendorId")
-    private Integer vendorId;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "totalAmount")
-    private Float totalAmount;
-    @Column(name = "Profit")
-    private Float profit;
-    @Column(name = "profitToMycompany")
-    private Float profitToMycompany;
-    @Column(name = "amountToVendor")
-    private Float amountToVendor;
-    @Column(name = "dateOfTransaction")
-    @Temporal(TemporalType.DATE)
-    private Date dateOfTransaction;
-
     public Long getId() {
         return id;
     }
+    //@Column(name = "transactionId")
+    private Long transactionId;
+    //@Column(name = "ccNumbeer")
+    private String ccNumbeer;
+    //@Column(name = "vendorId")
+    private Long vendorId;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    // @Column(name = "totalAmount")
+    private Double totalAmount;
+    // @Column(name = "Profit")
+    private Double profit;
 
-    public FinancialRecord(Integer transactionId, Integer ccNumbeer, Integer vendorId, Float totalAmount, Float profit, Float profitToMycompany, Float amountToVendor, Date dateOfTransaction) {
+    public FinancialRecord(Long transactionId, String ccNumbeer, Long vendorId, Double totalAmount, Double profit, Double profitToMycompany, Double amountToVendor, Date dateOfTransaction) {
         this.transactionId = transactionId;
         this.ccNumbeer = ccNumbeer;
         this.vendorId = vendorId;
@@ -72,76 +58,19 @@ public class FinancialRecord implements Serializable {
         this.amountToVendor = amountToVendor;
         this.dateOfTransaction = dateOfTransaction;
     }
-
-    public FinancialRecord() {
-    }
-
-    public Integer getTransactionId() {
-        return transactionId;
-    }
-
-    public void setTransactionId(Integer transactionId) {
-        this.transactionId = transactionId;
-    }
-
-    public Integer getCcNumbeer() {
-        return ccNumbeer;
-    }
-
-    public void setCcNumbeer(Integer ccNumbeer) {
-        this.ccNumbeer = ccNumbeer;
-    }
-
-    public Integer getVendorId() {
-        return vendorId;
-    }
-
-    public void setVendorId(Integer vendorId) {
-        this.vendorId = vendorId;
-    }
-
-    public Float getTotalAmount() {
-        return totalAmount;
-    }
-
-    public void setTotalAmount(Float totalAmount) {
-        this.totalAmount = totalAmount;
-    }
-
-    public Float getProfit() {
-        return profit;
-    }
-
-    public void setProfit(Float profit) {
-        this.profit = profit;
-    }
-
-    public Float getProfitToMycompany() {
-        return profitToMycompany;
-    }
-
-    public void setProfitToMycompany(Float profitToMycompany) {
-        this.profitToMycompany = profitToMycompany;
-    }
-
-    public Float getAmountToVendor() {
-        return amountToVendor;
-    }
-
-    public void setAmountToVendor(Float amountToVendor) {
-        this.amountToVendor = amountToVendor;
-    }
-
-    public Date getDateOfTransaction() {
-        return dateOfTransaction;
-    }
-
-    public void setDateOfTransaction(Date dateOfTransaction) {
-        this.dateOfTransaction = dateOfTransaction;
-    }
+    //@Column(name = "profitToMycompany")
+    private Double profitToMycompany;
+    //@Column(name = "amountToVendor")
+    private Double amountToVendor;
+    // @Column(name = "dateOfTransaction")
+    @Temporal(TemporalType.DATE)
+    private Date dateOfTransaction;
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public FinancialRecord() {
     }
 
     @Override
@@ -168,5 +97,71 @@ public class FinancialRecord implements Serializable {
     public String toString() {
         return "entitiies.FinancialRecord[ id=" + id + " ]";
     }
+
+    public Long getTransactionId() {
+        return transactionId;
+    }
+
+    public void setTransactionId(Long transactionId) {
+        this.transactionId = transactionId;
+    }
+
+    public String getCcNumbeer() {
+        return ccNumbeer;
+    }
+
+    public void setCcNumbeer(String ccNumbeer) {
+        this.ccNumbeer = ccNumbeer;
+    }
+
+    public Long getVendorId() {
+        return vendorId;
+    }
+
+    public void setVendorId(Long vendorId) {
+        this.vendorId = vendorId;
+    }
+
+    public Double getTotalAmount() {
+        return totalAmount;
+    }
+
+    public void setTotalAmount(Double totalAmount) {
+        this.totalAmount = totalAmount;
+    }
+
+    public Double getProfit() {
+        return profit;
+    }
+
+    public void setProfit(Double profit) {
+        this.profit = profit;
+    }
+
+    public Double getProfitToMycompany() {
+        return profitToMycompany;
+    }
+
+    public void setProfitToMycompany(Double profitToMycompany) {
+        this.profitToMycompany = profitToMycompany;
+    }
+
+    public Double getAmountToVendor() {
+        return amountToVendor;
+    }
+
+    public void setAmountToVendor(Double amountToVendor) {
+        this.amountToVendor = amountToVendor;
+    }
+
+    public Date getDateOfTransaction() {
+        return dateOfTransaction;
+    }
+
+    public void setDateOfTransaction(Date dateOfTransaction) {
+        this.dateOfTransaction = dateOfTransaction;
+    }
+    
+    
 
 }

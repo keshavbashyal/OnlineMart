@@ -36,7 +36,7 @@
                         <div class="page-header">
                             <h3>Customer &rsaquo; Account &rsaquo; Add Credit Card</h3>
                         </div>
-                        <form method="post" action="shoppingcart/checkoutGuest" >
+                        <form method="post" action="shoppingcart/checkoutCreditcard" >
                             
                             <spring:errors element="div" cssClass="errors" path="*"/>
                            
