@@ -38,7 +38,6 @@
                         <div class="span9">
                             <spring:form id="reportFrm"  method="get" action="${reportURL}" class="pull-right">
                                 
-                                <spring:errors element="div" cssClass="errors" path="*"/>
                                 <input type="hidden" value="${sessionScope.user.id}" name="vendorID"/>
                                 <table class="table table-striped">
                                     <tr class='pull-left'>
