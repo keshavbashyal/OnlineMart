@@ -59,6 +59,7 @@ public class AdminController {
         model.addAttribute("allcustomers", customerService.listCustomer());
         model.addAttribute("vendorsize", vendorService.listVendors().size());
         model.addAttribute("allCategories", categoryService.listCategory());
+        session.setAttribute("userType", "admin");
         return "/admin/dashboard";
     }
     @RequestMapping("/admin/dashboard/categorylist")
