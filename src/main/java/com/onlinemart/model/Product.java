@@ -43,6 +43,7 @@ public class Product implements Serializable {
     private Sizes sizes;
     @Enumerated(EnumType.STRING)
     private Color color;
+    
     private Long categoryId;
 
     public Long getCategoryId() {

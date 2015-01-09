@@ -108,7 +108,7 @@
                     <div class="span12 thumbnail">
                         <div class="breadcrumb"><h5> Category List</h5></div>
                         <div class="span12">
-                            <a href="category/addCategory" class="btn btn-success pull-right">Add New Product</a>
+                            <a href="category/addCategory" class="btn btn-success pull-right">Add New Category</a>
                         </div>
                         <table class="table table-condensed table-striped">
                             <tr>

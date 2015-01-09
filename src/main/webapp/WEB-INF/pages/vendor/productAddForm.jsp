@@ -33,32 +33,43 @@
                     </div>
 
                     <div class="span9 pull-right">
-                        <div class="breadcrumb">Vendor &rsaquo; Dashboard &rsaquo; Add Product</div>
+                        <h5>Vendor &rsaquo; Dashboard &rsaquo; Add Product</h5>
                         <br>
                         <div class="span9 pull-right">
-                            <spring:form method="post" action="vendor/addProduct" commandName="product" enctype="multipart/form-data" class="pull-right">
+                            <spring:form id="productAddForm"  method="post" action="vendor/addProduct" commandName="product" enctype="multipart/form-data" class="pull-right">
                                 <spring:errors element="div" cssClass="errors" path="*"/>
                                 <spring:input type="hidden" path="id"/>
-                                <table class="table table-condensed table-striped pull-right"> 
+                                <table class="pull-right"> 
+                                    <tr>
+                                        <td>Category</td>
+                                        <td>
+                                            <spring:select path="categoryId"  required="true">
+                                                <spring:option value="" label="--Select Category"></spring:option>
+                                                <c:forEach items="${categories}" var="category">
+                                                    <spring:option value="${category.id}" label="${category.categoryName}"></spring:option>
+                                                </c:forEach>
+                                            </spring:select>
+                                        </td>
+                                    </tr>
                                     <tr>
                                         <td>Name</td>
-                                        <td><spring:input path="productName" id="name" cssClass="input-xxlarge" /></td>
+                                        <td><spring:input path="productName" id="name" cssClass="input-xxlarge" required="true"/></td>
                                         <td><spring:errors path="productName" element="div" cssClass="error" /></td>
                                     </tr>
                                     <tr>
                                         <td>Description</td>
-                                        <td><spring:textarea path="productDescription" id="desc" cssClass="input-xxlarge"/></td>
+                                        <td><spring:textarea path="productDescription" id="desc" cssClass="input-xxlarge" maxlength="200"/></td>
                                         <td><spring:errors path="productDescription" element="div" cssClass="error" /></td>
                                     </tr>
                                     <tr>
-                                        <td>Price</td>
-                                        <td><spring:input path="unitPrice" id="price" cssClass="input-xxlarge" /></td>
+                                        <td>Price</td> 
+                                        <td><spring:input path="unitPrice" id="price" cssClass="input-xxlarge" required="true"/></td>
                                         <td><spring:errors path="unitPrice" element="div" cssClass="error" /></td>
                                     </tr>
                                     <tr>
                                         <td>Color</td>
                                         <td>
-                                            <spring:select path="color" id="color">
+                                            <spring:select path="color" id="color"  required="true">
                                                 <spring:option value="" label="--Select Color"/>
                                                 <spring:options items="${enum_color}"/>
                                             </spring:select>
@@ -68,7 +79,7 @@
                                     <tr>
                                         <td>Size</td>
                                         <td>
-                                            <spring:select path="sizes" id="size">
+                                            <spring:select path="sizes" id="size"  required="true">
                                                 <spring:option value="" label="--Select Size"/>
                                                 <spring:options items="${enum_size}"/>
                                             </spring:select>
@@ -77,7 +88,7 @@
                                     </tr>
                                     <tr>
                                         <td>Date</td>
-                                        <td><spring:input path="addDate" id="datepicker"/></td>
+                                        <td><spring:input path="addDate" id="datepicker" required="true"/></td>
                                         <td><spring:errors path="addDate" element="div" cssClass="error" /></td>
                                     </tr>
                                     <tr>
@@ -114,6 +125,7 @@
         <script>
             $(function () {
                 $("#datepicker").datepicker({dateFormat: 'mm-dd-yy'});
+                $("#productAddForm").validate();
             });
         </script>
     </body>

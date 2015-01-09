@@ -10,6 +10,7 @@ import com.onlinemart.commons.Sizes;
 import com.onlinemart.model.Product;
 import com.onlinemart.model.User;
 import com.onlinemart.model.Vendor;
+import com.onlinemart.service.CategoryService;
 import com.onlinemart.service.ProductService;
 import com.onlinemart.service.UserRoleService;
 import com.onlinemart.service.UserService;
@@ -49,6 +50,8 @@ public class VendorController {
     ProductService productService;
     @Autowired
     UserRoleService UserRoleService;
+    @Autowired
+    CategoryService categoryService;
 
     @RequestMapping("/vendor/dashboard")
     public String vendorDashboard(ModelMap model, HttpSession session, Principal princ) {
@@ -142,6 +145,7 @@ public class VendorController {
     public String productAddForm(Product product, Model model) {
         model.addAttribute("enum_size", Sizes.values());
         model.addAttribute("enum_color", Color.values());
+        model.addAttribute("categories", categoryService.listCategory());
         return "vendor/productAddForm";
     }
 
