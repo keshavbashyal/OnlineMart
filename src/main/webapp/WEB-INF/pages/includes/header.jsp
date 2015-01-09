@@ -14,11 +14,30 @@
                         <div class="navbar navbar-static navlist">
                             <ul class="nav">                                
                                 <li>
-                                    <a href="<c:url value='/shoppingcart/productlist'/>"><i class="icon-shopping-cart"></i> Shopping Cart
+                                    <c:if test="${not empty sessionScope.user}">
+                                        <c:if test="${not empty sessionScope.userType}">
+                                             <c:if test="${ sessionScope.userType eq 'vendor' }">
+                                            
+                                                 <style>
+                                                     .shopping_cart_link{
+                                                         display:none !important;
+                                                     }
+                                                 </style>
+                                            
+                                        </c:if>
+                                            
+                                        </c:if>
+                                        
+                                        
+                                    </c:if>                                    
+                                    
+                                    
+                                    <a href="<c:url value='/shoppingcart/productlist'/>" class="shopping_cart_link"><i class="icon-shopping-cart"></i> Shopping Cart
                                         <c:if test="${(totalquantity > 0)  }">
                                             ${totalquantity}
                                         </c:if>
                                     </a>
+                                    
                                 </li>
                                 <li class="divider-vertical"></li>
                                     <c:if test= "${not empty sessionScope.user}" >

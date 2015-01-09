@@ -61,11 +61,10 @@ public class VendorController {
     
     
 
-//    @RequestMapping(value = "/vendor/home")
-//    public ModelAndView vendorHome() {
-//        ModelAndView model = new ModelAndView("/vendor/dashboard");
-//        return model;
-//    }
+    @RequestMapping(value = "/vendor")
+    public String vendorHome() {
+        return "/vendor/dashboard";
+    }
 
     @RequestMapping(value = "/vendor/welcome")
     public String printWelcome(ModelMap model) {
