@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
-        <title>OnlineMart - Vendor - Product Add Form</title>
+        <title>OnlineMart - Vendor - Product Edit Form</title>
         <base href="<c:url value="/" />"/>
         <link rel="stylesheet" href="resources/css/style.css"/>
 
@@ -33,10 +33,10 @@
                     </div>
 
                     <div class="span9 pull-right">
-                        <h5>Vendor &rsaquo; Dashboard &rsaquo; Add Product</h5>
+                        <h5>Vendor &rsaquo; Dashboard &rsaquo; Edit Product</h5>
                         <br>
                         <div class="span9 pull-right">
-                            <spring:form id="productAddForm"  method="post" action="vendor/addProduct" commandName="product" enctype="multipart/form-data" class="pull-right">
+                            <spring:form id="productAddForm"  method="post" action="vendor/editProduct" commandName="product" enctype="multipart/form-data" class="pull-right">
                                 <spring:errors element="div" cssClass="errors" path="*"/>
                                 <spring:input type="hidden" path="id"/>
                                 <table class="pull-right"> 
@@ -86,11 +86,11 @@
                                         </td>
                                         <td><spring:errors path="sizes" element="div" cssClass="error" /></td>
                                     </tr>
-                                    <!--<tr>
+                                    <tr>
                                         <td>Date</td>
-                                        <td><spring:input path="addDate" id="datepicker" required="true"/></td>
+                                        <td><spring:input path="addDate" required="true" disabled="true"/></td>
                                         <td><spring:errors path="addDate" element="div" cssClass="error" /></td>
-                                    </tr>-->
+                                    </tr>
                                     <tr>
                                         <td>Images</td>
                                         <td><input type="file" name="file" /></td>
@@ -99,8 +99,7 @@
                                     <tr>
                                         <td></td>
                                         <td colspan="2">
-                                            <input type="reset" value="Reset" class="btn btn-danger" />
-                                            <input type="submit" value="Add Product" class="btn btn-success"/>
+                                            <input type="submit" value="Save Product" class="btn btn-success"/>
                                         </td>
                                     </tr>
                                 </table>

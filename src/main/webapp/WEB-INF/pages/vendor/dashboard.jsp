@@ -57,8 +57,8 @@
                                     <td>${product.color}</td>
                                     <td>${product.addDate}</td>
                                     <td>
-                                        <a href="vendor/editProduct/${product.id}" class="btn btn-primary btn-mini">Edit</a>
-                                        <a href="vendor/deleteProduct/${product.id}" onclick="return confirm(' Delete Product? ')" class="btn btn-danger btn-mini">Delete</a>
+                                        <a href="vendor/product/edit/${product.id}" class="btn btn-primary btn-mini">Edit</a>
+                                        <a href="vendor/product/delete/${product.id}" onclick="return confirm(' Delete Product? ')" class="btn btn-danger btn-mini">Delete</a>
                                     </td>
                                 </tr>
                             </c:forEach>

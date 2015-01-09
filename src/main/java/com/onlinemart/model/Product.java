@@ -66,7 +66,7 @@ public class Product implements Serializable {
     private Vendor vendor;
     
     @Temporal(TemporalType.DATE)
-    @DateTimeFormat (pattern = "mm-dd-yy")
+    @DateTimeFormat (pattern = "mm-dd-yyyy")
     private Date addDate;
     @Lob
     private byte[] image;

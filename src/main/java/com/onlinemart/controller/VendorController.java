@@ -19,6 +19,8 @@ import com.onlinemart.utils.MailService;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.security.Principal;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 //import java.time.Clock;
 import java.util.Date;
 import javax.servlet.http.HttpServletResponse;
@@ -106,7 +108,7 @@ public class VendorController {
                 vendor.setUserRoles(UserRoleService.getVendor());
                 vendorService.saveVendor(vendor);
                 MailService sendEmail = new MailService();
-                sendEmail.sendVendorSignUpEmail(vendor.getEmail(),vendor.getVendorName());
+                sendEmail.sendVendorSignUpEmail(vendor.getEmail(), vendor.getVendorName());
             }
         }
         return "redirect:/";
@@ -164,13 +166,41 @@ public class VendorController {
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
+            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+            Date date = new Date();
+            System.out.println(dateFormat.format(date)); //2014/08/06
+            
             Vendor vendor = (Vendor) session.getAttribute("user");
+            product.setAddDate(date);
             product.setVendor(vendor);
             vendor.addProduct(product);
             //vendorService.saveVendor(vendor);
             productService.saveProduct(product);
             model.addAttribute("errType", "alert success");
             model.addAttribute("msg", " Successfully Added. ");
+        }
+        return "redirect:/vendor/dashboard";
+    }
+
+    @RequestMapping(value = "/vendor/editProduct", method = RequestMethod.POST)
+    public String editProduct(@Valid Product product, BindingResult result, Model model, HttpSession session, @RequestParam("file") MultipartFile file) {
+        if (result.hasErrors()) {
+            model.addAttribute("errType", "alert error");
+            model.addAttribute("msg", result.toString());
+            //return "vendor/dashboard";
+        } else {
+            try {
+                product.setImage(file.getBytes());
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+            Vendor vendor = (Vendor) session.getAttribute("user");
+            //product.setVendor(vendor);
+            //vendor.addProduct(product);
+            //vendorService.saveVendor(vendor);
+            productService.saveProduct(product);
+            model.addAttribute("errType", "alert success");
+            model.addAttribute("msg", " Successfully Updated. ");
         }
         return "redirect:/vendor/dashboard";
     }

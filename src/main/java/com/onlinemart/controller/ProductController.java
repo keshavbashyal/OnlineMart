@@ -8,6 +8,7 @@ package com.onlinemart.controller;
 import static com.businessobjects.reports.datainterface.SummaryOperation.p;
 import com.onlinemart.model.Product;
 import com.onlinemart.model.Vendor;
+import com.onlinemart.service.CategoryService;
 import com.onlinemart.service.ProductService;
 import com.onlinemart.service.VendorService;
 import java.io.IOException;
@@ -36,6 +37,9 @@ public class ProductController {
 
     @Autowired
     ProductService productService;
+    
+    @Autowired
+    CategoryService categoryService;
 
     
 
@@ -65,7 +69,8 @@ public class ProductController {
     @RequestMapping("vendor/product/edit/{productid}")
     public String editProduct(@PathVariable("productid") Long id, Model model) {
         model.addAttribute("product", productService.getProduct(id));
-        return "vendor/productform";
+        model.addAttribute("categories", categoryService.listCategory());
+        return "vendor/productEditFrm";
     }
 
     @RequestMapping("vendor/product/delete/{productid}")
