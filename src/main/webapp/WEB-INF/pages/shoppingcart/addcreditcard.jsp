@@ -73,7 +73,6 @@
                                     <td><input type="submit" value="Save and CheckOut"  class="btn btn-danger btn-large icon-shopping-cart icon-white" /></td>
                                     <td>&nbsp;</td>
                                 </tr>
-
                             </table>
                         </form>
                     </div>
