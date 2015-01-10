@@ -28,6 +28,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,6 +43,12 @@ import org.springframework.web.client.RestTemplate;
  */
 @Controller
 public class ShoppingCartController {
+
+    private @Value("${financeservice.serveraddress}")
+    String financeServerURL;
+
+    private @Value("${paymentgateway.serveraddress}")
+    String paymentGatewayURL;
 
     @Autowired
     ShoppingCartService shoppingCartService;
@@ -134,8 +141,9 @@ public class ShoppingCartController {
     }
 
     @RequestMapping(value = "/shoppingcart/checkoutCreditcard")
-    public String checkoutGuest(@Valid CreditCard creditcard, HttpSession httpSession,Model model) {
-
+    public String checkoutGuest(@Valid CreditCard creditcard, HttpSession httpSession, Model model) {
+        
+        System.out.println(creditcard.getCardNo());
         shoppingCart = (ShoppingCart) httpSession.getAttribute("shoppingcart");
         //Order 
         Orders order = new Orders();
@@ -161,19 +169,25 @@ public class ShoppingCartController {
         //Saving transactionService and salesSercive  
 //        salesService.addSalesFromTransaction(transaction);
         //Checking the creditcard
+          //paymentGatewayURL;
         RestTemplate restTemplate = new RestTemplate();
+        String result = "";
+        String sort = creditcard.getCardNo();
+        String requestamount = "100";
+        System.out.println(creditcard.getCardNo());
+        System.out.println(paymentGatewayURL + "?no={no}&requested=100");
         try {
-            //String result1 = restTemplate.getForObject("http://10.10.11.231:8080/PaymentGateway/webresources/verify/ccDetails?no=4584225423162589&requested=100", String.class);
-
+            //result = restTemplate.getForObject(paymentGatewayURL + "?no={no}&requested=100", String.class,sort);
+             result = restTemplate.getForObject("http://10.10.11.231:8080/PaymentGateway/webresources/verify/ccDetails?no=4584225423162589&requested=100",String.class,sort);
+        
         } catch (Exception e) {
             System.out.println("Exception caught" + e.getMessage());
         }
-        String result1 = "1";
 
-        if (result1.equals("1")) {
+        if (result.equals("1")) {
             //FinancialRecord to store in OnlineMart
             FinancialRecord financialRecord = new FinancialRecord();
-            System.out.println("The value of creditCard Number is"+ creditcard.getCardNo());
+            System.out.println("The value of creditCard Number is" + creditcard.getCardNo());
             financialRecord.setCcNumbeer(creditcard.getCardNo());
             financialRecord.setAmountToVendor(totalPrice);
 
@@ -187,9 +201,10 @@ public class ShoppingCartController {
             financialRecordService.saveFinancialRecord(financialRecord);
 
              //Calling the RESTful webservices for posting financial data
+            //financeServerURL;
             try {
-                
-                String uri = "http://10.10.56.170:8080/com.Testmyfiance_FinancialServiceProvider_war_1.0-SNAPSHOT/webresources/entitiies.financialrecord";
+
+                String uri = financeServerURL;
                 restTemplate.postForObject(uri, financialRecord, FinancialRecord.class);
             } catch (Exception e) {
                 System.out.println("Exception Caught " + e.getMessage());
@@ -202,14 +217,11 @@ public class ShoppingCartController {
             httpSession.setAttribute("totalquantity", totalquantity);
             httpSession.setAttribute("totalprice", totalPrice);
             httpSession.setAttribute("shoppingCart", shoppingCart);
-            model.addAttribute("creditcarderror","The checkout is successfully completed");
+            model.addAttribute("creditcarderror", "The checkout is successfully completed");
             return "shoppingcart/error";
 
-        } else if (result1.equals("-1")) {
-            model.addAttribute("creditcarderror","Invalid creditcard");
-            return "shoppingcart/error";
-        } else if (result1.equals("0")) {
-            model.addAttribute("creditcarderror","The amount is unavailable in creditcard");
+        } else if (result.equals("0")) {
+            model.addAttribute("creditcarderror", "Invalid creditcard");
             return "shoppingcart/error";
         }
 
@@ -223,7 +235,7 @@ public class ShoppingCartController {
     }
 
     @RequestMapping(value = "/shoppingcart/checkout")
-    public String checkout(HttpSession httpSession,Model model) {
+    public String checkout(HttpSession httpSession, Model model) {
         User user;
         if (httpSession.getAttribute("user") == null) {
             System.out.println("Inside not session");
@@ -258,9 +270,6 @@ public class ShoppingCartController {
 //            creditCard 
 //        
 //        }
-        
-        
-
         Transaction transaction = new Transaction();
         transaction.setUser(user);
         transaction.setAddress(c.getAddress());
@@ -279,20 +288,23 @@ public class ShoppingCartController {
 
         //Checking the creditcard
         RestTemplate restTemplate = new RestTemplate();
-
+        String result = "";
+        String sort = c.getCreditCard().get(0).getCardNo();
+        String requestamount = "100";
+        System.out.println(c.getCreditCard().get(0).getCardNo());
+        System.out.println(paymentGatewayURL + "?no={no}&requested=100");
         try {
-            //String result = restTemplate.getForObject("http://10.10.13.146:8080/cardgateway/webresources/verify/ccDetails?no=4854251425585698&requested=100", String.class);
+            //result = restTemplate.getForObject(paymentGatewayURL + "?no={no}&requested=100", String.class,sort);
+            result = restTemplate.getForObject("http://10.10.11.231:8080/PaymentGateway/webresources/verify/ccDetails?no={no}&requested=100",String.class,sort);
         } catch (Exception e) {
-            System.out.println("Exception Caught" + e.getMessage());
+            System.out.println("Exception caught" + e.getMessage());
         }
-
-        String result = "1";
 
         if (result.equals("1")) {
             //FinancialRecord to store in OnlineMart
             System.out.println("Before FinancialRecord");
             FinancialRecord financialRecord = new FinancialRecord();
-            
+
             financialRecord.setCcNumbeer(c.getCreditCard().get(0).getCardNo());
             financialRecord.setAmountToVendor(totalPrice * 0.8);
             financialRecord.setProfit(totalPrice * 0.1);
@@ -301,7 +313,6 @@ public class ShoppingCartController {
             financialRecord.setVendorId(1L);
             financialRecord.setTotalAmount(totalPrice);
             financialRecord.setDateOfTransaction(new Date());
-            
 
             financialRecordService.saveFinancialRecord(financialRecord);
 
@@ -309,14 +320,13 @@ public class ShoppingCartController {
 
             //Calling the RESTful webservices for posting financial data
             try {
-                
+
                 String uri = "http://10.10.56.170:8080/com.Testmyfiance_FinancialServiceProvider_war_1.0-SNAPSHOT/webresources/entitiies.financialrecord";
                 restTemplate.postForObject(uri, financialRecord, FinancialRecord.class);
             } catch (Exception e) {
                 System.out.println("Exception Caught " + e.getMessage());
             }
 
-            
             shoppingCart = new ShoppingCart();
             totalquantity = 0L;
             totalPrice = 0.0;
@@ -325,21 +335,17 @@ public class ShoppingCartController {
             httpSession.setAttribute("totalprice", totalPrice);
             httpSession.setAttribute("shoppingCart", shoppingCart);
 
-            model.addAttribute("creditcarderror","The checkout is successfully completed");
+            model.addAttribute("creditcarderror", "The checkout is successfully completed");
             return "shoppingcart/error";
 
-        } else if (result.equals("-1")) {
-            model.addAttribute("creditcarderror","Invalid creditcard");
-            return "shoppingcart/error";
-        } else if (result.equals("0")){
-            model.addAttribute("creditcarderror","The amount is unavailable in creditcard");
+        } else if (result.equals("0")) {
+            model.addAttribute("creditcarderror", "Invalid creditcard");
             return "shoppingcart/error";
         }
 
         return "redirect:/shoppingcart/productlist";
 
     }
-
 
     @RequestMapping("shoppingcart/productshoppingcart/{id}")
     public String deleteProductShoppingCart(@PathVariable("id") Long id, Model model) {
